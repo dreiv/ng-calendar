@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// reset
+button {
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+
+  color: inherit;
+  text-align: inherit;
+
+  background-color: transparent;
+  cursor: pointer;
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+}
