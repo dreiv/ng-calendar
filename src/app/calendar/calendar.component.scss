@@ -35,11 +35,9 @@ header {
 }
 
 .event {
-  top: 9rem;
   position: absolute;
-  padding: 0.625rem;
+  padding: 0.25rem 0.625rem;
   background-color: white;
-  height: 7.5rem;
   border-radius: .25rem;
   border: 1px solid #ebebeb;
   overflow: hidden;
@@ -57,6 +55,38 @@ header {
     background: linear-gradient(180deg, #56BEFE 0%, #2171FF 100%);
     content: '';
   }
+}
+
+.event-1 {
+  top: 9rem;
+  height: 6rem;
+}
+
+.event-2 {
+  top: 24rem;
+  height: 7.5rem;
+
+  &::before {
+    background: #12B2A6;
+  }
+}
+
+.event-3 {
+  top: 6rem;
+  height: 3rem;
+}
+
+.event-4 {
+  width: 50%;
+  top: 18rem;
+  height: 3rem;
+}
+
+.event-5 {
+  width: 50%;
+  right: 0;
+  top: 18rem;
+  height: 6rem;
 }
 
 //
