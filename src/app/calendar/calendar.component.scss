@@ -1,5 +1,7 @@
 :host {
   display: flex;
+  position: relative;
+  background-color: #F2F2F2;
 }
 
 .time {
@@ -10,15 +12,54 @@
 
 .hour {
   height: 3rem;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #D3D3D3;
+    content: ''
+  }
+}
+
+header {
+  text-align: center;
 }
 
 .track {
+  position: relative;
   flex: 1;
   min-width: 10rem;
+
+  border-left: 1px solid #D3D3D3;
+}
+
+.event {
+  top: 9rem;
+  position: absolute;
+  padding: 0.625rem;
+  background-color: white;
+  height: 7.5rem;
+  border-radius: .25rem;
+  border: 1px solid #ebebeb;
+  overflow: hidden;
+
+  > .title {
+    font-weight: bold;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 5px;
+    background: linear-gradient(180deg, #56BEFE 0%, #2171FF 100%);
+    content: '';
+  }
 }
 
 //
-
 %arrow {
   width: 1rem;
   height: 1rem;
