@@ -1,4 +1,8 @@
-<div class="time"></div>
+<time class="time">
+  <div class="hour" *ngFor="let hour of time">
+    {{ hour }}
+  </div>
+</time>
 <div class="track">Mon 18</div>
 <div class="track">Tue 19</div>
 <div class="track">Wed 20</div>
