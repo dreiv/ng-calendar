@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-const generateHours = period =>
+const generateHours = (period) =>
   Array.from({ length: 13 }, (_, k) => k + period).slice(1);
 
 @Component({
@@ -9,14 +9,9 @@ const generateHours = period =>
   styleUrls: ['./calendar-time.component.scss']
 })
 export class CalendarTimeComponent implements OnInit {
-  hours = [
-    ...generateHours('am'),
-    ...generateHours('pm')
-  ]
+  hours = [...generateHours('am'), ...generateHours('pm')];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

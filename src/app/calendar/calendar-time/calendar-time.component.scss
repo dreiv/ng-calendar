@@ -2,8 +2,8 @@ $hourLen: 3rem;
 
 :host {
   flex-shrink: 0;
-  padding-top: $hourLen;
   width: $hourLen;
+  padding-top: $hourLen;
 }
 
 .hour {
@@ -12,9 +12,11 @@ $hourLen: 3rem;
 
   &::before {
     position: absolute;
-    left: 0;
     right: 0;
-    border-top: 1px solid #D3D3D3;
-    content: ''
+    left: 0;
+
+    border-top: 1px solid #d3d3d3;
+
+    content: '';
   }
 }
