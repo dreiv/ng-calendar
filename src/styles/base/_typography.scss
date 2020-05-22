@@ -1,5 +1,11 @@
 body {
-  color: var(--dark-gray);
-  font-family: Segoe UI, Helvetica Neue, Helvetica, Lucida Grande, Arial, Ubuntu,
-    Cantarell, Fira Sans, sans-serif;
+  color: var(--onSurface);
+  font-family: 'Roboto', 'Segoe UI', BlinkMacSystemFont, system-ui,
+    -apple-system sans-serif;
+  line-height: var(--line-height);
+
+  background-color: var(--surface);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

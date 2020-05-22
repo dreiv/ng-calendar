@@ -10,6 +10,12 @@
   height: $height;
 }
 
+@mixin circle($diameter) {
+  @include box($diameter);
+
+  border-radius: 50%;
+}
+
 @mixin margin-vert($top, $bottom: $top) {
   margin-top: $top;
   margin-bottom: $bottom;
@@ -43,6 +49,7 @@
 
 @mixin flex-center-column {
   @include flex-center;
+
   flex-direction: column;
 }
 

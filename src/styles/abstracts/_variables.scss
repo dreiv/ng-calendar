@@ -1,13 +1,18 @@
 :root {
   /* colors */
-  --white: #fff;
-  --dark-gray: #333;
-  --highlight: #e0e0e0;
-  --main-gray: #ededed;
-  --light-gray: #f7f7f7;
-  --dark-green: #009688;
-  --light-green: #3cdf7a;
-  --info-message: rgba(225, 245, 254, 0.92);
+  --primary: #007fa3;
+  --onPrimary: #fff;
+  --surface: #fff;
+  --onSurface: #000;
+
+  /* sizes */
+  --border-radius: 0.25rem;
+  --line-height: 1.618;
+
+  /* duration */
+  --short: 0.2s;
+  --medium: 0.5s;
+  --long: 1s;
 }
 
 /* Responsive Variables */
