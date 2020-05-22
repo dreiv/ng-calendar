@@ -1,0 +1,19 @@
+:root {
+  /* colors */
+  --white: #fff;
+  --dark-gray: #333;
+  --highlight: #e0e0e0;
+  --main-gray: #ededed;
+  --light-gray: #f7f7f7;
+  --dark-green: #009688;
+  --light-green: #3cdf7a;
+  --info-message: rgba(225, 245, 254, 0.92);
+}
+
+/* Responsive Variables */
+$phone: '(max-width:767px)';
+$tablet: '(min-width:768px) and (max-width:1023px)';
+$tabletUp: '(min-width:768px)';
+$desktop: '(min-width:1024px) and (max-width:1439px)';
+$desktopUp: '(min-width:1024px)';
+$wide: '(min-width:1440px)';
