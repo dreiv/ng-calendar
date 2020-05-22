@@ -4,15 +4,8 @@ import { CalendarComponent } from './calendar.component';
 import { CalendarTimeComponent } from './calendar-time/calendar-time.component';
 
 @NgModule({
-  declarations: [
-    CalendarComponent,
-    CalendarTimeComponent
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    CalendarComponent
-  ]
+  declarations: [CalendarComponent, CalendarTimeComponent],
+  imports: [CommonModule],
+  exports: [CalendarComponent]
 })
-export class CalendarModule { }
+export class CalendarModule {}

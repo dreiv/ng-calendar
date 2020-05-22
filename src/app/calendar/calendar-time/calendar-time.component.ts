@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-const generateHours = (period) =>
+const createHours = period =>
   Array.from({ length: 13 }, (_, k) => k + period).slice(1);
 
 @Component({
   selector: 'app-calendar-time',
   templateUrl: './calendar-time.component.html',
-  styleUrls: ['./calendar-time.component.scss']
+  styleUrls: ['./calendar-time.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarTimeComponent implements OnInit {
-  hours = [...generateHours('am'), ...generateHours('pm')];
+  hours = [...createHours('am'), ...createHours('pm')];
 
   constructor() {}
 
