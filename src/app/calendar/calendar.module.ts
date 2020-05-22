@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalendarComponent } from './calendar.component';
+import { CalendarTimeComponent } from './calendar-time/calendar-time.component';
 
 @NgModule({
   declarations: [
-    CalendarComponent
+    CalendarComponent,
+    CalendarTimeComponent
   ],
   imports: [
     CommonModule

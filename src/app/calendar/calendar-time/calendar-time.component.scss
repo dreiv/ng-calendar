@@ -1,0 +1,20 @@
+$hourLen: 3rem;
+
+:host {
+  flex-shrink: 0;
+  padding-top: $hourLen;
+  width: $hourLen;
+}
+
+.hour {
+  display: block;
+  height: $hourLen;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #D3D3D3;
+    content: ''
+  }
+}
