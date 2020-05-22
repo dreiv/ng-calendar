@@ -26,7 +26,13 @@ header {
   text-align: center;
 }
 
-.track {
+.days-container {
+  overflow-x: auto;
+  flex: 1;
+  display: flex;
+}
+
+.day {
   position: relative;
   flex: 1;
   min-width: 10rem;
@@ -36,7 +42,7 @@ header {
 
 .event {
   position: absolute;
-  padding: 0.25rem 0.625rem;
+  padding: 0.25rem 0.25rem 0.25rem 0.625rem;
   background-color: white;
   border-radius: .25rem;
   border: 1px solid #ebebeb;
