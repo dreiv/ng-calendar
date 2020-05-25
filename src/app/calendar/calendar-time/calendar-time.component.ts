@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-const createHours = period =>
-  Array.from({ length: 13 }, (_, k) => k + period).slice(1);
+const createHours = (period, length = 13) =>
+  Array.from({ length }, (_, k) => k + period).slice(1);
 
 @Component({
   selector: 'app-calendar-time',
@@ -10,7 +10,7 @@ const createHours = period =>
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarTimeComponent implements OnInit {
-  hours = [...createHours('am'), ...createHours('pm')];
+  hours = [...createHours('am'), ...createHours('pm', 12)];
 
   constructor() {}
 
