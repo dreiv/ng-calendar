@@ -1,4 +1,14 @@
 :host {
+  position: sticky;
+  top: 0;
+
   display: flex;
-  justify-content: space-between;
+
+  height: 3rem;
+
+  background-color: lime;
+}
+
+.day {
+  text-align: center;
 }
