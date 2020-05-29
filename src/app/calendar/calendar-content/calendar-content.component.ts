@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-calendar-content',
   templateUrl: './calendar-content.component.html',
   styleUrls: [
-    '../calendar.component.common.scss',
+    '../styles/calendar.common.scss',
     './calendar-content.component.scss'
   ]
 })
