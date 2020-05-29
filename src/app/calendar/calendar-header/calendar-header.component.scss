@@ -20,12 +20,12 @@
   width: $hourSize;
 }
 
-.day {
+.track {
+  @include flex-center;
+
   position: relative;
 
   padding-left: 1px;
-
-  text-align: center;
 
   &::before {
     position: absolute;
@@ -42,11 +42,13 @@
 }
 
 .prev {
-  float: left;
+  position: absolute;
+  left: 0;
 }
 
 .next {
-  float: right;
+  position: absolute;
+  right: 0;
 }
 
 // custom
