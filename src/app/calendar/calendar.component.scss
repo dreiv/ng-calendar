@@ -1,11 +1,11 @@
 @import 'abstracts/mixins';
 
 :host {
-  position: relative;
-
   background-color: #f2f2f2;
 }
 
 main {
+  position: relative;
+
   display: flex;
 }

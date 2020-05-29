@@ -2,6 +2,14 @@
   display: contents;
 }
 
+.day {
+  border-left: #dadce0 1px solid;
+
+  &:last-of-type {
+    border-right: #dadce0 1px solid;
+  }
+}
+
 // .event {
 //   position: absolute;
 

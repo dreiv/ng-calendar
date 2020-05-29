@@ -3,18 +3,31 @@
 :host {
   flex-shrink: 0;
   width: $hourSize;
+}
 
-  background-color: hotpink;
+.hour--start {
+  display: block;
+  height: $hourSize;
 }
 
 .hour {
   display: block;
   height: $hourSize;
 
+  > span {
+    position: relative;
+    top: -10px;
+
+    float: right;
+    padding-right: 0.75rem;
+
+    font-size: 12px;
+  }
+
   &::before {
     position: absolute;
     right: 0;
-    left: 0;
+    left: $hourSize - 0.5rem;
 
     border-top: 1px solid #d3d3d3;
 
