@@ -1,16 +1,15 @@
-$hourLen: 3rem;
+@import '../calendar.component.common';
 
 :host {
   flex-shrink: 0;
-  width: $hourLen;
-  padding-top: $hourLen;
+  width: $hourSize;
 
   background-color: hotpink;
 }
 
 .hour {
   display: block;
-  height: $hourLen;
+  height: $hourSize;
 
   &::before {
     position: absolute;

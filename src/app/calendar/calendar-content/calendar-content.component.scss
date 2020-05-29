@@ -1,6 +1,75 @@
 :host {
-  display: flex;
-  flex: 1;
-
-  overflow-x: auto;
+  display: contents;
 }
+
+// .event {
+//   position: absolute;
+
+//   padding: 0.25rem 0.25rem 0.25rem 0.625rem;
+//   border: 1px solid #ebebeb;
+//   border-radius: 0.25rem;
+//   overflow: hidden;
+
+//   background-color: white;
+
+//   > .title {
+//     font-weight: bold;
+//   }
+
+//   &::before {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+
+//     width: 5px;
+//     height: 100%;
+
+//     background: linear-gradient(180deg, #56befe 0%, #2171ff 100%);
+
+//     content: '';
+//   }
+// }
+
+// .event-1 {
+//   top: 9rem;
+
+//   height: 6rem;
+// }
+
+// .event-2 {
+//   top: 24rem;
+
+//   height: 7.5rem;
+
+//   &::before {
+//     background: #12b2a6;
+//   }
+// }
+
+// .event-3 {
+//   top: 6rem;
+
+//   height: 3rem;
+// }
+
+// .event-4 {
+//   top: 18rem;
+
+//   width: 50%;
+//   height: 3rem;
+// }
+
+// .event-5 {
+//   top: 18rem;
+//   right: 0;
+
+//   width: 50%;
+//   height: 6rem;
+// }
+
+// .event-6 {
+//   top: 22rem;
+
+//   width: 50%;
+//   height: 3rem;
+// }
