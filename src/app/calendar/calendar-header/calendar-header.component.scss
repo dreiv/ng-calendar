@@ -48,3 +48,15 @@
 .next {
   float: right;
 }
+
+// custom
+button {
+  position: relative;
+
+  ::before {
+    @include absolute(-0.5rem, -0.5rem);
+    display: block;
+
+    content: '';
+  }
+}
