@@ -27,10 +27,6 @@
 
   text-align: center;
 
-  &:last-of-type {
-    padding-right: 1px;
-  }
-
   &::before {
     position: absolute;
     bottom: 0;
