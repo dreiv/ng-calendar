@@ -16,7 +16,7 @@
 
   > span {
     position: relative;
-    top: -10px;
+    top: -10.5px;
 
     float: right;
     padding-right: 0.75rem;
@@ -29,7 +29,7 @@
     right: 0;
     left: $hourSize - 0.5rem;
 
-    border-top: 1px solid #d3d3d3;
+    border-top: 1px solid $line_col;
 
     content: '';
   }
