@@ -1,7 +1,57 @@
+@import 'abstracts/mixins';
+
 :host {
   display: block;
   width: 100%;
   max-width: 60rem;
   margin-right: auto;
   margin-left: auto;
+}
+
+.calendar-container {
+  display: flex;
+
+  > app-calendar {
+    flex: 1;
+
+    margin-left: 1rem;
+  }
+}
+
+.actions {
+  flex-shrink: 0;
+  width: 3rem;
+}
+
+.action {
+  @include flex-column;
+  align-items: center;
+
+  text-align: center;
+
+  > button {
+    @include flex-center;
+    @include circle(2.5rem);
+
+    color: white;
+
+    background-color: #e67e22;
+  }
+
+  > .text {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  &:not(:last-of-type) {
+    margin-bottom: 1rem;
+  }
+
+  &.disabled {
+    opacity: 0.3;
+
+    > button {
+      background-color: #0097a7;
+    }
+  }
 }

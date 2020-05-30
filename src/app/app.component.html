@@ -1,5 +1,32 @@
 <h1>Calendar</h1>
 
-<app-calendar></app-calendar>
+<div class="calendar-container">
+  <div class="actions">
+    <div class="action">
+      <button>
+        <app-plus></app-plus>
+      </button>
+
+      <div class="text">Add Event</div>
+    </div>
+
+    <div class="action disabled">
+      <button disabled>
+        <app-plus></app-plus>
+      </button>
+
+      <div class="text">Add X</div>
+    </div>
+
+    <div class="action disabled">
+      <button disabled>
+        <app-plus></app-plus>
+      </button>
+
+      <div class="text">Add Y</div>
+    </div>
+  </div>
+  <app-calendar></app-calendar>
+</div>
 
 <h2>content after calendar</h2>
