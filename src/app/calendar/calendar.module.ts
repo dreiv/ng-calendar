@@ -6,7 +6,7 @@ import { CalendarHeaderComponent } from './calendar-header/calendar-header.compo
 import { CalendarContentComponent } from './calendar-content/calendar-content.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderDayComponent } from './calendar-header/header-day/header-day.component';
-import { CalendarService } from './calendar.service';
+import { CalendarService } from './service/calendar.service';
 
 @NgModule({
   declarations: [
