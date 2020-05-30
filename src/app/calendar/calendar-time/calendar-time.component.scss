@@ -4,26 +4,19 @@
   flex-shrink: 0;
   width: $hourSize;
 
-  height: $hours * $hourSize;
+  height: $calendar_height;
   border-right: $line_col 1px solid;
 }
 
-.hour--start {
-  display: block;
-  height: $hourSize;
-}
-
 .hour {
+  position: relative;
+  top: -10px;
+
   display: block;
+
   height: $hourSize;
+  padding-right: 0.5rem;
 
-  > span {
-    position: relative;
-    top: -10px;
-
-    float: right;
-    padding-right: 0.5rem;
-
-    font-size: 12px;
-  }
+  font-size: 12px;
+  text-align: end;
 }

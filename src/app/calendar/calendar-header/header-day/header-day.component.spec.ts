@@ -8,9 +8,8 @@ describe('HeaderDayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderDayComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderDayComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

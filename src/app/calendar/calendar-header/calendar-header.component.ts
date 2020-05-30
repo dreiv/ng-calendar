@@ -20,8 +20,8 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarHeaderComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('scroll')
-  scroll: ElementRef;
+  @ViewChild('scrollSync')
+  scrollSync: ElementRef;
 
   private componentDestroyed$ = new Subject();
 
@@ -31,7 +31,7 @@ export class CalendarHeaderComponent implements AfterViewInit, OnDestroy {
     this.calendarService.scroll$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(left => {
-        this.scroll.nativeElement.scrollLeft = left;
+        this.scrollSync.nativeElement.scrollLeft = left;
       });
   }
 

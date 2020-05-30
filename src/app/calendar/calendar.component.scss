@@ -22,7 +22,7 @@ main {
   flex: 1;
 }
 
-.scroll {
+.scrollable {
   @include absolute(0, 0);
 
   display: flex;

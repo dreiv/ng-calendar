@@ -7,26 +7,44 @@ $buttonOffset: 1.5rem;
   display: flex;
   height: 3.5rem;
   border-bottom: 1px solid $line_col;
-
-  background-color: $cal_bg;
 }
 
 .time-text {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   width: $hourSize;
+  margin-top: auto;
 
   font-size: 14px;
+  text-align: center;
 }
 
 .tracks {
   position: relative;
 
   flex: 1;
+
+  &::before,
+  &::after {
+    @include absolute(0);
+
+    width: 1rem;
+
+    content: '';
+  }
+
+  &::before {
+    z-index: 1;
+
+    background: linear-gradient(to right, $cal_bg, transparent);
+  }
+
+  &::after {
+    right: 0;
+
+    background: linear-gradient(to left, $cal_bg, transparent);
+  }
 }
 
-.scroll {
+.scrollable {
   @include absolute(0, 0);
 
   display: flex;
@@ -35,10 +53,6 @@ $buttonOffset: 1.5rem;
 
 .track {
   @include flex-center;
-
-  position: relative;
-
-  padding-left: 1px;
 
   &:first-of-type {
     margin-left: -$buttonOffset;
@@ -49,10 +63,10 @@ $buttonOffset: 1.5rem;
   }
 }
 
-// custom
 button {
   position: relative;
 
+  // expand clickable area
   ::before {
     @include absolute(0, -0.5rem);
     display: block;

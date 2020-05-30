@@ -2,8 +2,9 @@
 
 :host {
   display: flex;
+  flex: 1;
 
-  height: $hours * $hourSize;
+  height: $calendar_height;
 
   background: repeating-linear-gradient(
     to bottom,
