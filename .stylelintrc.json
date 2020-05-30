@@ -21,6 +21,12 @@
       }
     ],
     "at-rule-no-unknown": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": ["/^app-/"]
+      }
+    ]
   }
 }

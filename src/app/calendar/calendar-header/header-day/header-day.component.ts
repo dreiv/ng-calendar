@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { HeaderDay } from './header-day';
 
 @Component({
   selector: 'app-header-day',
@@ -6,10 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-day.component.scss']
 })
 export class HeaderDayComponent implements OnInit {
+  @Input() day: HeaderDay;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

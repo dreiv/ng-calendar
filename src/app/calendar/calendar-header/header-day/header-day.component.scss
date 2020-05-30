@@ -1,0 +1,20 @@
+@import 'abstracts/mixins';
+
+:host {
+  @include flex-column;
+
+  align-items: center;
+}
+
+.count {
+  @include flex-center;
+  @include circle(2rem);
+
+  line-height: 0;
+
+  background-color: #ececec;
+}
+
+.title {
+  font-size: 12px;
+}
