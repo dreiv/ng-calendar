@@ -1,11 +1,24 @@
 @import 'abstracts/mixins';
 
 :host {
+  @include flex-column;
+
   background-color: #f2f2f2;
+}
+
+app-calendar-header {
+  flex-shrink: 0;
 }
 
 main {
   position: relative;
 
+  flex: 1;
+}
+
+.container {
+  @include absolute(0, 0);
+
   display: flex;
+  overflow: auto;
 }

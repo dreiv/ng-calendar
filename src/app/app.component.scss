@@ -17,7 +17,6 @@ main {
 
   > app-calendar {
     flex: 1;
-    overflow: auto;
   }
 }
 
@@ -63,7 +62,7 @@ main {
 }
 
 .actions {
-  @include padding-vert(1.5rem);
+  @include margin-vert(1.5rem);
   text-align: end;
 }
 

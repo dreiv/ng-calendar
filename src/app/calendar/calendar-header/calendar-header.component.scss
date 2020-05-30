@@ -2,10 +2,6 @@
 @import 'abstracts/mixins';
 
 :host {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-
   display: flex;
   height: 3.5rem;
   border-bottom: 1px solid $line_col;
