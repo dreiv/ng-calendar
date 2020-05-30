@@ -7,7 +7,7 @@ import { getDays } from './getDays';
 @Injectable()
 export class CalendarService {
   private scrollSubject: BehaviorSubject<number>;
-  private daysSubject: BehaviorSubject<Date[]>;
+  private daysSubject: BehaviorSubject<CalendarDays[]>;
 
   scroll$: Observable<number>;
   days$: Observable<CalendarDays[]>;
@@ -15,8 +15,10 @@ export class CalendarService {
 
   constructor() {
     this.scrollSubject = new BehaviorSubject(0);
+    this.daysSubject = new BehaviorSubject([]);
 
     this.scroll$ = this.scrollSubject.asObservable();
+    this.days$ = this.daysSubject.asObservable().pipe(share());
     this.time$ = interval(1000).pipe(
       map(() => new Date()),
       share()
@@ -24,7 +26,7 @@ export class CalendarService {
   }
 
   setPeriod(period: CalendarPeriod): void {
-    console.log(getDays(period));
+    this.daysSubject.next(getDays(period));
   }
 
   updateScroll(scrollLeft: number): void {

@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { CalendarService } from '../service/calendar.service';
 
 @Component({
   selector: 'app-calendar-content',
@@ -10,7 +11,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarContentComponent implements OnInit {
-  constructor() {}
+  constructor(public calendarService: CalendarService) {}
 
   ngOnInit(): void {}
 }

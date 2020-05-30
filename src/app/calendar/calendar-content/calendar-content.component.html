@@ -1,10 +1,4 @@
-<div class="track">
-</div>
-<div class="track">
-</div>
-<div class="track">
-</div>
-<div class="track">
-</div>
-<div class="track">
-</div>
+<ng-container *ngIf="calendarService.days$ | async as days">
+  <div class="track" *ngFor="let day of days">
+  </div>
+</ng-container>
