@@ -10,6 +10,13 @@ app-calendar-header {
   flex-shrink: 0;
 }
 
+app-calendar-time {
+  position: sticky;
+  left: 0;
+
+  background-color: #f2f2f2;
+}
+
 main {
   position: relative;
 

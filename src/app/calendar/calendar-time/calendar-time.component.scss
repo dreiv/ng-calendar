@@ -26,8 +26,9 @@
 
   &::before {
     position: absolute;
-    right: 0;
     left: $hourSize - 0.5rem;
+
+    width: 100vw;
 
     border-top: 1px solid $line_col;
 
