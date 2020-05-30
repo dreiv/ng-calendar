@@ -1,27 +1,32 @@
 <time class="time-text">Time</time>
-<div class="track">
-  <button class="prev">
-    <app-arrow-left></app-arrow-left>
-  </button>
-  <app-header-day [day]="{dayTitle: 'Monday', dayCount: 18}">
-  </app-header-day>
+<button class="prev">
+  <app-arrow-left></app-arrow-left>
+</button>
+<div class="tracks">
+  <div class="scroll">
+    <div class="track">
+      <app-header-day [day]="{dayTitle: 'Monday', dayCount: 18}">
+      </app-header-day>
+    </div>
+    <div class="track">
+      <app-header-day [day]="{dayTitle: 'Tuesday', dayCount: 19}">
+      </app-header-day>
+    </div>
+    <div class="track">
+      <app-header-day [day]="{dayTitle: 'Wednesday', dayCount: 20}">
+      </app-header-day>
+    </div>
+    <div class="track">
+      <app-header-day [day]="{dayTitle: 'Thursday', dayCount: 21}">
+      </app-header-day>
+    </div>
+    <div class="track">
+      <app-header-day [day]="{dayTitle: 'Friday', dayCount: 22}">
+      </app-header-day>
+    </div>
+  </div>
 </div>
-<div class="track">
-  <app-header-day [day]="{dayTitle: 'Tuesday', dayCount: 19}">
-  </app-header-day>
-</div>
-<div class="track">
-  <app-header-day [day]="{dayTitle: 'Wednesday', dayCount: 20}">
-  </app-header-day>
-</div>
-<div class="track">
-  <app-header-day [day]="{dayTitle: 'Thursday', dayCount: 21}">
-  </app-header-day>
-</div>
-<div class="track">
-  <app-header-day [day]="{dayTitle: 'Friday', dayCount: 22}">
-  </app-header-day>
-  <button class="next">
-    <app-arrow-right></app-arrow-right>
-  </button>
-</div>
+
+<button class="next">
+  <app-arrow-right></app-arrow-right>
+</button>

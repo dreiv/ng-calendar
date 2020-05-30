@@ -3,6 +3,8 @@
 :host {
   flex-shrink: 0;
   width: $hourSize;
+
+  height: 24 * $hourSize;
 }
 
 .hour--start {

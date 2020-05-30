@@ -71,12 +71,10 @@ main {
 
   height: 2.5rem;
 
+  margin-left: 1rem;
+
   border: 1px solid;
   border-radius: var(--border-radius);
 
   text-transform: uppercase;
-
-  &:not(:last-of-type) {
-    margin-right: 1rem;
-  }
 }

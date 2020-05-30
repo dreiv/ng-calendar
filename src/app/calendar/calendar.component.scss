@@ -23,7 +23,7 @@ main {
   flex: 1;
 }
 
-.container {
+.scroll {
   @include absolute(0, 0);
 
   display: flex;

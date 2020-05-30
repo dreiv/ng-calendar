@@ -16,43 +16,25 @@
   width: $hourSize;
 }
 
+.tracks {
+  position: relative;
+
+  flex: 1;
+}
+
+.scroll {
+  @include absolute(0, 0);
+
+  display: flex;
+  overflow: hidden;
+}
+
 .track {
   @include flex-center;
 
   position: relative;
 
   padding-left: 1px;
-
-  &::before {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-    height: 0.75rem;
-
-    border-left: $line_col 1px solid;
-
-    content: '';
-  }
-
-  &:first-of-type > app-header-day {
-    margin-left: 1.5rem;
-  }
-
-  &:last-of-type > app-header-day {
-    margin-right: 1.5rem;
-  }
-}
-
-.prev {
-  position: absolute;
-  left: 0;
-}
-
-.next {
-  position: absolute;
-  right: 0;
 }
 
 // custom
