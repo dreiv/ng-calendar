@@ -1,32 +1,38 @@
-<h1>Calendar</h1>
+<aside class="side-actions">
+  <div class="side-action">
+    <button>
+      <app-plus></app-plus>
+    </button>
 
-<div class="calendar-container">
-  <div class="actions">
-    <div class="action">
-      <button>
-        <app-plus></app-plus>
-      </button>
+    <div class="text">Add Event</div>
+  </div>
 
-      <div class="text">Add Event</div>
-    </div>
+  <div class="side-action disabled">
+    <button disabled>
+      <app-plus></app-plus>
+    </button>
 
-    <div class="action disabled">
-      <button disabled>
-        <app-plus></app-plus>
-      </button>
+    <div class="text">Add X</div>
+  </div>
 
-      <div class="text">Add X</div>
-    </div>
+  <div class="side-action disabled">
+    <button disabled>
+      <app-plus></app-plus>
+    </button>
 
-    <div class="action disabled">
-      <button disabled>
-        <app-plus></app-plus>
-      </button>
+    <div class="text">Add Y</div>
+  </div>
+</aside>
 
-      <div class="text">Add Y</div>
-    </div>
+<main>
+  <h1>Calendar</h1>
+  <div class="options">
+    <button class="action">Today</button>
   </div>
   <app-calendar></app-calendar>
-</div>
-
-<h2>content after calendar</h2>
+  <div class="actions">
+    <button class="action">Action 1</button>
+    <button class="action">Action 2</button>
+    <button class="action">Action 3</button>
+  </div>
+</main>
