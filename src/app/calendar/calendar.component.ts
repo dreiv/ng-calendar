@@ -10,5 +10,7 @@ import { CalendarService } from './calendar.service';
 export class CalendarComponent implements OnInit {
   constructor(public calendarService: CalendarService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.calendarService.time$.subscribe(date => console.log(date));
+  }
 }
