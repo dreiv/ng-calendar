@@ -1,7 +1,10 @@
 <app-calendar-header></app-calendar-header>
 
 <main>
-  <div class="scroll">
+  <div
+    class="scroll"
+    (scroll)="calendarService.updateScroll(scrollSpy.scrollLeft)" #scrollSpy
+  >
     <app-calendar-time></app-calendar-time>
     <app-calendar-content></app-calendar-content>
   </div>

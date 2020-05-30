@@ -41,6 +41,8 @@
 button {
   position: relative;
 
+  outline: none;
+
   ::before {
     @include absolute(-0.5rem, -0.5rem);
     display: block;
