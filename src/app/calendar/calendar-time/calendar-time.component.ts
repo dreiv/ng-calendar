@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 const createHours = (period, length = 13) =>
-  Array.from({ length }, (_, k) => k + period).slice(1);
+  Array.from({ length }, (_, idx) => idx + period).slice(1);
 
 @Component({
   selector: 'app-calendar-time',

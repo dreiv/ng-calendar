@@ -3,16 +3,16 @@
 :host {
   display: flex;
 
-  height: 24 * $hourSize;
+  height: $hours * $hourSize;
 
-  background-image: repeating-linear-gradient(
+  background: repeating-linear-gradient(
     to bottom,
     transparent,
-    transparent 47px,
-    #dadce0 48px
+    transparent $hourSize - 1px,
+    $line_col $hourSize
   );
 }
 
 .track {
-  border-left: #dadce0 1px solid;
+  border-right: $line_col 1px solid;
 }

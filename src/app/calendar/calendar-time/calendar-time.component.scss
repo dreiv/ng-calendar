@@ -4,7 +4,8 @@
   flex-shrink: 0;
   width: $hourSize;
 
-  height: 24 * $hourSize;
+  height: $hours * $hourSize;
+  border-right: $line_col 1px solid;
 }
 
 .hour--start {

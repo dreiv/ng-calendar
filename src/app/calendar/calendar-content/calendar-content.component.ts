@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-calendar-content',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [
     '../styles/calendar.common.scss',
     './calendar-content.component.scss'
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarContentComponent implements OnInit {
   constructor() {}

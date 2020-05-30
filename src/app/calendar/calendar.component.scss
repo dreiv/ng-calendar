@@ -1,3 +1,4 @@
+@import './styles/calendar.defs';
 @import 'abstracts/mixins';
 
 :host {
@@ -12,7 +13,7 @@ app-calendar-time {
   position: sticky;
   left: 0;
 
-  background-color: white;
+  background-color: $cal_bg;
 }
 
 main {

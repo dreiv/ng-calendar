@@ -3,7 +3,8 @@ import {
   ViewChild,
   ElementRef,
   OnDestroy,
-  AfterViewInit
+  AfterViewInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { CalendarService } from '../calendar.service';
 import { Subject } from 'rxjs';
@@ -15,10 +16,13 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: [
     '../styles/calendar.common.scss',
     './calendar-header.component.scss'
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarHeaderComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('scroll') scroll: ElementRef;
+  @ViewChild('scroll')
+  scroll: ElementRef;
+
   private componentDestroyed$ = new Subject();
 
   constructor(private calendarService: CalendarService) {}
@@ -31,5 +35,7 @@ export class CalendarHeaderComponent implements AfterViewInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next();
+  }
 }

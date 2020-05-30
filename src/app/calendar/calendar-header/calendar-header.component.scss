@@ -1,12 +1,14 @@
 @import '../styles/calendar.defs';
 @import 'abstracts/mixins';
 
+$buttonOffset: 1.5rem;
+
 :host {
   display: flex;
   height: 3.5rem;
   border-bottom: 1px solid $line_col;
 
-  background-color: white;
+  background-color: $cal_bg;
 }
 
 .time-text {
@@ -14,6 +16,8 @@
   align-items: flex-end;
   justify-content: center;
   width: $hourSize;
+
+  font-size: 14px;
 }
 
 .tracks {
@@ -37,11 +41,11 @@
   padding-left: 1px;
 
   &:first-of-type {
-    margin-left: -1.5rem;
+    margin-left: -$buttonOffset;
   }
 
   &:last-of-type {
-    margin-right: -1.5rem;
+    margin-right: -$buttonOffset;
   }
 }
 
@@ -49,10 +53,8 @@
 button {
   position: relative;
 
-  outline: none;
-
   ::before {
-    @include absolute(-0.5rem, -0.5rem);
+    @include absolute(0, -0.5rem);
     display: block;
 
     content: '';

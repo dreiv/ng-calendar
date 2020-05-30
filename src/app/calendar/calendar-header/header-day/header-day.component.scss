@@ -1,3 +1,4 @@
+@import '../../styles/calendar.defs';
 @import 'abstracts/mixins';
 
 :host {
@@ -12,7 +13,7 @@
 
   line-height: 0;
 
-  background-color: #ececec;
+  background-color: $day_col;
 }
 
 .title {
