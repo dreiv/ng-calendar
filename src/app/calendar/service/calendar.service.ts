@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, interval, Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
-import { CalendarPeriod } from '../calendar';
+import { CalendarPeriod, CalendarDays } from '../calendar';
+import { getDays } from './getDays';
 
 @Injectable()
 export class CalendarService {
@@ -9,7 +10,7 @@ export class CalendarService {
   private daysSubject: BehaviorSubject<Date[]>;
 
   scroll$: Observable<number>;
-  days$: Observable<Date[]>;
+  days$: Observable<CalendarDays[]>;
   time$: Observable<Date>;
 
   constructor() {
@@ -23,7 +24,7 @@ export class CalendarService {
   }
 
   setPeriod(period: CalendarPeriod): void {
-    console.log(period);
+    console.log(getDays(period));
   }
 
   updateScroll(scrollLeft: number): void {
