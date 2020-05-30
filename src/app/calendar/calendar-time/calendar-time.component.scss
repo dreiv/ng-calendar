@@ -18,22 +18,11 @@
 
   > span {
     position: relative;
-    top: -10.5px;
+    top: -10px;
 
     float: right;
-    padding-right: 0.75rem;
+    padding-right: 0.5rem;
 
     font-size: 12px;
-  }
-
-  &::before {
-    position: absolute;
-    left: $hourSize - 0.5rem;
-
-    // width: 100vw;
-
-    border-top: 1px solid $line_col;
-
-    content: '';
   }
 }
