@@ -4,5 +4,12 @@ body {
 }
 
 body {
+  width: 100%;
+  max-width: 60rem;
+  height: 100%;
+  padding: 1rem 0.5rem;
+
   background-color: var(--background);
+
+  @include margin-horiz(auto);
 }

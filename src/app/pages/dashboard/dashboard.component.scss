@@ -2,13 +2,8 @@
 @import 'abstracts/mixins';
 
 :host {
-  @include margin-horiz(auto);
-
   display: flex;
-  width: 100%;
-  max-width: 60rem;
   height: 100%;
-  padding: 1rem 0.5rem;
 }
 
 main {
@@ -33,7 +28,7 @@ main {
 
     text-align: center;
 
-    > button {
+    > a {
       @include flex-center;
       @include circle(2.5rem);
 

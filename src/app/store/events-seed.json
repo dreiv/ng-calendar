@@ -1,0 +1,27 @@
+[
+  {
+    "startDate": "May 25, 2020 8:30:00",
+    "endDate": "May 25, 2020 9:30:00",
+    "title": "Doctor"
+  },
+  {
+    "startDate": "May 25, 2020 18:20:00",
+    "endDate": "May 25, 2020 19:30:00",
+    "title": "Dentist"
+  },
+  {
+    "startDate": "May 27, 2020 13:25:00",
+    "endDate": "May 27, 2020 15:00:00",
+    "title": "Brunch"
+  },
+  {
+    "startDate": "May 28, 2020 19:30:00",
+    "endDate": "May 28, 2020 23:30:00",
+    "title": "Swimming"
+  },
+  {
+    "startDate": "May 29, 2020 9:00:00",
+    "endDate": "May 29, 2020 10:00:00",
+    "title": "Gym"
+  }
+]

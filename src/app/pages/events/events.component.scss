@@ -1,0 +1,14 @@
+@import 'abstracts/mixins';
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  height: 1.5rem;
+
+  font-size: 1.2rem;
+  line-height: 0;
+
+  &:not(:hover) {
+    text-decoration: none;
+  }
+}

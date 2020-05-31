@@ -1,8 +1,8 @@
 <aside class="side-actions">
   <div class="side-action">
-    <button>
+    <a routerLink="/events/new">
       <app-plus></app-plus>
-    </button>
+    </a>
 
     <div class="text">Add Event</div>
   </div>
@@ -18,8 +18,11 @@
       </option>
     </select>
   </div>
-  <app-calendar [options]="calendarOptions" [events]="calendarEvents">
-  </app-calendar>
+  <ng-container *ngIf="store.events$ | async as events">
+    <app-calendar [options]="calendarOptions" [events]="events">
+    </app-calendar>
+  </ng-container>
+
   <div class="actions">
     <button class="action">Action 1</button>
     <button class="action">Action 2</button>
