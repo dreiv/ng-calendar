@@ -1,4 +1,4 @@
 <ng-container *ngIf="calendarService.days$ | async as days">
-  <div class="track" *ngFor="let day of days">
+  <div class="track" *ngFor="let day of days; trackBy:identify">
   </div>
 </ng-container>

@@ -21,7 +21,7 @@ export class CalendarComponent implements OnInit, OnChanges {
   constructor(public calendarService: CalendarService) {}
 
   ngOnInit(): void {
-    this.calendarService.time$.subscribe(date => console.log(date));
+    // this.calendarService.time$.subscribe(date => console.log(date));
   }
 
   ngOnChanges(changes: SimpleChanges): void {

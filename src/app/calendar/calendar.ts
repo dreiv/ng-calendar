@@ -6,6 +6,6 @@ export interface CalendarOptions {
   period: CalendarPeriod;
 }
 
-export interface CalendarDays {
+export interface CalendarDay {
   date: Date;
 }

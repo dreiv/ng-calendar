@@ -4,7 +4,6 @@ import {
   Input,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { HeaderDay } from './header-day';
 
 @Component({
   selector: 'app-header-day',
@@ -13,7 +12,7 @@ import { HeaderDay } from './header-day';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderDayComponent implements OnInit {
-  @Input() day: HeaderDay;
+  @Input() date: Date;
   constructor() {}
 
   ngOnInit(): void {}

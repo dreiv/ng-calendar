@@ -9,6 +9,7 @@ import {
 import { CalendarService } from '../service/calendar.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { CalendarDay } from '../calendar';
 
 @Component({
   selector: 'app-calendar-header',
@@ -25,7 +26,7 @@ export class CalendarHeaderComponent implements AfterViewInit, OnDestroy {
 
   private componentDestroyed$ = new Subject();
 
-  constructor(private calendarService: CalendarService) {}
+  constructor(public calendarService: CalendarService) {}
 
   ngAfterViewInit(): void {
     this.calendarService.scroll$
@@ -37,5 +38,9 @@ export class CalendarHeaderComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.componentDestroyed$.next();
+  }
+
+  identify(index: number, day: CalendarDay): Date {
+    return day.date;
   }
 }

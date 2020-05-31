@@ -6,26 +6,11 @@
 
 <div class="tracks">
   <div class="scrollable" #scrollSync>
-    <div class="track">
-      <app-header-day [day]="{dayTitle: 'Monday', dayCount: 18}">
-      </app-header-day>
-    </div>
-    <div class="track">
-      <app-header-day [day]="{dayTitle: 'Tuesday', dayCount: 19}">
-      </app-header-day>
-    </div>
-    <div class="track">
-      <app-header-day [day]="{dayTitle: 'Wednesday', dayCount: 20}">
-      </app-header-day>
-    </div>
-    <div class="track">
-      <app-header-day [day]="{dayTitle: 'Thursday', dayCount: 21}">
-      </app-header-day>
-    </div>
-    <div class="track">
-      <app-header-day [day]="{dayTitle: 'Friday', dayCount: 22}">
-      </app-header-day>
-    </div>
+    <ng-container *ngIf="calendarService.days$ | async as days">
+      <div class="track" *ngFor="let day of days; trackBy:identify">
+        <app-header-day [date]="day.date"></app-header-day>
+      </div>
+    </ng-container>
   </div>
 </div>
 
