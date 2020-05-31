@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, interval, Observable } from 'rxjs';
+import { BehaviorSubject, interval, Observable, combineLatest } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import {
   CalendarPeriod,
   CalendarDay,
   CalendarDirection,
-  CalendarOptions
+  CalendarOptions,
+  CalendarEvent
 } from '../calendar';
 import { getDays } from './helpers/getDays';
+import { mapDaysToEvents } from './helpers/mapDaysToEvents';
 
 @Injectable()
 export class CalendarService {
   private options: CalendarOptions;
   private scrollSyncSubject: BehaviorSubject<number>;
   private visibleDaysSubject: BehaviorSubject<Date[]>;
+  private eventsSubject: BehaviorSubject<CalendarEvent[]>;
 
   scrollSync$: Observable<number>;
   days$: Observable<CalendarDay[]>;
@@ -22,15 +25,23 @@ export class CalendarService {
   constructor() {
     this.scrollSyncSubject = new BehaviorSubject(0);
     this.visibleDaysSubject = new BehaviorSubject([]);
+    this.eventsSubject = new BehaviorSubject([]);
 
     this.scrollSync$ = this.scrollSyncSubject.asObservable();
-    this.days$ = this.visibleDaysSubject
-      .asObservable()
-      .pipe(map(dates => dates.map(date => ({ date }))));
+    this.days$ = combineLatest(
+      this.visibleDaysSubject,
+      this.eventsSubject
+    ).pipe(map(([days, events]) => mapDaysToEvents(days, events)));
     this.time$ = interval(1000).pipe(
       map(() => new Date()),
       share()
     );
+  }
+
+  updateScroll(scrollLeft: number): void {
+    if (scrollLeft != this.scrollSyncSubject.getValue()) {
+      this.scrollSyncSubject.next(scrollLeft);
+    }
   }
 
   configure(options: CalendarOptions): void {
@@ -38,12 +49,8 @@ export class CalendarService {
     this.setDays(options.period);
   }
 
-  setDays(
-    period: CalendarPeriod,
-    pivot: Date = new Date(),
-    direction: CalendarDirection = 'current'
-  ): void {
-    this.visibleDaysSubject.next(getDays(period, pivot, direction));
+  setEvents(events: CalendarEvent[]): void {
+    this.eventsSubject.next(events);
   }
 
   goPrevious(): void {
@@ -62,9 +69,11 @@ export class CalendarService {
     );
   }
 
-  updateScroll(scrollLeft: number): void {
-    if (scrollLeft != this.scrollSyncSubject.getValue()) {
-      this.scrollSyncSubject.next(scrollLeft);
-    }
+  private setDays(
+    period: CalendarPeriod,
+    pivot: Date = new Date(),
+    direction: CalendarDirection = 'current'
+  ): void {
+    this.visibleDaysSubject.next(getDays(period, pivot, direction));
   }
 }

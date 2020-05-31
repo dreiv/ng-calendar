@@ -13,6 +13,7 @@ export interface CalendarState extends CalendarOptions {
 
 export interface CalendarDay {
   date: Date;
+  events: CalendarEvent[];
 }
 
 export interface CalendarEvent {

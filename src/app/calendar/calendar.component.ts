@@ -32,7 +32,7 @@ export class CalendarComponent implements OnInit, OnChanges {
       this.calendarService.configure(options.currentValue);
     }
     if (events) {
-      // this.calendarService.setEvents(events.currentValue);
+      this.calendarService.setEvents(events.currentValue);
     }
   }
 }
