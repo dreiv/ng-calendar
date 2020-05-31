@@ -13,7 +13,7 @@ import { getDays } from './helpers/getDays';
 export class CalendarService {
   private options: CalendarOptions;
   private scrollSyncSubject: BehaviorSubject<number>;
-  private daysSubject: BehaviorSubject<CalendarDay[]>;
+  private visibleDaysSubject: BehaviorSubject<Date[]>;
 
   scrollSync$: Observable<number>;
   days$: Observable<CalendarDay[]>;
@@ -21,10 +21,12 @@ export class CalendarService {
 
   constructor() {
     this.scrollSyncSubject = new BehaviorSubject(0);
-    this.daysSubject = new BehaviorSubject([]);
+    this.visibleDaysSubject = new BehaviorSubject([]);
 
     this.scrollSync$ = this.scrollSyncSubject.asObservable();
-    this.days$ = this.daysSubject.asObservable();
+    this.days$ = this.visibleDaysSubject
+      .asObservable()
+      .pipe(map(dates => dates.map(date => ({ date }))));
     this.time$ = interval(1000).pipe(
       map(() => new Date()),
       share()
@@ -41,13 +43,13 @@ export class CalendarService {
     pivot: Date = new Date(),
     direction: CalendarDirection = 'current'
   ): void {
-    this.daysSubject.next(getDays(period, pivot, direction));
+    this.visibleDaysSubject.next(getDays(period, pivot, direction));
   }
 
   goPrevious(): void {
     this.setDays(
       this.options.period,
-      this.daysSubject.getValue()[0].date,
+      this.visibleDaysSubject.getValue()[0],
       'previous'
     );
   }
@@ -55,7 +57,7 @@ export class CalendarService {
   goNext(): void {
     this.setDays(
       this.options.period,
-      this.daysSubject.getValue()[0].date,
+      this.visibleDaysSubject.getValue()[0],
       'next'
     );
   }

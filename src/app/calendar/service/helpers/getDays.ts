@@ -1,4 +1,4 @@
-import { CalendarDay, CalendarPeriod, CalendarDirection } from '../../calendar';
+import { CalendarPeriod, CalendarDirection } from '../../calendar';
 import { getOffsetDate } from './getOffsetDate';
 
 const periodToDays = new Map<CalendarPeriod, number>([
@@ -10,10 +10,10 @@ export const getDays = (
   period: CalendarPeriod,
   pivot: Date,
   direction: CalendarDirection
-): CalendarDay[] => {
+): Date[] => {
   const date = getOffsetDate(period, pivot, direction);
   if (period == 'day') {
-    return [{ date }];
+    return [date];
   }
 
   const week = [];
@@ -24,7 +24,7 @@ export const getDays = (
     const dayOfMonth = date.getDate();
     const offsetWeekDay = dayOfMonth - dayOfWeek + i;
 
-    week.push({ date: new Date(date.setDate(offsetWeekDay)) });
+    week.push(new Date(date.setDate(offsetWeekDay)));
   }
 
   return week;

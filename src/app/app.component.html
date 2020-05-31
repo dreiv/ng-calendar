@@ -38,7 +38,10 @@
       </select>
     </label>
   </div>
-  <app-calendar [options]="calendarOptions"></app-calendar>
+  <app-calendar
+    [options]="calendarOptions"
+    [events]="calendarEvents">
+  </app-calendar>
   <div class="actions">
     <button class="action">Action 1</button>
     <button class="action">Action 2</button>
