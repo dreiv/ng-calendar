@@ -26,5 +26,8 @@ main {
   @include absolute(0, 0);
 
   display: flex;
+
+  border-top: 1px solid $line_col;
+  border-bottom: 1px solid $line_col;
   overflow: auto;
 }
