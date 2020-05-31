@@ -6,22 +6,6 @@
 
     <div class="text">Add Event</div>
   </div>
-
-  <div class="side-action disabled">
-    <button disabled>
-      <app-plus></app-plus>
-    </button>
-
-    <div class="text">Add X</div>
-  </div>
-
-  <div class="side-action disabled">
-    <button disabled>
-      <app-plus></app-plus>
-    </button>
-
-    <div class="text">Add Y</div>
-  </div>
 </aside>
 
 <main>
@@ -29,18 +13,13 @@
   <div class="options">
     <button class="action">Today</button>
 
-    <label>
-      Period
-      <select (change)="changePeriod($event)">
-        <option *ngFor="let period of selectPeriods" [value]="period">
-          {{ period }}
-        </option>
-      </select>
-    </label>
+    <select class="period" (change)="changePeriod($event)">
+      <option *ngFor="let period of selectPeriods" [value]="period">
+        {{ period }}
+      </option>
+    </select>
   </div>
-  <app-calendar
-    [options]="calendarOptions"
-    [events]="calendarEvents">
+  <app-calendar [options]="calendarOptions" [events]="calendarEvents">
   </app-calendar>
   <div class="actions">
     <button class="action">Action 1</button>

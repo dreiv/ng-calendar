@@ -1,6 +1,8 @@
 @import '../styles/calendar.defs';
 
 :host {
+  z-index: 1;
+
   flex-shrink: 0;
   width: $hourSize;
 
