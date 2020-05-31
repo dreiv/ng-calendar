@@ -1,0 +1,102 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+:host {
+  @include margin-horiz(auto);
+
+  display: flex;
+  width: 100%;
+  max-width: 60rem;
+  height: 100%;
+  padding: 1rem 0.5rem;
+}
+
+main {
+  @include flex-column;
+
+  flex: 1;
+
+  > app-calendar {
+    flex: 1;
+  }
+}
+
+.side-actions {
+  flex-shrink: 0;
+  margin-right: 1.5rem;
+  padding-top: 4rem;
+
+  > .side-action {
+    @include flex-column;
+    align-items: center;
+    width: 3rem;
+
+    text-align: center;
+
+    > button {
+      @include flex-center;
+      @include circle(2.5rem);
+
+      color: var(--onPrimary);
+
+      background-color: var(--primary);
+    }
+
+    > .text {
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+  }
+
+  @media #{$phone} {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+
+    margin-bottom: 2rem;
+
+    padding: 0;
+
+    .text {
+      display: none;
+    }
+  }
+}
+
+.actions {
+  @include margin-vert(1.5rem);
+  text-align: end;
+
+  > .action {
+    margin-right: 1rem;
+  }
+
+  @media #{$phone} {
+    display: none;
+  }
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.action {
+  @include padding-horiz(1.5rem);
+
+  height: 2.5rem;
+
+  border: 1px solid;
+  border-radius: var(--border-radius);
+
+  text-transform: uppercase;
+}
+
+.period {
+  @include padding-horiz(0.5rem);
+  height: 2.5rem;
+
+  font-size: 1rem;
+}
