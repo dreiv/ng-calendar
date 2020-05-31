@@ -5,7 +5,8 @@
   >
     <app-calendar-event
       *ngFor="let event of day.events; trackBy:identifyEvent"
-      [event]="event">
+      [event]="event"
+      tabindex="0">
     </app-calendar-event>
   </div>
 </ng-container>
