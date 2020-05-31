@@ -16,7 +16,7 @@ import { CalendarEvent, HOUR_SIZE } from '../../calendar';
 export class CalendarEventComponent implements OnInit {
   @HostBinding('style.top')
   get offsetTop(): string {
-    const date = this.event.date;
+    const date = this.event.startDate;
     const time = date.getHours() + date.getMinutes() / 60;
 
     return time * HOUR_SIZE + 'px';

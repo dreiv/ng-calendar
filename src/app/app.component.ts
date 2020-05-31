@@ -14,7 +14,8 @@ export class AppComponent {
   selectPeriods: CalendarPeriod[] = ['workWeek', 'week', 'day'];
   calendarEvents: CalendarEvent[] = [
     {
-      date: new Date('May 27, 2020 15:25:00'),
+      startDate: new Date('May 27, 2020 13:25:00'),
+      endDate: new Date('May 27, 2020 15:00:00'),
       title: 'Brunch',
       description: 'meet up with Tom @Hip_House'
     }

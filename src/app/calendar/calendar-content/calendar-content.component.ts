@@ -16,7 +16,11 @@ export class CalendarContentComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  identify(index: number, item: CalendarDay | CalendarEvent): Date {
+  identifyDay(index: number, item: CalendarDay): Date {
     return item.date;
+  }
+
+  identifyEvent(index: number, item: CalendarEvent): Date {
+    return item.startDate;
   }
 }

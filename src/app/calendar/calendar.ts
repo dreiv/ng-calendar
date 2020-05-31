@@ -20,7 +20,8 @@ export interface CalendarDay {
 }
 
 export interface CalendarEvent {
-  date: Date;
+  startDate: Date;
+  endDate: Date;
   title: string;
   description: string;
   recurring?: boolean;

@@ -8,7 +8,9 @@ export const mapDaysToEvents = (
 ): CalendarDay[] =>
   days.map(day => {
     const dayYMD = toYMD(day);
-    const eventsForDay = events.filter(event => toYMD(event.date) == dayYMD);
+    const eventsForDay = events.filter(
+      event => toYMD(event.startDate) == dayYMD
+    );
 
     return { date: day, events: eventsForDay };
   });

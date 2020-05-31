@@ -1,10 +1,10 @@
 <ng-container *ngIf="calendarService.days$ | async as days">
   <div
     class="track"
-    *ngFor="let day of days; trackBy:identify"
+    *ngFor="let day of days; trackBy:identifyDay"
   >
     <app-calendar-event
-      *ngFor="let event of day.events; trackBy:identify"
+      *ngFor="let event of day.events; trackBy:identifyEvent"
       [event]="event">
     </app-calendar-event>
   </div>
