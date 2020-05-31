@@ -1,0 +1,32 @@
+@import 'abstracts/mixins';
+
+:host {
+  @include padding-horiz(0.5rem, 0.25rem);
+
+  position: relative;
+
+  display: block;
+
+  border-radius: var(--border-radius);
+  overflow: hidden;
+
+  background-color: white;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 5px;
+    height: 100%;
+
+    background: linear-gradient(180deg, #56befe 0%, #2171ff 100%);
+
+    content: '';
+  }
+}
+
+.title {
+  font-weight: 500;
+  font-size: 12px;
+}
