@@ -26,9 +26,9 @@ export class CalendarComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.options) {
-      const current: CalendarOptions = changes.options.currentValue;
+      const options: CalendarOptions = changes.options.currentValue;
 
-      this.calendarService.setPeriod(current.period);
+      this.calendarService.configure(options);
     }
   }
 }

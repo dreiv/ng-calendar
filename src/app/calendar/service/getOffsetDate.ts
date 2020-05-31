@@ -14,8 +14,8 @@ const directionSign = new Map<CalendarDirection, number>([
 
 export const getOffsetDate = (
   period: CalendarPeriod,
-  direction: CalendarDirection,
-  pivot: Date
+  pivot: Date,
+  direction: CalendarDirection
 ): Date => {
   const offset = periodWeight.get(period) * directionSign.get(direction);
   const offsetDate = new Date(

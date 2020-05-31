@@ -1,6 +1,6 @@
 <time class="time-text">Time</time>
 
-<button class="prev">
+<button class="prev" (click)="calendarService.goPrevious()">
   <app-arrow-left></app-arrow-left>
 </button>
 
@@ -14,6 +14,6 @@
   </div>
 </div>
 
-<button class="next">
+<button class="next" (click)="calendarService.goNext()">
   <app-arrow-right></app-arrow-right>
 </button>

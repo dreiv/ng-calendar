@@ -8,10 +8,10 @@ const periodToDays = new Map<CalendarPeriod, number>([
 
 export const getDays = (
   period: CalendarPeriod,
-  direction: CalendarDirection = 'current',
-  pivot: Date = new Date()
+  pivot: Date,
+  direction: CalendarDirection
 ): CalendarDay[] => {
-  const date = getOffsetDate(period, direction, pivot);
+  const date = getOffsetDate(period, pivot, direction);
   if (period == 'day') {
     return [{ date }];
   }

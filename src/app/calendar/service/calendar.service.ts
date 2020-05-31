@@ -1,23 +1,29 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, interval, Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
-import { CalendarPeriod, CalendarDay } from '../calendar';
+import {
+  CalendarPeriod,
+  CalendarDay,
+  CalendarDirection,
+  CalendarOptions
+} from '../calendar';
 import { getDays } from './getDays';
 
 @Injectable()
 export class CalendarService {
-  private scrollSubject: BehaviorSubject<number>;
+  private options: CalendarOptions;
+  private scrollSyncSubject: BehaviorSubject<number>;
   private daysSubject: BehaviorSubject<CalendarDay[]>;
 
-  scroll$: Observable<number>;
+  scrollSync$: Observable<number>;
   days$: Observable<CalendarDay[]>;
   time$: Observable<Date>;
 
   constructor() {
-    this.scrollSubject = new BehaviorSubject(0);
+    this.scrollSyncSubject = new BehaviorSubject(0);
     this.daysSubject = new BehaviorSubject([]);
 
-    this.scroll$ = this.scrollSubject.asObservable();
+    this.scrollSync$ = this.scrollSyncSubject.asObservable();
     this.days$ = this.daysSubject.asObservable();
     this.time$ = interval(1000).pipe(
       map(() => new Date()),
@@ -25,13 +31,38 @@ export class CalendarService {
     );
   }
 
-  setPeriod(period: CalendarPeriod): void {
-    this.daysSubject.next(getDays(period));
+  configure(options: CalendarOptions): void {
+    this.options = options;
+    this.setDays(options.period);
+  }
+
+  setDays(
+    period: CalendarPeriod,
+    pivot: Date = new Date(),
+    direction: CalendarDirection = 'current'
+  ): void {
+    this.daysSubject.next(getDays(period, pivot, direction));
+  }
+
+  goPrevious(): void {
+    this.setDays(
+      this.options.period,
+      this.daysSubject.getValue()[0].date,
+      'previous'
+    );
+  }
+
+  goNext(): void {
+    this.setDays(
+      this.options.period,
+      this.daysSubject.getValue()[0].date,
+      'next'
+    );
   }
 
   updateScroll(scrollLeft: number): void {
-    if (scrollLeft != this.scrollSubject.getValue()) {
-      this.scrollSubject.next(scrollLeft);
+    if (scrollLeft != this.scrollSyncSubject.getValue()) {
+      this.scrollSyncSubject.next(scrollLeft);
     }
   }
 }

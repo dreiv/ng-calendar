@@ -29,7 +29,7 @@ export class CalendarHeaderComponent implements AfterViewInit, OnDestroy {
   constructor(public calendarService: CalendarService) {}
 
   ngAfterViewInit(): void {
-    this.calendarService.scroll$
+    this.calendarService.scrollSync$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(left => {
         this.scrollSync.nativeElement.scrollLeft = left;
