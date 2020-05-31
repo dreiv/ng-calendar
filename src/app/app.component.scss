@@ -97,4 +97,6 @@ main {
 .period {
   @include padding-horiz(0.5rem);
   height: 2.5rem;
+
+  font-size: 1rem;
 }

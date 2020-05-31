@@ -46,7 +46,7 @@ export class CalendarService {
 
   configure(options: CalendarOptions): void {
     this.options = options;
-    this.setDays(options.period);
+    this.setDays(options.period, options.focusedDay);
   }
 
   setEvents(events: CalendarEvent[]): void {

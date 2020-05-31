@@ -7,6 +7,7 @@ export type CalendarDirection = 'previous' | 'current' | 'next';
 
 export interface CalendarOptions {
   period: CalendarPeriod;
+  focusedDay?: Date;
 }
 
 export interface CalendarState extends CalendarOptions {

@@ -11,7 +11,7 @@
 <main>
   <h1>Calendar</h1>
   <div class="options">
-    <button class="action">Today</button>
+    <button class="action" (click)="goToToday()">Today</button>
 
     <select class="period" (change)="changePeriod($event)">
       <option *ngFor="let period of selectPeriods" [value]="period">

@@ -52,4 +52,11 @@ export class AppComponent {
       period
     };
   }
+
+  goToToday(): void {
+    this.calendarOptions = {
+      ...this.calendarOptions,
+      focusedDay: new Date()
+    };
+  }
 }
