@@ -7,7 +7,7 @@ import {
   CalendarDirection,
   CalendarOptions
 } from '../calendar';
-import { getDays } from './getDays';
+import { getDays } from './helpers/getDays';
 
 @Injectable()
 export class CalendarService {

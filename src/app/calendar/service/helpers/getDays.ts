@@ -1,4 +1,4 @@
-import { CalendarDay, CalendarPeriod, CalendarDirection } from '../calendar';
+import { CalendarDay, CalendarPeriod, CalendarDirection } from '../../calendar';
 import { getOffsetDate } from './getOffsetDate';
 
 const periodToDays = new Map<CalendarPeriod, number>([

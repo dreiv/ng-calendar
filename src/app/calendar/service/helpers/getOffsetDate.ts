@@ -1,4 +1,4 @@
-import { CalendarDirection, CalendarPeriod } from '../calendar';
+import { CalendarDirection, CalendarPeriod } from '../../calendar';
 
 const periodWeight = new Map<CalendarPeriod, number>([
   ['day', 1],
