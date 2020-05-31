@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ArrowLeftComponent } from './icons/arrow-left/arrow-left.component';
-import { ArrowRightComponent } from './icons/arrow-right/arrow-right.component';
+import { ChevronLeftComponent } from './icons/chevron-left/chevron-left.component';
+import { ChevronRightComponent } from './icons/chevron-right/chevron-right.component';
 import { PlusComponent } from './icons/plus/plus.component';
 
 @NgModule({
-  declarations: [ArrowLeftComponent, ArrowRightComponent, PlusComponent],
+  declarations: [ChevronLeftComponent, ChevronRightComponent, PlusComponent],
   imports: [CommonModule],
-  exports: [ArrowLeftComponent, ArrowRightComponent, PlusComponent]
+  exports: [ChevronLeftComponent, ChevronRightComponent, PlusComponent]
 })
 export class SharedModule {}

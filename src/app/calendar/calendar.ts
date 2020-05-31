@@ -9,3 +9,10 @@ export interface CalendarOptions {
 export interface CalendarDay {
   date: Date;
 }
+
+export interface CalendarEvent {
+  date: string;
+  title: string;
+  description: string;
+  recurring: boolean;
+}
