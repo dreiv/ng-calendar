@@ -22,10 +22,9 @@ export const getDays = (
   for (let i = 1; i <= count; i++) {
     const dayOfWeek = date.getDay() || 7;
     const dayOfMonth = date.getDate();
-    const offsetDay = dayOfMonth - dayOfWeek + i;
-    const weekDay = new Date(date.setDate(offsetDay));
+    const offsetWeekDay = dayOfMonth - dayOfWeek + i;
 
-    week.push({ date: weekDay });
+    week.push({ date: new Date(date.setDate(offsetWeekDay)) });
   }
 
   return week;
