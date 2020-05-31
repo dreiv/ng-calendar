@@ -28,6 +28,15 @@
   <h1>Calendar</h1>
   <div class="options">
     <button class="action">Today</button>
+
+    <label>
+      Period
+      <select (change)="changePeriod($event)">
+        <option *ngFor="let period of selectPeriods" [value]="period">
+          {{ period }}
+        </option>
+      </select>
+    </label>
   </div>
   <app-calendar [options]="calendarOptions"></app-calendar>
   <div class="actions">
