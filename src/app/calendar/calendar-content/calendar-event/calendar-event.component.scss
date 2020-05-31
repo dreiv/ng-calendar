@@ -10,6 +10,8 @@
   border-radius: var(--border-radius);
   overflow: hidden;
 
+  font-size: 14px;
+
   background-color: white;
 
   &::before {
@@ -28,5 +30,4 @@
 
 .title {
   font-weight: 500;
-  font-size: 12px;
 }

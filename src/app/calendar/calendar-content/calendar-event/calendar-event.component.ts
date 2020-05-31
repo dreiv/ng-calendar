@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { CalendarEvent, HOUR_SIZE } from '../../calendar';
 
+const getDateSize = date => date.getHours() + date.getMinutes() / 60;
+
 @Component({
   selector: 'app-calendar-event',
   templateUrl: './calendar-event.component.html',
@@ -16,11 +18,15 @@ import { CalendarEvent, HOUR_SIZE } from '../../calendar';
 export class CalendarEventComponent implements OnInit {
   @HostBinding('style.top')
   get offsetTop(): string {
-    const date = this.event.startDate;
-    const time = date.getHours() + date.getMinutes() / 60;
-
-    return time * HOUR_SIZE + 'px';
+    return getDateSize(this.event.startDate) * HOUR_SIZE + 'px';
   }
+  @HostBinding('style.minHeight') get eventSize(): string {
+    const { endDate, startDate } = this.event;
+    const difference = getDateSize(endDate) - getDateSize(startDate);
+
+    return difference * HOUR_SIZE + 'px';
+  }
+
   @Input() event: CalendarEvent;
   constructor() {}
 

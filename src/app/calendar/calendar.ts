@@ -23,6 +23,5 @@ export interface CalendarEvent {
   startDate: Date;
   endDate: Date;
   title: string;
-  description: string;
   recurring?: boolean;
 }
