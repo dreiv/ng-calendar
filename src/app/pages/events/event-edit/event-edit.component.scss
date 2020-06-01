@@ -75,6 +75,10 @@ app-calendar {
   background-color: var(--primary);
   cursor: pointer;
 
+  &:disabled {
+    opacity: 0.3;
+  }
+
   @media #{$phone} {
     float: right;
     margin-left: inherit;

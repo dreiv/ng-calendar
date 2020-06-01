@@ -1,4 +1,4 @@
-<form [formGroup]="editForm">
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
   <header>
     <h1>Add Event</h1>
     <p>The event you add is a mock event and will not be persisted outside this application session.</p>
