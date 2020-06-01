@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="editForm">
   <header>
     <h1>Add Event</h1>
     <p>The event you add is a mock event and will not be persisted outside this application session.</p>
@@ -6,27 +6,47 @@
 
   <label>
     <div class="text">Title</div>
-    <input type="text">
+    <input
+      type="text"
+      placeholder="enter an Event name"
+      formControlName="title"
+    >
   </label>
 
   <label>
     <div class="text">Date</div>
-    <input type="date">
+    <input
+      type="date"
+      formControlName="date"
+    >
   </label>
 
   <label>
     <div class="text">Start Time</div>
-    <input type="time">
+    <input
+      type="time"
+      step="300"
+      formControlName="startTime"
+    >
   </label>
 
   <label>
     <div class="text">End Time</div>
-    <input type="time">
+    <input
+      type="time"
+      step="300"
+      formControlName="endtime"
+    >
   </label>
 
-  <p class="hint">* Office hours are 9am to 6pm</p>
+  <p
+    *ngIf="store.opperatingHours$ | async as hours"
+    class="hint"
+  >
+    * Office hours are {{ hours.startTime.hour + hours.startTime.period }} to {{ hours.endTime.hour + hours.endTime.period }}
+  </p>
 
   <input type="submit" value="Create Event">
 </form>
 
-<app-calendar [options]="{period: 'day'}"></app-calendar>
+<app-calendar [options]="{period: 'day'}" [events]="tempEvents"></app-calendar>
