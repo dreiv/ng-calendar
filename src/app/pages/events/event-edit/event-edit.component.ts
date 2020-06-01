@@ -12,6 +12,7 @@ import {
 import { timeValidator } from './helpers/time-validator';
 import { buildEvent } from './helpers/build-event';
 import { validChanges } from './helpers/valid-changes';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-event-edit',
@@ -28,7 +29,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   private storeEvents: CalendarEvent[];
   private componentDestroyed$ = new Subject();
 
-  constructor(public store: AppStoreService) {
+  constructor(public store: AppStoreService, private route: ActivatedRoute) {
     this.prepopulateTime = prepopulateEventTime();
     this.calendarOptions = { period: 'day', isControlled: true };
   }
@@ -40,6 +41,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
         this.storeEvents = events;
         this.sketchEvents = events;
       });
+
     this.initForm();
     this.watchChanges();
   }
@@ -57,6 +59,9 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   private initForm(): void {
+    // TODO: edit
+    console.log(this.route.snapshot.data[0]);
+
     const { date, startTime, endTime } = this.prepopulateTime;
 
     this.editForm = new FormGroup({
@@ -73,21 +78,20 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   private watchChanges(): void {
-    combineLatest(
-      this.editForm.valueChanges,
-      this.editForm.statusChanges
-    ).subscribe(([changes, status]) => {
-      if (status == 'VALID' && validChanges(changes)) {
-        this.sketchEvent = buildEvent(changes);
-        this.sketchEvents = [...this.storeEvents, this.sketchEvent];
+    combineLatest(this.editForm.valueChanges, this.editForm.statusChanges)
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(([changes, status]) => {
+        if (status == 'VALID' && validChanges(changes)) {
+          this.sketchEvent = buildEvent(changes);
+          this.sketchEvents = [...this.storeEvents, this.sketchEvent];
 
-        this.calendarOptions = {
-          ...this.calendarOptions,
-          focusedDay: this.sketchEvent.startDate
-        };
-      } else {
-        this.sketchEvents = this.storeEvents;
-      }
-    });
+          this.calendarOptions = {
+            ...this.calendarOptions,
+            focusedDay: this.sketchEvent.startDate
+          };
+        } else {
+          this.sketchEvents = this.storeEvents;
+        }
+      });
   }
 }

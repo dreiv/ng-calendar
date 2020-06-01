@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppStoreService } from 'src/app/store/app-store.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event-detail.component.scss']
 })
 export class EventDetailComponent implements OnInit {
+  constructor(
+    private store: AppStoreService,
+    public route: ActivatedRoute,
+    private router: Router
+  ) {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  deleteEvent(id: string): void {
+    this.store.deleteEvent(id);
+    this.router.navigate(['/']);
   }
-
 }
