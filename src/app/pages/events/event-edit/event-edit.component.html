@@ -1,1 +1,32 @@
-<p>event-edit works!</p>
+<form>
+  <header>
+    <h1>Add Event</h1>
+    <p>The event you add is a mock event and will not be persisted outside this application session.</p>
+  </header>
+
+  <label>
+    <div class="text">Title</div>
+    <input type="text">
+  </label>
+
+  <label>
+    <div class="text">Date</div>
+    <input type="date">
+  </label>
+
+  <label>
+    <div class="text">Start Time</div>
+    <input type="time">
+  </label>
+
+  <label>
+    <div class="text">End Time</div>
+    <input type="time">
+  </label>
+
+  <p class="hint">* Office hours are 9am to 6pm</p>
+
+  <input type="submit" value="Create Event">
+</form>
+
+<app-calendar [options]="{period: 'day'}"></app-calendar>

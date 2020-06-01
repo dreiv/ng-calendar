@@ -1,12 +1,23 @@
 @import 'abstracts/mixins';
 
+:host {
+  @include flex-column;
+
+  height: 100%;
+}
+
 .back {
   display: inline-flex;
   align-items: center;
   height: 1.5rem;
+  margin-bottom: 1rem;
 
   font-size: 1.2rem;
   line-height: 0;
+
+  app-arrow-left {
+    margin-right: 0.5rem;
+  }
 
   &:not(:hover) {
     text-decoration: none;

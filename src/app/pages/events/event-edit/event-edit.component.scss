@@ -1,0 +1,73 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+$labelSize: 10rem;
+
+:host {
+  display: flex;
+  flex: 1;
+}
+
+form {
+  flex: 1;
+  margin-right: 1rem;
+
+  > header {
+    margin-bottom: 1.5rem;
+
+    > p {
+      opacity: 0.7;
+    }
+  }
+
+  > label {
+    display: flex;
+    margin-bottom: 0.75rem;
+
+    > .text {
+      width: $labelSize;
+    }
+
+    @media #{$phone} {
+      flex-direction: column;
+    }
+  }
+
+  .hint {
+    margin-bottom: 2rem;
+    margin-left: $labelSize;
+
+    @media #{$phone} {
+      margin-left: inherit;
+    }
+  }
+}
+
+input {
+  height: 2.5rem;
+
+  font-size: 18px;
+}
+
+app-calendar {
+  width: 20rem;
+}
+
+[type='submit'] {
+  @include padding-horiz(1rem);
+  height: 2.5rem;
+
+  margin-left: $labelSize;
+  border: none;
+  border-radius: var(--border-radius);
+
+  color: var(--onPrimary);
+
+  background-color: var(--primary);
+  cursor: pointer;
+
+  @media #{$phone} {
+    float: right;
+    margin-left: inherit;
+  }
+}

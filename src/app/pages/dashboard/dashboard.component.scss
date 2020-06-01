@@ -30,7 +30,7 @@ main {
 
     > a {
       @include flex-center;
-      @include circle(2.5rem);
+      @include circle(3rem);
 
       color: var(--onPrimary);
 
