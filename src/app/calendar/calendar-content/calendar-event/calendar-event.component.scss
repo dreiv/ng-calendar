@@ -37,6 +37,9 @@
 }
 
 .event-link {
+  display: block;
+  min-height: inherit;
+
   color: var(--onSurface);
 
   &:not(:hover) {

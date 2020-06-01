@@ -8,7 +8,7 @@
   >
     <app-calendar-event
       *ngFor="let event of day.events; trackBy:identifyEvent"
-      [isControlled]="data.options.controlled"
+      [isControlled]="data.options.isControlled"
       [event]="event">
     </app-calendar-event>
   </div>

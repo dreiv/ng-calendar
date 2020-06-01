@@ -30,7 +30,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
 
   constructor(public store: AppStoreService) {
     this.prepopulateTime = prepopulateEventTime();
-    this.calendarOptions = { period: 'day', controlled: true };
+    this.calendarOptions = { period: 'day', isControlled: true };
   }
 
   ngOnInit(): void {
