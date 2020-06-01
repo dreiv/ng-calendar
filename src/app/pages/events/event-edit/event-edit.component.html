@@ -65,5 +65,8 @@
   <input type="submit" value="Create Event" [disabled]="!this.editForm.valid">
 </form>
 
-<app-calendar [options]="{period: 'day', controlled: true}" [events]="tempEvents">
+<app-calendar
+  [options]="calendarOptions"
+  [events]="tempEvents"
+>
 </app-calendar>

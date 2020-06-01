@@ -8,12 +8,15 @@ import { AppStoreService } from 'src/app/store/app-store.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  selectPeriods: CalendarPeriod[] = ['workWeek', 'week', 'day'];
-  calendarOptions: CalendarOptions = {
-    period: 'workWeek'
-  };
+  selectPeriods: CalendarPeriod[];
+  calendarOptions: CalendarOptions;
 
-  constructor(public store: AppStoreService) {}
+  constructor(public store: AppStoreService) {
+    this.selectPeriods = ['workWeek', 'week', 'day'];
+    this.calendarOptions = {
+      period: 'workWeek'
+    };
+  }
 
   changePeriod(event: { target: HTMLSelectElement }): void {
     const period = event.target.value as CalendarPeriod;

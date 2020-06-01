@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { AppStoreService } from 'src/app/store/app-store.service';
-import { CalendarEvent } from 'src/app/calendar/calendar';
+import { CalendarEvent, CalendarOptions } from 'src/app/calendar/calendar';
 import { prepopulateEventTime, EventTime } from './prepopulate-event-time';
 import { timeValidator } from './time-validator';
 
@@ -17,11 +17,13 @@ export class EventEditComponent implements OnInit, OnDestroy {
   tempEvents: CalendarEvent[];
   editForm: FormGroup;
   prepopulateTime: EventTime;
+  calendarOptions: CalendarOptions;
 
   private componentDestroyed$ = new Subject();
 
   constructor(public store: AppStoreService) {
     this.prepopulateTime = prepopulateEventTime();
+    this.calendarOptions = { period: 'day', controlled: true };
   }
 
   ngOnInit(): void {
@@ -30,7 +32,25 @@ export class EventEditComponent implements OnInit, OnDestroy {
       .subscribe(events => {
         this.tempEvents = [...events];
       });
+    this.initForm();
+    this.editForm.get('date').valueChanges.subscribe(date => {
+      this.calendarOptions = {
+        ...this.calendarOptions,
+        focusedDay: new Date(date)
+      };
+    });
+  }
 
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next();
+  }
+
+  onSubmit() {
+    console.log(this.editForm);
+    this.editForm.reset();
+  }
+
+  private initForm(): void {
     const { date, startTime, endTime } = this.prepopulateTime;
     this.editForm = new FormGroup({
       title: new FormControl(null, Validators.required),
@@ -43,13 +63,5 @@ export class EventEditComponent implements OnInit, OnDestroy {
         timeValidator
       )
     });
-  }
-
-  ngOnDestroy(): void {
-    this.componentDestroyed$.next();
-  }
-
-  onSubmit() {
-    console.log(this.editForm);
   }
 }
