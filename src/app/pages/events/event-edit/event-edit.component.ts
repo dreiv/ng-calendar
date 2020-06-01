@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -29,10 +29,10 @@ export class EventEditComponent implements OnInit, OnDestroy {
 
     const { date, startTime, endTime } = prepopulateEventTime();
     this.editForm = new FormGroup({
-      title: new FormControl(null),
-      date: new FormControl(date),
-      startTime: new FormControl(startTime),
-      endtime: new FormControl(endTime)
+      title: new FormControl(null, Validators.required),
+      date: new FormControl(date, Validators.required),
+      startTime: new FormControl(startTime, Validators.required),
+      endtime: new FormControl(endTime, Validators.required)
     });
   }
 

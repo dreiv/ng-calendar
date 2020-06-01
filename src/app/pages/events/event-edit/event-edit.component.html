@@ -5,38 +5,54 @@
   </header>
 
   <label>
-    <div class="text">Title</div>
+    <div class="text">Title*</div>
     <input
       type="text"
       placeholder="enter an Event name"
       formControlName="title"
     >
+
+    <p *ngIf="!this.editForm.get('title').valid && this.editForm.get('title').touched">
+      Please enter an event title!
+    </p>
   </label>
 
   <label>
-    <div class="text">Date</div>
+    <div class="text">Date*</div>
     <input
       type="date"
       formControlName="date"
     >
+
+    <p *ngIf="!this.editForm.get('date').valid && this.editForm.get('date').touched">
+      Please enter an event date!
+    </p>
   </label>
 
   <label>
-    <div class="text">Start Time</div>
+    <div class="text">Start Time*</div>
     <input
       type="time"
       step="300"
       formControlName="startTime"
     >
+
+    <p *ngIf="!this.editForm.get('startTime').valid && this.editForm.get('startTime').touched">
+      Please enter an event start time!
+    </p>
   </label>
 
   <label>
-    <div class="text">End Time</div>
+    <div class="text">End Time*</div>
     <input
       type="time"
       step="300"
       formControlName="endtime"
     >
+
+    <p *ngIf="!this.editForm.get('endtime').valid && this.editForm.get('endtime').touched">
+      Please enter an event end time!
+    </p>
   </label>
 
   <p

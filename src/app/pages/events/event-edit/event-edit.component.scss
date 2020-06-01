@@ -50,8 +50,15 @@ form {
 input {
   @include padding-horiz(0.5rem);
   height: 2.5rem;
+  border: none;
+  border: #2f363d 1px solid;
+  border-radius: var(--border-radius);
 
   font-size: 18px;
+
+  &.ng-invalid.ng-touched {
+    border-color: var(--warning);
+  }
 }
 
 app-calendar {
