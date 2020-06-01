@@ -1,19 +1,29 @@
 <time class="time-text">Time</time>
 
-<button class="prev" (click)="calendarService.goPrevious()">
-  <app-chevron-left></app-chevron-left>
-</button>
+<ng-container *ngIf="calendarService.options$ | async as options">
+  <button
+    class="prev"
+    *ngIf="!options.controlled"
+    (click)="calendarService.goPrevious()"
+  >
+    <app-chevron-left></app-chevron-left>
+  </button>
 
-<div class="tracks">
-  <div class="scrollable" #scrollSync>
-    <ng-container *ngIf="calendarService.days$ | async as days">
-      <div class="track" *ngFor="let day of days; trackBy:identify">
-        <app-header-day [date]="day.date"></app-header-day>
-      </div>
-    </ng-container>
+  <div class="tracks">
+    <div class="scrollable" #scrollSync>
+      <ng-container *ngIf="calendarService.days$ | async as days">
+        <div class="track" *ngFor="let day of days; trackBy:identify">
+          <app-header-day [date]="day.date"></app-header-day>
+        </div>
+      </ng-container>
+    </div>
   </div>
-</div>
 
-<button class="next" (click)="calendarService.goNext()">
-  <app-chevron-right></app-chevron-right>
-</button>
+  <button
+    class="next"
+    *ngIf="!options.controlled"
+    (click)="calendarService.goNext()"
+  >
+    <app-chevron-right></app-chevron-right>
+  </button>
+</ng-container>

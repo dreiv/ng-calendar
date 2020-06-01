@@ -14,19 +14,23 @@ import { mapDaysToEvents } from './helpers/mapDaysToEvents';
 @Injectable()
 export class CalendarService {
   private options: CalendarOptions;
+  private optionsSubject: BehaviorSubject<CalendarOptions>;
   private scrollSyncSubject: BehaviorSubject<number>;
   private visibleDaysSubject: BehaviorSubject<Date[]>;
   private eventsSubject: BehaviorSubject<CalendarEvent[]>;
 
+  options$: Observable<CalendarOptions>;
   scrollSync$: Observable<number>;
   days$: Observable<CalendarDay[]>;
   time$: Observable<Date>;
 
   constructor() {
+    this.optionsSubject = new BehaviorSubject(null);
     this.scrollSyncSubject = new BehaviorSubject(0);
     this.visibleDaysSubject = new BehaviorSubject([]);
     this.eventsSubject = new BehaviorSubject([]);
 
+    this.options$ = this.optionsSubject.asObservable();
     this.scrollSync$ = this.scrollSyncSubject.asObservable();
     this.days$ = combineLatest(
       this.visibleDaysSubject,
@@ -45,7 +49,7 @@ export class CalendarService {
   }
 
   configure(options: CalendarOptions): void {
-    this.options = options;
+    this.optionsSubject.next(options);
     this.setDays(options.period, options.focusedDay);
   }
 
@@ -55,7 +59,7 @@ export class CalendarService {
 
   goPrevious(): void {
     this.setDays(
-      this.options.period,
+      this.optionsSubject.getValue().period,
       this.visibleDaysSubject.getValue()[0],
       'previous'
     );
@@ -63,7 +67,7 @@ export class CalendarService {
 
   goNext(): void {
     this.setDays(
-      this.options.period,
+      this.optionsSubject.getValue().period,
       this.visibleDaysSubject.getValue()[0],
       'next'
     );
