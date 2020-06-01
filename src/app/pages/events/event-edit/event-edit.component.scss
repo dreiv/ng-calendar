@@ -41,8 +41,7 @@ label {
   }
 }
 
-.time-warning,
-.hint {
+.offset {
   margin-left: $labelSize;
 
   @media #{$phone} {
@@ -65,9 +64,7 @@ input {
   }
 }
 
-fieldset {
-  border-radius: var(--border-radius);
-
+[formGroupName='time'] {
   &.ng-invalid.ng-touched input {
     border-color: var(--warning);
   }

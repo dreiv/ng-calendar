@@ -26,8 +26,7 @@
     </div>
   </label>
 
-  <fieldset formGroupName="time">
-    <legend>Event Time:</legend>
+  <div formGroupName="time">
     <label>
       <div class="text">Start Time*</div>
 
@@ -51,15 +50,17 @@
       </div>
     </label>
 
-    <p class="time-warning" *ngIf="!this.editForm.get('time').valid && this.editForm.get('time').touched">
-      Please make sure that the start time comes before the end time.
-    </p>
+    <div class="offset">
+      <p *ngIf="!this.editForm.get('time').valid && this.editForm.get('time').touched">
+        Please make sure that the start time comes before the end time.
+      </p>
 
-    <p class="hint" *ngIf="store.opperatingHours$ | async as hours">
-      * Office hours are {{ hours.startTime.hour + hours.startTime.period }} to
-      {{ hours.endTime.hour + hours.endTime.period }}
-    </p>
-  </fieldset>
+      <p *ngIf="store.opperatingHours$ | async as hours">
+        * Office hours are {{ hours.startTime.hour + hours.startTime.period }} to
+        {{ hours.endTime.hour + hours.endTime.period }}
+      </p>
+    </div>
+  </div>
 
   <input type="submit" value="Create Event" [disabled]="!this.editForm.valid">
 </form>
