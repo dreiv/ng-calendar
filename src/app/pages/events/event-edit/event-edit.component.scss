@@ -15,40 +15,44 @@ form {
   @media #{$phone} {
     margin-right: inherit;
   }
+}
 
-  > header {
-    margin-bottom: 1.5rem;
+header {
+  margin-bottom: 1.5rem;
 
-    > p {
-      opacity: 0.7;
+  > p {
+    opacity: 0.7;
+  }
+}
+
+label {
+  display: flex;
+  margin-bottom: 0.75rem;
+
+  > .text {
+    width: $labelSize;
+  }
+  @media #{$phone} {
+    flex-direction: column;
+
+    input {
+      width: 100%;
     }
   }
+}
 
-  > label {
-    display: flex;
-    margin-bottom: 0.75rem;
+.hint {
+  margin-bottom: 2rem;
+  margin-left: $labelSize;
 
-    > .text {
-      width: $labelSize;
-    }
-
-    @media #{$phone} {
-      flex-direction: column;
-    }
-  }
-
-  .hint {
-    margin-bottom: 2rem;
-    margin-left: $labelSize;
-
-    @media #{$phone} {
-      margin-left: inherit;
-    }
+  @media #{$phone} {
+    margin-left: inherit;
   }
 }
 
 input {
   @include padding-horiz(0.5rem);
+
   height: 2.5rem;
   border: none;
   border: #2f363d 1px solid;

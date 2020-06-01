@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { AppStoreService } from 'src/app/store/app-store.service';
 import { CalendarEvent } from 'src/app/calendar/calendar';
-import { prepopulateEventTime } from './prepopulateEventTime';
+import { prepopulateEventTime, EventTime } from './prepopulateEventTime';
 
 @Component({
   selector: 'app-event-edit',
@@ -15,10 +15,13 @@ import { prepopulateEventTime } from './prepopulateEventTime';
 export class EventEditComponent implements OnInit, OnDestroy {
   tempEvents: CalendarEvent[];
   editForm: FormGroup;
+  prepopulateTime: EventTime;
 
   private componentDestroyed$ = new Subject();
 
-  constructor(public store: AppStoreService) {}
+  constructor(public store: AppStoreService) {
+    this.prepopulateTime = prepopulateEventTime();
+  }
 
   ngOnInit(): void {
     this.store.events$
@@ -27,7 +30,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
         this.tempEvents = [...events];
       });
 
-    const { date, startTime, endTime } = prepopulateEventTime();
+    const { date, startTime, endTime } = this.prepopulateTime;
     this.editForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       date: new FormControl(date, Validators.required),
