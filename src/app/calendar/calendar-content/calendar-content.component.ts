@@ -20,7 +20,7 @@ export class CalendarContentComponent implements OnInit {
     return item.date;
   }
 
-  identifyEvent(index: number, item: CalendarEvent): Date {
-    return item.startDate;
+  identifyEvent(index: number, item: CalendarEvent): string {
+    return item.id;
   }
 }

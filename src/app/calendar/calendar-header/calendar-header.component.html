@@ -1,9 +1,12 @@
 <time class="time-text">Time</time>
 
-<ng-container *ngIf="calendarService.options$ | async as options">
+<ng-container *ngIf="{
+  options: calendarService.options$ | async,
+  days: calendarService.days$ | async
+} as data">
   <button
     class="prev"
-    *ngIf="!options.controlled"
+    *ngIf="!data.options.controlled"
     (click)="calendarService.goPrevious()"
   >
     <app-chevron-left></app-chevron-left>
@@ -11,17 +14,15 @@
 
   <div class="tracks">
     <div class="scrollable" #scrollSync>
-      <ng-container *ngIf="calendarService.days$ | async as days">
-        <div class="track" *ngFor="let day of days; trackBy:identify">
+        <div class="track" *ngFor="let day of data.days; trackBy:identify">
           <app-header-day [date]="day.date"></app-header-day>
         </div>
-      </ng-container>
     </div>
   </div>
 
   <button
     class="next"
-    *ngIf="!options.controlled"
+    *ngIf="!data.options.controlled"
     (click)="calendarService.goNext()"
   >
     <app-chevron-right></app-chevron-right>

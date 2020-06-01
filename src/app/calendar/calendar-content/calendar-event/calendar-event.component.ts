@@ -32,6 +32,8 @@ export class CalendarEventComponent implements AfterViewInit {
   }
 
   @Input() event: CalendarEvent;
+  @Input() isControlled: boolean;
+
   constructor(private elRef: ElementRef) {}
 
   ngAfterViewInit(): void {

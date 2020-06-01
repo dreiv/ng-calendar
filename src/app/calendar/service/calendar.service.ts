@@ -13,7 +13,6 @@ import { mapDaysToEvents } from './helpers/map-days-to-events';
 
 @Injectable()
 export class CalendarService {
-  private options: CalendarOptions;
   private optionsSubject: BehaviorSubject<CalendarOptions>;
   private scrollSyncSubject: BehaviorSubject<number>;
   private visibleDaysSubject: BehaviorSubject<Date[]>;
