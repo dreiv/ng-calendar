@@ -1,12 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Subject, combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { AppStoreService } from 'src/app/store/app-store.service';
 import { CalendarEvent, CalendarOptions } from 'src/app/calendar/calendar';
-import { prepopulateEventTime, EventTime } from './prepopulate-event-time';
-import { timeValidator } from './time-validator';
+import {
+  prepopulateEventTime,
+  EventTime
+} from './helpers/prepopulate-event-time';
+import { timeValidator } from './helpers/time-validator';
+import { buildEvent } from './helpers/build-event';
 
 @Component({
   selector: 'app-event-edit',
@@ -19,6 +23,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   prepopulateTime: EventTime;
   calendarOptions: CalendarOptions;
 
+  private storeEvents: CalendarEvent[];
   private componentDestroyed$ = new Subject();
 
   constructor(public store: AppStoreService) {
@@ -30,15 +35,11 @@ export class EventEditComponent implements OnInit, OnDestroy {
     this.store.events$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(events => {
-        this.tempEvents = [...events];
+        this.storeEvents = events;
+        this.tempEvents = events;
       });
     this.initForm();
-    this.editForm.get('date').valueChanges.subscribe(date => {
-      this.calendarOptions = {
-        ...this.calendarOptions,
-        focusedDay: new Date(date)
-      };
-    });
+    this.watchChanges();
   }
 
   ngOnDestroy(): void {
@@ -62,6 +63,24 @@ export class EventEditComponent implements OnInit, OnDestroy {
         },
         timeValidator
       )
+    });
+  }
+
+  private watchChanges(): void {
+    combineLatest(
+      this.editForm.valueChanges,
+      this.editForm.statusChanges
+    ).subscribe(([changes, status]) => {
+      if (status == 'VALID') {
+        const tempEvent = buildEvent(changes);
+        this.tempEvents = [...this.storeEvents, tempEvent];
+        this.calendarOptions = {
+          ...this.calendarOptions,
+          focusedDay: tempEvent.startDate
+        };
+      } else {
+        this.tempEvents = this.storeEvents;
+      }
     });
   }
 }

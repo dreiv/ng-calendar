@@ -15,6 +15,13 @@
 
   background-color: white;
 
+  &.sketch {
+    border-style: dashed;
+    border-width: 1px;
+
+    background-color: #bce9e8;
+  }
+
   &::before {
     position: absolute;
     top: 0;

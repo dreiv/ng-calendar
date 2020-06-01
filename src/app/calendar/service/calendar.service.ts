@@ -8,8 +8,8 @@ import {
   CalendarOptions,
   CalendarEvent
 } from '../calendar';
-import { getDays } from './helpers/getDays';
-import { mapDaysToEvents } from './helpers/mapDaysToEvents';
+import { getDays } from './helpers/get-days';
+import { mapDaysToEvents } from './helpers/map-days-to-events';
 
 @Injectable()
 export class CalendarService {

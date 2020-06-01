@@ -22,10 +22,11 @@ export interface CalendarDay {
 }
 
 export interface CalendarEvent {
-  id: string;
+  id?: string;
+  title: string;
   startDate: Date;
   endDate: Date;
-  title: string;
+  isSketch?: boolean;
   recurring?: boolean;
 }
 

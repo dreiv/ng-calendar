@@ -26,6 +26,11 @@ export class CalendarEventComponent implements OnInit {
 
     return difference * HOUR_SIZE + 'px';
   }
+  @HostBinding('class.sketch') get isSketch(): boolean {
+    console.log(this.event);
+
+    return this.event.isSketch;
+  }
 
   @Input() event: CalendarEvent;
   constructor() {}

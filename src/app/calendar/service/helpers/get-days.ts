@@ -1,5 +1,5 @@
 import { CalendarPeriod, CalendarDirection } from '../../calendar';
-import { getOffsetDate } from './getOffsetDate';
+import { getOffsetDate } from './get-offset-date';
 
 const periodToDays = new Map<CalendarPeriod, number>([
   ['workWeek', 5],
