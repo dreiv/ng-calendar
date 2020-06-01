@@ -1,2 +1,12 @@
-<div class="title">{{event.title}}</div>
+<ng-container *ngIf="isControlled; then eventTpl else linkTpl"></ng-container>
+
+<ng-template #linkTpl>
+  <a [routerLink]="'/events/' + event.id" class="event-link">
+    <ng-container *ngTemplateOutlet="eventTpl"></ng-container>
+  </a>
+</ng-template>
+
+<ng-template #eventTpl>
+  <div class="title">{{event.title}}</div>
   {{event.startDate | date:'H:mm'}} - {{event.endDate | date:'H:mm'}}
+</ng-template>

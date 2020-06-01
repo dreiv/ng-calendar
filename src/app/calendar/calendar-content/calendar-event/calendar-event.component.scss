@@ -36,6 +36,14 @@
   }
 }
 
+.event-link {
+  color: var(--onSurface);
+
+  &:not(:hover) {
+    text-decoration: none;
+  }
+}
+
 .title {
   font-weight: 500;
 }
