@@ -36,7 +36,6 @@ export class CalendarEventComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.event.isSketch) {
-      console.log('called', this.elRef);
       this.elRef.nativeElement.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
