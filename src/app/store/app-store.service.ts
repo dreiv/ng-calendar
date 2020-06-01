@@ -44,6 +44,9 @@ export class AppStoreService {
 
   addEvent(event: CalendarEvent): void {
     const events = this.getEvents();
+    event.id = Math.random()
+      .toString(36)
+      .substr(2, 5);
     events.push(event);
 
     this.setEvents(events);
