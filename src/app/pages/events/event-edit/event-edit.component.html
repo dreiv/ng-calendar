@@ -5,77 +5,64 @@
   </header>
 
   <label>
-      <div class="text">Title*</div>
+    <div class="text">Event Title*</div>
 
-      <div class="container">
-        <input
-          type="text"
-          placeholder="enter an Event name"
-          formControlName="title"
-        >
-        <p *ngIf="!this.editForm.get('title').valid && this.editForm.get('title').touched">
-          Please enter an event title!
-        </p>
-      </div>
+    <div class="container">
+      <input type="text" placeholder="enter an Event name" formControlName="title">
+      <p *ngIf="!this.editForm.get('title').valid && this.editForm.get('title').touched">
+        Please enter an event title!
+      </p>
+    </div>
   </label>
 
   <label>
-    <div class="text">Date*</div>
+    <div class="text">Event Date*</div>
 
     <div class="container">
-      <input
-        type="date"
-        formControlName="date"
-        [min]="prepopulateTime.date"
-      >
+      <input type="date" formControlName="date" [min]="prepopulateTime.date">
       <p *ngIf="!this.editForm.get('date').valid && this.editForm.get('date').touched">
         Please enter an event date!
       </p>
     </div>
   </label>
 
-  <label>
-    <div class="text">Start Time*</div>
+  <fieldset formGroupName="time">
+    <legend>Event Time:</legend>
+    <label>
+      <div class="text">Start Time*</div>
 
-    <div class="container">
-      <input
-        type="time"
-        step="300"
-        formControlName="startTime"
-      >
-      <p *ngIf="!this.editForm.get('startTime').valid && this.editForm.get('startTime').touched">
-        Please enter an event start time!
-      </p>
-    </div>
+      <div class="container">
+        <input type="time" step="300" formControlName="start">
+        <p *ngIf="!this.editForm.get('time.start').valid && this.editForm.get('time.start').touched">
+          Please enter an event start time!
+        </p>
+      </div>
 
-  </label>
+    </label>
 
-  <label>
-    <div class="text">End Time*</div>
+    <label>
+      <div class="text">End Time*</div>
 
-    <div class="container">
-      <input
-        type="time"
-        step="300"
-        formControlName="endtime"
-      >
-      <p *ngIf="!this.editForm.get('endtime').valid && this.editForm.get('endtime').touched">
-        Please enter an event end time!
-      </p>
-    </div>
-  </label>
+      <div class="container">
+        <input type="time" step="300" formControlName="end">
+        <p *ngIf="!this.editForm.get('time.end').valid && this.editForm.get('time.end').touched">
+          Please enter an event end time!
+        </p>
+      </div>
+    </label>
 
-  <p
-    *ngIf="store.opperatingHours$ | async as hours"
-    class="hint"
-  >
-    * Office hours are {{ hours.startTime.hour + hours.startTime.period }} to {{ hours.endTime.hour + hours.endTime.period }}
-  </p>
+    <p class="time-warning" *ngIf="!this.editForm.get('time').valid && this.editForm.get('time').touched">
+      Please make sure that the start time comes before the end time.
+    </p>
 
-  <input type="submit" value="Create Event">
+    <p class="hint" *ngIf="store.opperatingHours$ | async as hours">
+      * Office hours are {{ hours.startTime.hour + hours.startTime.period }} to
+      {{ hours.endTime.hour + hours.endTime.period }}
+    </p>
+  </fieldset>
+
+  <input type="submit" value="Create Event" [disabled]="!this.editForm.valid">
 </form>
 
-<app-calendar
-  [options]="{period: 'day', controlled: true}"
-  [events]="tempEvents">
+<app-calendar [options]="{period: 'day', controlled: true}" [events]="tempEvents">
 </app-calendar>

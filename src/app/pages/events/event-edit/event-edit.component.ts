@@ -5,7 +5,8 @@ import { takeUntil } from 'rxjs/operators';
 
 import { AppStoreService } from 'src/app/store/app-store.service';
 import { CalendarEvent } from 'src/app/calendar/calendar';
-import { prepopulateEventTime, EventTime } from './prepopulateEventTime';
+import { prepopulateEventTime, EventTime } from './prepopulate-event-time';
+import { timeValidator } from './time-validator';
 
 @Component({
   selector: 'app-event-edit',
@@ -34,8 +35,13 @@ export class EventEditComponent implements OnInit, OnDestroy {
     this.editForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       date: new FormControl(date, Validators.required),
-      startTime: new FormControl(startTime, Validators.required),
-      endtime: new FormControl(endTime, Validators.required)
+      time: new FormGroup(
+        {
+          start: new FormControl(startTime, Validators.required),
+          end: new FormControl(endTime, Validators.required)
+        },
+        timeValidator
+      )
     });
   }
 
