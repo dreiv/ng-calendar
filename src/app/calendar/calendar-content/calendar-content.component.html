@@ -2,9 +2,10 @@
   options: calendar.options$ | async,
   days: calendar.days$ | async
 } as data">
-  <div
+  <app-calendar-track
     class="track"
     *ngFor="let day of data.days; trackBy:identifyDay"
+    [day]="day"
   >
     <app-calendar-event-wrapper
       *ngFor="let event of day.events; trackBy:identifyEvent"
@@ -15,5 +16,5 @@
         [event]="event">
       </app-calendar-event>
     </app-calendar-event-wrapper>
-  </div>
+  </app-calendar-track>
 </ng-container>

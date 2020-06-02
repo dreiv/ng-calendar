@@ -11,6 +11,7 @@ import { HeaderDayComponent } from './calendar-header/header-day/header-day.comp
 import { CalendarService } from './services/calendar.service';
 import { CalendarEventComponent } from './calendar-content/calendar-event/calendar-event.component';
 import { CalendarEventWrapperComponent } from './calendar-content/calendar-event-wrapper/calendar-event-wrapper.component';
+import { CalendarTrackComponent } from './calendar-content/calendar-track/calendar-track.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CalendarEventWrapperComponent } from './calendar-content/calendar-event
     CalendarContentComponent,
     HeaderDayComponent,
     CalendarEventComponent,
-    CalendarEventWrapperComponent
+    CalendarEventWrapperComponent,
+    CalendarTrackComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule],
   exports: [CalendarComponent],
