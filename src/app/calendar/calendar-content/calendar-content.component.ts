@@ -6,7 +6,7 @@ import { CalendarDay, CalendarEvent } from '../calendar';
   selector: 'app-calendar-content',
   templateUrl: './calendar-content.component.html',
   styleUrls: [
-    '../styles/calendar.common.scss',
+    '../shared/calendar.common.scss',
     './calendar-content.component.scss'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush

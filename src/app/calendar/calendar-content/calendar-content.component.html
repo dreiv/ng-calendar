@@ -6,10 +6,14 @@
     class="track"
     *ngFor="let day of data.days; trackBy:identifyDay"
   >
-    <app-calendar-event
+    <app-calendar-event-wrapper
       *ngFor="let event of day.events; trackBy:identifyEvent"
-      [isControlled]="data.options.isControlled"
-      [event]="event">
-    </app-calendar-event>
+      [event]="event"
+    >
+      <app-calendar-event
+        [isControlled]="data.options.isControlled"
+        [event]="event">
+      </app-calendar-event>
+    </app-calendar-event-wrapper>
   </div>
 </ng-container>

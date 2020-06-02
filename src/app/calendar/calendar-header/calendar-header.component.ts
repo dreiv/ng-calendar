@@ -16,7 +16,7 @@ import { CalendarSyncService } from '../services/calendar-sync.service';
   selector: 'app-calendar-header',
   templateUrl: './calendar-header.component.html',
   styleUrls: [
-    '../styles/calendar.common.scss',
+    '../shared/calendar.common.scss',
     './calendar-header.component.scss'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
