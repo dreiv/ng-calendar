@@ -54,7 +54,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     const event = {
       ...this.sketchEvent,
-      id: this.event.id
+      ...(this.event?.id && { id: this.event.id })
     };
     delete event.isSketch;
 
