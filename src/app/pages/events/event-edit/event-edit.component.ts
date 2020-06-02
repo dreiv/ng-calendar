@@ -24,17 +24,18 @@ export class EventEditComponent implements OnInit, OnDestroy {
   editForm: FormGroup;
   prepopulateTime: EventTime;
   calendarOptions: CalendarOptions;
+  event: CalendarEvent;
 
   private sketchEvent: CalendarEvent;
   private storeEvents: CalendarEvent[];
   private componentDestroyed$ = new Subject();
 
   constructor(public store: AppStoreService, private route: ActivatedRoute) {
-    this.prepopulateTime = prepopulateEventTime();
     this.calendarOptions = { period: 'day', isControlled: true };
   }
 
   ngOnInit(): void {
+    this.event = this.route.snapshot.data[0];
     this.store.events$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(events => {
@@ -51,7 +52,10 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    const event = { ...this.sketchEvent };
+    const event = {
+      ...this.sketchEvent,
+      id: this.event.id
+    };
     delete event.isSketch;
 
     this.store.addEvent(event);
@@ -59,13 +63,12 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   private initForm(): void {
-    // TODO: edit
-    console.log(this.route.snapshot.data[0]);
-
-    const { date, startTime, endTime } = this.prepopulateTime;
+    const { date, startTime, endTime } = prepopulateEventTime(
+      this.event?.startDate
+    );
 
     this.editForm = new FormGroup({
-      title: new FormControl(null, Validators.required),
+      title: new FormControl(this.event?.title, Validators.required),
       date: new FormControl(date, Validators.required),
       time: new FormGroup(
         {

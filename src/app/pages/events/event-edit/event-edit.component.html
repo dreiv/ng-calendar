@@ -8,7 +8,12 @@
     <div class="text">Event Title*</div>
 
     <div class="container">
-      <input type="text" placeholder="enter an Event name" formControlName="title">
+      <input
+        type="text"
+        placeholder="enter an Event name"
+        formControlName="title"
+      >
+
       <p *ngIf="!this.editForm.get('title').valid && this.editForm.get('title').touched">
         Please enter an event title!
       </p>
@@ -19,7 +24,12 @@
     <div class="text">Event Date*</div>
 
     <div class="container">
-      <input type="date" formControlName="date" [min]="prepopulateTime.date">
+      <input
+        type="date"
+        formControlName="date"
+        [min]="this.editForm.get('date').value"
+      >
+
       <p *ngIf="!this.editForm.get('date').valid && this.editForm.get('date').touched">
         Please enter an event date!
       </p>
@@ -31,7 +41,12 @@
       <div class="text">Start Time*</div>
 
       <div class="container">
-        <input type="time" step="300" formControlName="start">
+        <input
+          type="time"
+          step="300"
+          formControlName="start"
+        >
+
         <p *ngIf="!this.editForm.get('time.start').valid && this.editForm.get('time.start').touched">
           Please enter an event start time!
         </p>
@@ -43,7 +58,12 @@
       <div class="text">End Time*</div>
 
       <div class="container">
-        <input type="time" step="300" formControlName="end">
+        <input
+          type="time"
+          step="300"
+          formControlName="end"
+        >
+
         <p *ngIf="!this.editForm.get('time.end').valid && this.editForm.get('time.end').touched">
           Please enter an event end time!
         </p>

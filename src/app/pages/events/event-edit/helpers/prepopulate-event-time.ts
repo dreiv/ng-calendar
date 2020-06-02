@@ -13,8 +13,7 @@ const formatTime = time => {
   return `${hours}:${minutes}`;
 };
 
-export const prepopulateEventTime = (): EventTime => {
-  const now = new Date();
+export const prepopulateEventTime = (now = new Date()): EventTime => {
   const nowHours = now.getHours();
   const nowMinutes = now.getMinutes();
 
