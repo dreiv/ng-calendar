@@ -16,31 +16,28 @@ main {
   }
 }
 
-.side-actions {
+.side-action {
   flex-shrink: 0;
+  align-items: center;
+  width: 3rem;
   margin-right: 2rem;
   padding-top: 4rem;
 
-  > .side-action {
-    @include flex-column;
-    align-items: center;
-    width: 3rem;
+  text-align: center;
+  @include flex-column;
 
-    text-align: center;
+  > a {
+    @include flex-center;
+    @include circle(3rem);
 
-    > a {
-      @include flex-center;
-      @include circle(3rem);
+    color: var(--onPrimary);
 
-      color: var(--onPrimary);
+    background-color: var(--primary);
+  }
 
-      background-color: var(--primary);
-    }
-
-    > .text {
-      font-size: 14px;
-      text-transform: uppercase;
-    }
+  > .text {
+    font-size: 14px;
+    text-transform: uppercase;
   }
 
   @media #{$phone} {
