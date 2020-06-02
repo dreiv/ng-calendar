@@ -9,6 +9,7 @@ export interface CalendarOptions {
   period: CalendarPeriod;
   focusedDay?: Date;
   isControlled?: boolean;
+  opperatingHours?: CalendarOpperatingHours;
 }
 
 export interface CalendarState extends CalendarOptions {
