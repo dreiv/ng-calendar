@@ -1,15 +1,25 @@
-<ng-container *ngIf="route.data | async as event">
-  <header>
-    <h1>{{event[0].title}}</h1>
-    <p>The event you change is a mock event and will not be persisted outside this application session.
-    </p>
-  </header>
+<header>
+  <h1>{{event.title}}</h1>
+  <p>The event you change is a mock event and will not be persisted outside this application session.
+  </p>
+</header>
 
-  <main>
-    <p>Start Time: {{event[0].startDate | date:'H:mm'}}</p>
-    <p>End Time: {{event[0].endDate | date:'H:mm'}}</p>
-  </main>
+<main>
+  <p>Start Time: {{event.startDate | date:'H:mm'}}</p>
+  <p>End Time: {{event.endDate | date:'H:mm'}}</p>
+</main>
 
-  <a [routerLink]="'/events/' + event[0].id +'/edit'">edit</a>
-  <button (click)="deleteEvent(event[0].id)">delete</button>
-</ng-container>
+<div class="actions">
+  <a
+    class="action edit"
+    [routerLink]="'/events/' + event.id +'/edit'"
+  >
+    edit
+  </a>
+  <button
+    class="action warn"
+    (click)="deleteEvent(event.id)"
+  >
+    delete
+  </button>
+</div>
