@@ -30,12 +30,7 @@ export interface CalendarEvent {
   recurring?: boolean;
 }
 
-type timeRange = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-export interface CalendarHour {
-  hour: timeRange;
-  period: 'am' | 'pm';
-}
 export interface CalendarOpperatingHours {
-  startTime: CalendarHour;
-  endTime: CalendarHour;
+  startTime: Date;
+  endTime: Date;
 }

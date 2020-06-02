@@ -15,8 +15,8 @@ export class AppStoreService {
 
   constructor() {
     this.opperatingHoursSubject = new BehaviorSubject({
-      startTime: { hour: 9, period: 'am' },
-      endTime: { hour: 5, period: 'pm' }
+      startTime: new Date(null, null, null, 9, 0),
+      endTime: new Date(null, null, null, 17, 0)
     });
     this.eventsSubject = new BehaviorSubject(
       events.map(event => ({

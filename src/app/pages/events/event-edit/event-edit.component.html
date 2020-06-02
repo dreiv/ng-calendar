@@ -76,8 +76,8 @@
       </p>
 
       <p *ngIf="store.opperatingHours$ | async as hours">
-        * Office hours are {{ hours.startTime.hour + hours.startTime.period }} to
-        {{ hours.endTime.hour + hours.endTime.period }}
+        * Office hours are {{ hours.startTime | date:'shortTime' }} to
+        {{ hours.endTime | date:'shortTime' }}
       </p>
     </div>
   </div>
