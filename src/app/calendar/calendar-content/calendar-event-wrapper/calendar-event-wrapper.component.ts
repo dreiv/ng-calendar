@@ -1,11 +1,17 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Input,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { getDateSize } from '../../shared/utils';
 import { HOUR_SIZE, CalendarEvent } from '../../calendar';
 
 @Component({
   selector: 'app-calendar-event-wrapper',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./calendar-event-wrapper.component.scss']
+  styleUrls: ['./calendar-event-wrapper.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarEventWrapperComponent {
   @HostBinding('style.top')
