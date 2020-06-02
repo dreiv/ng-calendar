@@ -6,8 +6,9 @@ import {
   SimpleChanges,
   OnChanges
 } from '@angular/core';
-import { CalendarService } from './service/calendar.service';
+import { CalendarService } from './services/calendar.service';
 import { CalendarOptions, CalendarEvent } from './calendar';
+import { CalendarSyncService } from './services/calendar-sync.service';
 
 @Component({
   selector: 'app-calendar',
@@ -21,18 +22,19 @@ export class CalendarComponent implements OnInit, OnChanges {
   @Input()
   events: CalendarEvent[];
 
-  constructor(public calendarService: CalendarService) {}
+  constructor(
+    public calendar: CalendarService,
+    public calendarSync: CalendarSyncService
+  ) {}
 
-  ngOnInit(): void {
-    // this.calendarService.time$.subscribe(date => console.log(date));
-  }
+  ngOnInit(): void {}
 
   ngOnChanges({ options, events }: SimpleChanges): void {
     if (options) {
-      this.calendarService.configure(options.currentValue);
+      this.calendar.configure(options.currentValue);
     }
     if (events) {
-      this.calendarService.setEvents(events.currentValue);
+      this.calendar.setEvents(events.currentValue);
     }
   }
 }

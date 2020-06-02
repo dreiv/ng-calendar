@@ -1,13 +1,13 @@
 <time class="time-text">Time</time>
 
 <ng-container *ngIf="{
-  options: calendarService.options$ | async,
-  days: calendarService.days$ | async
+  options: calendar.options$ | async,
+  days: calendar.days$ | async
 } as data">
   <button
     class="prev"
     *ngIf="!data.options.isControlled"
-    (click)="calendarService.goPrevious()"
+    (click)="calendar.goPrevious()"
   >
     <app-chevron-left></app-chevron-left>
   </button>
@@ -23,7 +23,7 @@
   <button
     class="next"
     *ngIf="!data.options.isControlled"
-    (click)="calendarService.goNext()"
+    (click)="calendar.goNext()"
   >
     <app-chevron-right></app-chevron-right>
   </button>

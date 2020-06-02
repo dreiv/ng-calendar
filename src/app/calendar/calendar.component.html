@@ -3,7 +3,7 @@
 <main>
   <div
     class="scrollable"
-    (scroll)="calendarService.updateScroll(scrollSpy.scrollLeft)" #scrollSpy
+    (scroll)="calendarSync.updateScroll(scrollSpy.scrollLeft)" #scrollSpy
   >
     <app-calendar-time></app-calendar-time>
     <app-calendar-content></app-calendar-content>

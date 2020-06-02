@@ -12,11 +12,6 @@ export interface CalendarOptions {
   opperatingHours?: CalendarOpperatingHours;
 }
 
-export interface CalendarState extends CalendarOptions {
-  pivot: Date;
-  direction: CalendarDirection;
-}
-
 export interface CalendarDay {
   date: Date;
   events: CalendarEvent[];
@@ -27,6 +22,7 @@ export interface CalendarEvent {
   title: string;
   startDate: Date;
   endDate: Date;
+
   isSketch?: boolean;
   recurring?: boolean;
 }

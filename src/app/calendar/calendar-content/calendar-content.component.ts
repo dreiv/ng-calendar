@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { CalendarService } from '../service/calendar.service';
+import { CalendarService } from '../services/calendar.service';
 import { CalendarDay, CalendarEvent } from '../calendar';
 
 @Component({
@@ -12,7 +12,7 @@ import { CalendarDay, CalendarEvent } from '../calendar';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarContentComponent implements OnInit {
-  constructor(public calendarService: CalendarService) {}
+  constructor(public calendar: CalendarService) {}
 
   ngOnInit(): void {}
 

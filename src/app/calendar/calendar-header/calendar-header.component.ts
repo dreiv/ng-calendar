@@ -6,10 +6,11 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { CalendarService } from '../service/calendar.service';
+import { CalendarService } from '../services/calendar.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CalendarDay } from '../calendar';
+import { CalendarSyncService } from '../services/calendar-sync.service';
 
 @Component({
   selector: 'app-calendar-header',
@@ -26,10 +27,13 @@ export class CalendarHeaderComponent implements AfterViewInit, OnDestroy {
 
   private componentDestroyed$ = new Subject();
 
-  constructor(public calendarService: CalendarService) {}
+  constructor(
+    public calendar: CalendarService,
+    private calendarSync: CalendarSyncService
+  ) {}
 
   ngAfterViewInit(): void {
-    this.calendarService.scrollSync$
+    this.calendarSync.scrollSync$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(left => {
         this.scrollSync.nativeElement.scrollLeft = left;
