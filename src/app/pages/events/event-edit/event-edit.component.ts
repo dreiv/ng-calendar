@@ -67,6 +67,13 @@ export class EventEditComponent implements OnInit, OnDestroy {
       this.event?.startDate
     );
 
+    if (this.event) {
+      this.calendarOptions = {
+        ...this.calendarOptions,
+        focusedDay: this.event.startDate
+      };
+    }
+
     this.editForm = new FormGroup({
       title: new FormControl(this.event?.title, Validators.required),
       date: new FormControl(date, Validators.required),
