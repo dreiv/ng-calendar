@@ -7,7 +7,7 @@
   <button
     class="prev"
     *ngIf="!data.options.isControlled"
-    (click)="calendar.goPrevious()"
+    (click)="calendar.go('previous')"
   >
     <app-chevron-left></app-chevron-left>
   </button>
@@ -23,7 +23,7 @@
   <button
     class="next"
     *ngIf="!data.options.isControlled"
-    (click)="calendar.goNext()"
+    (click)="calendar.go('next')"
   >
     <app-chevron-right></app-chevron-right>
   </button>

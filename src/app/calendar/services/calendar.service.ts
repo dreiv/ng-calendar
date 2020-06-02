@@ -20,7 +20,6 @@ export class CalendarService {
 
   options$: Observable<CalendarOptions>;
   days$: Observable<CalendarDay[]>;
-  time$: Observable<Date>;
 
   constructor() {
     this.optionsSubject = new BehaviorSubject(null);
@@ -43,19 +42,11 @@ export class CalendarService {
     this.eventsSubject.next(events);
   }
 
-  goPrevious(): void {
+  go(direction: CalendarDirection): void {
     this.setDays(
       this.optionsSubject.getValue().period,
       this.visibleDaysSubject.getValue()[0],
-      'previous'
-    );
-  }
-
-  goNext(): void {
-    this.setDays(
-      this.optionsSubject.getValue().period,
-      this.visibleDaysSubject.getValue()[0],
-      'next'
+      direction
     );
   }
 
