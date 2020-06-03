@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-calendar-track-past',
   templateUrl: './calendar-track-past.component.html',
-  styleUrls: ['./calendar-track-past.component.scss']
+  styleUrls: ['./calendar-track-past.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarTrackPastComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
