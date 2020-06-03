@@ -16,16 +16,11 @@ export const getDays = (
     return [date];
   }
 
-  const week = [];
-  const count = periodToDays.get(period);
-
-  for (let i = 1; i <= count; i++) {
+  return Array.from({ length: periodToDays.get(period) }, (_, idx) => {
     const dayOfWeek = date.getDay() || 7;
     const dayOfMonth = date.getDate();
-    const offsetWeekDay = dayOfMonth - dayOfWeek + i;
+    const offsetWeekDay = dayOfMonth - dayOfWeek + idx + 1;
 
-    week.push(new Date(date.setDate(offsetWeekDay)));
-  }
-
-  return week;
+    return new Date(date.setDate(offsetWeekDay));
+  });
 };
