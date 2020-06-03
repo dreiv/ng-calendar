@@ -6,10 +6,11 @@ import {
   HostBinding
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { CalendarService } from 'src/app/calendar/services/calendar.service';
 import { takeUntil } from 'rxjs/operators';
+
+import { CalendarService } from 'src/app/calendar/services/calendar.service';
 import { getDateSize } from 'src/app/calendar/shared/utils';
-import { HOUR_SIZE } from '../../../calendar';
+import { HOUR_SIZE, CalendarOpperatingHours } from '../../../calendar';
 
 @Component({
   selector: 'app-calendar-track-future',
@@ -19,7 +20,7 @@ import { HOUR_SIZE } from '../../../calendar';
 })
 export class CalendarTrackFutureComponent implements OnInit, OnDestroy {
   private componentDestroyed$ = new Subject();
-  private opperatingHours;
+  private opperatingHours: CalendarOpperatingHours;
 
   @HostBinding('style.background')
   get background(): string {
