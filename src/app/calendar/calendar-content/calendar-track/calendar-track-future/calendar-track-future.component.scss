@@ -1,0 +1,7 @@
+@import 'abstracts/mixins';
+
+:host {
+  @include absolute(0, 0);
+
+  background-color: #0001;
+}

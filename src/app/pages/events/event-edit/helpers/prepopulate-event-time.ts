@@ -1,20 +1,10 @@
-import { ymd } from 'src/app/calendar/shared/utils';
+import { ymd, hm } from 'src/app/calendar/shared/utils';
 
 export interface EventTime {
   date: string;
   startTime: string;
   endTime: string;
 }
-
-const padStart = num => num.toString().padStart(2, '0');
-
-const formatTime = time => {
-  const hours = padStart(time.getHours());
-  const minutes = padStart(time.getMinutes());
-
-  return `${hours}:${minutes}`;
-};
-
 export const prepopulateEventTime = (now = new Date()): EventTime => {
   const nowHours = now.getHours();
   const nowMinutes = now.getMinutes();
@@ -32,7 +22,7 @@ export const prepopulateEventTime = (now = new Date()): EventTime => {
 
   return {
     date: ymd(now),
-    startTime: formatTime(startTime),
-    endTime: formatTime(endTime)
+    startTime: hm(startTime),
+    endTime: hm(endTime)
   };
 };

@@ -9,5 +9,12 @@ export const ymd = (date: Date): string => {
   return `${year}-${month}-${day}`;
 };
 
+export const hm = (date: Date): string => {
+  const hours = padStart(date.getHours());
+  const minutes = padStart(date.getMinutes());
+
+  return `${hours}:${minutes}`;
+};
+
 export const padStart = (num: number, padCount = 2): string =>
   num.toString().padStart(padCount, '0');

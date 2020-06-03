@@ -2,13 +2,9 @@ import {
   Component,
   OnInit,
   Input,
-  ChangeDetectionStrategy,
-  OnDestroy
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { CalendarDay } from '../../calendar';
-import { CalendarService } from '../../services/calendar.service';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-calendar-track',
@@ -16,23 +12,10 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./calendar-track.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarTrackComponent implements OnInit, OnDestroy {
-  private componentDestroyed$ = new Subject();
-  private opperatingHours;
-
+export class CalendarTrackComponent implements OnInit {
   @Input() day: CalendarDay;
 
-  constructor(private calendar: CalendarService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.calendar.options$
-      .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(({ opperatingHours }) => {
-        this.opperatingHours = opperatingHours;
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.componentDestroyed$.next();
-  }
+  ngOnInit(): void {}
 }
