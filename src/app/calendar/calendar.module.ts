@@ -12,6 +12,9 @@ import { CalendarService } from './services/calendar.service';
 import { CalendarEventComponent } from './calendar-content/calendar-event/calendar-event.component';
 import { CalendarEventWrapperComponent } from './calendar-content/calendar-event-wrapper/calendar-event-wrapper.component';
 import { CalendarTrackComponent } from './calendar-content/calendar-track/calendar-track.component';
+import { CalendarTrackPastComponent } from './calendar-content/calendar-track/calendar-track-past/calendar-track-past.component';
+import { CalendarTrackCurrentComponent } from './calendar-content/calendar-track/calendar-track-current/calendar-track-current.component';
+import { CalendarTrackFutureComponent } from './calendar-content/calendar-track/calendar-track-future/calendar-track-future.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { CalendarTrackComponent } from './calendar-content/calendar-track/calend
     HeaderDayComponent,
     CalendarEventComponent,
     CalendarEventWrapperComponent,
-    CalendarTrackComponent
+    CalendarTrackComponent,
+    CalendarTrackPastComponent,
+    CalendarTrackCurrentComponent,
+    CalendarTrackFutureComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule],
   exports: [CalendarComponent],

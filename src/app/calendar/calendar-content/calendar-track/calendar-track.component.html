@@ -1,0 +1,17 @@
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>
+
+<ng-container [ngSwitch]="day.tense">
+  <app-calendar-track-past *ngSwitchCase="'past'">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </app-calendar-track-past>
+
+  <app-calendar-track-current *ngSwitchCase="'present'">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </app-calendar-track-current>
+
+  <app-calendar-track-future *ngSwitchCase="'future'">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </app-calendar-track-future>
+</ng-container>

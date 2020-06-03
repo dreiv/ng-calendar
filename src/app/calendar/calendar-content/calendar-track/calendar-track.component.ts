@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-calendar-track',
-  template: '<ng-content></ng-content>',
+  templateUrl: './calendar-track.component.html',
   styleUrls: ['./calendar-track.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -30,8 +30,6 @@ export class CalendarTrackComponent implements OnInit, OnDestroy {
       .subscribe(({ opperatingHours }) => {
         this.opperatingHours = opperatingHours;
       });
-
-    console.log(this.day);
   }
 
   ngOnDestroy(): void {
