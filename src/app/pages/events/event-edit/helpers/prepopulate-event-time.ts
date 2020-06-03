@@ -1,3 +1,5 @@
+import { ymd } from 'src/app/calendar/shared/utils';
+
 export interface EventTime {
   date: string;
   startTime: string;
@@ -29,7 +31,7 @@ export const prepopulateEventTime = (now = new Date()): EventTime => {
   endTime.setHours(endTime.getHours() + 1);
 
   return {
-    date: now.toISOString().slice(0, 10),
+    date: ymd(now),
     startTime: formatTime(startTime),
     endTime: formatTime(endTime)
   };

@@ -30,6 +30,8 @@ export class CalendarTrackComponent implements OnInit, OnDestroy {
       .subscribe(({ opperatingHours }) => {
         this.opperatingHours = opperatingHours;
       });
+
+    console.log(this.day);
   }
 
   ngOnDestroy(): void {

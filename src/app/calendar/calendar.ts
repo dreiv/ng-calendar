@@ -5,6 +5,8 @@ export type CalendarPeriod = 'day' | 'week' | 'workWeek';
 
 export type CalendarDirection = 'previous' | 'current' | 'next';
 
+export type CalendarTense = 'past' | 'present' | 'future';
+
 export interface CalendarOptions {
   period: CalendarPeriod;
   focusedDay?: Date;
@@ -15,6 +17,7 @@ export interface CalendarOptions {
 export interface CalendarDay {
   date: Date;
   events: CalendarEvent[];
+  tense: CalendarTense;
 }
 
 export interface CalendarEvent {
