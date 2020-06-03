@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'app-calendar-track-past',
   templateUrl: './calendar-track-past.component.html',
-  styleUrls: ['./calendar-track-past.component.scss'],
+  styleUrls: ['../shared/calendar-track.common.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarTrackPastComponent implements OnInit {

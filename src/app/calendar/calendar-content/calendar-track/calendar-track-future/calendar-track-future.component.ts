@@ -14,7 +14,7 @@ import { HOUR_SIZE } from '../../../calendar';
 @Component({
   selector: 'app-calendar-track-future',
   templateUrl: './calendar-track-future.component.html',
-  styleUrls: ['./calendar-track-future.component.scss'],
+  styleUrls: ['../shared/calendar-track.common.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarTrackFutureComponent implements OnInit, OnDestroy {
@@ -27,7 +27,7 @@ export class CalendarTrackFutureComponent implements OnInit, OnDestroy {
       getDateSize(this.opperatingHours.startTime) * HOUR_SIZE + 'px';
     const end = getDateSize(this.opperatingHours.endTime) * HOUR_SIZE + 'px';
 
-    return `linear-gradient(to bottom, #0001 ${start}, transparent ${start}, transparent ${end}, #0001 ${end})`;
+    return `linear-gradient(#0001 ${start}, transparent ${start}, transparent ${end}, #0001 ${end})`;
   }
 
   constructor(private calendar: CalendarService) {}
