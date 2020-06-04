@@ -1,3 +1,7 @@
 :host {
   background-color: #0001;
 }
+
+:host ::ng-deep app-calendar-event {
+  opacity: 0.7;
+}

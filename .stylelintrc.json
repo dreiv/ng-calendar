@@ -27,6 +27,12 @@
       {
         "ignoreTypes": ["/^app-/"]
       }
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["/^ng-/"]
+      }
     ]
   }
 }

@@ -2,10 +2,9 @@
 
 :host {
   @include padding-horiz(0.5rem, 0.25rem);
+  @include box(100%);
 
   position: absolute;
-
-  width: 100%;
 
   border-radius: var(--border-radius);
   overflow: hidden;
