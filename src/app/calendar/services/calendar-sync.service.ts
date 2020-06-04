@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, interval } from 'rxjs';
+import { BehaviorSubject, Observable, timer } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 
 @Injectable({
@@ -9,13 +9,13 @@ export class CalendarSyncService {
   private scrollSyncSubject: BehaviorSubject<number>;
 
   scrollSync$: Observable<number>;
-  time$: Observable<Date>;
+  minute$: Observable<Date>;
 
   constructor() {
     this.scrollSyncSubject = new BehaviorSubject(0);
 
     this.scrollSync$ = this.scrollSyncSubject.asObservable();
-    this.time$ = interval(1000).pipe(
+    this.minute$ = timer((60 - new Date().getSeconds()) * 1000, 60000).pipe(
       map(() => new Date()),
       share()
     );

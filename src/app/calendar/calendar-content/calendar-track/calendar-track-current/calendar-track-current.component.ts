@@ -3,7 +3,10 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   OnDestroy,
-  HostBinding
+  HostBinding,
+  ViewChild,
+  ElementRef,
+  AfterViewInit
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -25,10 +28,13 @@ const size = date => getDateSize(date) * HOUR_SIZE + 'px';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
+export class CalendarTrackCurrentComponent
+  implements OnInit, OnDestroy, AfterViewInit {
   private componentDestroyed$ = new Subject();
   private opperatingHours: CalendarOpperatingHours;
   private time: Date;
+
+  @ViewChild('now') nowEl: ElementRef;
 
   @HostBinding('style.background')
   get background(): string {
@@ -65,14 +71,20 @@ export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
         this.opperatingHours = opperatingHours;
       });
 
-    this.calendarSync.time$
+    this.calendarSync.minute$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(time => {
-        console.log('tick');
         const hours = time.getHours();
         time.setHours(hours - 4);
         this.time = time;
       });
+  }
+
+  ngAfterViewInit(): void {
+    this.nowEl.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
   }
 
   ngOnDestroy(): void {
