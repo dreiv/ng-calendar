@@ -81,10 +81,7 @@ export class CalendarTrackCurrentComponent
   }
 
   ngAfterViewInit(): void {
-    this.nowEl.nativeElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
+    this.nowEl.nativeElement.scrollIntoView();
   }
 
   ngOnDestroy(): void {
