@@ -8,12 +8,14 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { getDateSize } from 'src/app/calendar/shared/utils';
+import { getDateSize, hm } from 'src/app/calendar/shared/utils';
 import { HOUR_SIZE, CalendarOpperatingHours } from 'src/app/calendar/calendar';
 import { CalendarService } from 'src/app/calendar/services/calendar.service';
 import { CalendarSyncService } from 'src/app/calendar/services/calendar-sync.service';
 
 const inactive_col = '#0001';
+const size = date => getDateSize(date) * HOUR_SIZE + 'px';
+
 @Component({
   selector: 'app-calendar-track-current',
   templateUrl: './calendar-track-current.component.html',
@@ -30,26 +32,31 @@ export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.background')
   get background(): string {
-    if (
-      !this.time ||
-      this.time.getTime() > this.opperatingHours.endTime.getTime()
-    ) {
+    const now = hm(this.time);
+    const end = hm(this.opperatingHours.endTime);
+    if (now > end) {
       return inactive_col;
     }
-    const start = getDateSize(this.getStart()) * HOUR_SIZE + 'px';
-    const end = getDateSize(this.opperatingHours.endTime) * HOUR_SIZE + 'px';
 
-    return `linear-gradient(${inactive_col} ${start}, transparent ${start}, transparent ${end}, ${inactive_col} ${end})`;
+    const start = hm(this.opperatingHours.startTime);
+    const startSize = size(
+      now > start ? this.time : this.opperatingHours.startTime
+    );
+    const endSize = size(this.opperatingHours.endTime);
+
+    return `linear-gradient(${inactive_col} ${startSize}, transparent ${startSize}, transparent ${endSize}, ${inactive_col} ${endSize})`;
   }
 
-  get timeLocation(): string {
-    return getDateSize(this.time) * HOUR_SIZE + 'px';
+  get timeSize(): string {
+    return size(this.time);
   }
 
   constructor(
     private calendar: CalendarService,
     private calendarSync: CalendarSyncService
-  ) {}
+  ) {
+    this.time = new Date();
+  }
 
   ngOnInit(): void {
     this.calendar.options$
@@ -57,21 +64,18 @@ export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
       .subscribe(({ opperatingHours }) => {
         this.opperatingHours = opperatingHours;
       });
+
     this.calendarSync.time$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(time => {
+        console.log('tick');
+        const hours = time.getHours();
+        time.setHours(hours - 4);
         this.time = time;
       });
   }
 
   ngOnDestroy(): void {
     this.componentDestroyed$.next();
-  }
-
-  private getStart(): Date {
-    if (this.time.getTime() > this.opperatingHours.startTime.getTime()) {
-      return this.time;
-    }
-    return this.opperatingHours.startTime;
   }
 }
