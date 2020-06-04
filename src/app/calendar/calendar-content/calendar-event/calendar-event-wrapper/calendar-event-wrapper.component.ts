@@ -4,8 +4,8 @@ import {
   Input,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { getDateSize } from '../../shared/utils';
-import { HOUR_SIZE, CalendarEvent } from '../../calendar';
+import { getDateSize } from '../../../shared/utils';
+import { HOUR_SIZE, CalendarEvent } from '../../../calendar';
 
 @Component({
   selector: 'app-calendar-event-wrapper',

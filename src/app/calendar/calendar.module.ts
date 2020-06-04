@@ -10,7 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HeaderDayComponent } from './calendar-header/header-day/header-day.component';
 import { CalendarService } from './services/calendar.service';
 import { CalendarEventComponent } from './calendar-content/calendar-event/calendar-event.component';
-import { CalendarEventWrapperComponent } from './calendar-content/calendar-event-wrapper/calendar-event-wrapper.component';
+import { CalendarEventWrapperComponent } from './calendar-content/calendar-event/calendar-event-wrapper/calendar-event-wrapper.component';
 import { CalendarTrackComponent } from './calendar-content/calendar-track/calendar-track.component';
 import { CalendarTrackPastComponent } from './calendar-content/calendar-track/calendar-track-past/calendar-track-past.component';
 import { CalendarTrackCurrentComponent } from './calendar-content/calendar-track/calendar-track-current/calendar-track-current.component';
