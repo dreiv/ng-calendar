@@ -2,8 +2,10 @@ import {
   Component,
   OnInit,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  HostBinding
 } from '@angular/core';
+import { CalendarTense } from '../../calendar';
 
 @Component({
   selector: 'app-header-day',
@@ -12,7 +14,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderDayComponent implements OnInit {
-  @Input() date: Date;
+  @HostBinding('class')
+  @Input()
+  tense: CalendarTense;
+  @Input()
+  date: Date;
+
   constructor() {}
 
   ngOnInit(): void {}

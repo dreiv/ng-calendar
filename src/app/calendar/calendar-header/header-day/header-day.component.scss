@@ -5,6 +5,28 @@
   @include flex-column;
 
   align-items: center;
+
+  &.past {
+    > .count {
+      background-color: $day_col;
+    }
+  }
+
+  &.present {
+    > .count {
+      color: var(--onPrimary);
+
+      background-color: var(--primary);
+    }
+  }
+
+  &.future {
+    > .count {
+      border: var(--primary) 1px solid;
+
+      background-color: var(--surface);
+    }
+  }
 }
 
 .count {
@@ -12,8 +34,6 @@
   @include circle(2rem);
 
   line-height: 0;
-
-  background-color: $day_col;
 }
 
 .title {
