@@ -88,7 +88,10 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   private watchChanges(): void {
-    combineLatest(this.editForm.valueChanges, this.editForm.statusChanges)
+    combineLatest([
+        this.editForm.valueChanges,
+        this.editForm.statusChanges
+    ])
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(([changes, status]) => {
         if (status == 'VALID' && validChanges(changes)) {

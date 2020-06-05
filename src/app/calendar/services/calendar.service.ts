@@ -27,10 +27,10 @@ export class CalendarService {
     this.eventsSubject = new BehaviorSubject([]);
 
     this.options$ = this.optionsSubject.asObservable();
-    this.days$ = combineLatest(
+    this.days$ = combineLatest([
       this.visibleDaysSubject,
       this.eventsSubject
-    ).pipe(map(([days, events]) => mapDaysToEvents(days, events)));
+    ]).pipe(map(([days, events]) => mapDaysToEvents(days, events)));
   }
 
   configure(options: CalendarOptions): void {
