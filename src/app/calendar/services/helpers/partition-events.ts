@@ -20,7 +20,7 @@ const getMaxEnd = (events: CalendarEvent[]) => {
   }
   events.sort(eventSort('endTime'));
 
-  return events[0].endTime;
+  return events[events.length - 1].endTime;
 };
 
 export const partitionEvents = (events: CalendarEvent[]): CalendarEvent[][] => {

@@ -7,9 +7,9 @@ export const getTense = (nowDate: Date, thenDate: Date): CalendarTense => {
 
   if (then < now) {
     return 'past';
-  } else if (now === then) {
-    return 'present';
+  } else if (then > now) {
+    return 'future';
   }
 
-  return 'future';
+  return 'present';
 };

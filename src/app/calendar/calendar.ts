@@ -27,7 +27,6 @@ export interface CalendarEvent {
   endTime: Date;
 
   isSketch?: boolean;
-  recurring?: boolean;
 }
 
 export interface CalendarOperatingHours {

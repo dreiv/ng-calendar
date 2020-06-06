@@ -9,6 +9,9 @@ import {
   EventEmitter,
   OnDestroy
 } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import { CalendarService } from './services/calendar.service';
 import {
   CalendarOptions,
@@ -16,8 +19,6 @@ import {
   CalendarSelectedTimeFrame
 } from './calendar';
 import { CalendarSyncService } from './services/calendar-sync.service';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-calendar',
@@ -32,6 +33,7 @@ export class CalendarComponent implements OnInit, OnChanges, OnDestroy {
   options: CalendarOptions;
   @Input()
   events: CalendarEvent[];
+
   @Output()
   selectedTimeFrame$: EventEmitter<CalendarSelectedTimeFrame>;
 

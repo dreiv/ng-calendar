@@ -5,19 +5,15 @@ import { partitionEvents } from './partition-events';
 export const mapDaysToEvents = (
   days: Date[],
   events: CalendarEvent[]
-): CalendarDay[] => {
-  const now = new Date();
-
-  return days.map(day => {
+): CalendarDay[] =>
+  days.map(day => {
     const eventsForDay = events.filter(
-      ({ startTime: startTime }) =>
-        startTime.toDateString() === day.toDateString()
+      ({ startTime }) => startTime.toDateString() === day.toDateString()
     );
 
     return {
       date: day,
       events: partitionEvents(eventsForDay),
-      tense: getTense(now, day)
+      tense: getTense(new Date(), day)
     };
   });
-};

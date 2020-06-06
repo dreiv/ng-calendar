@@ -22,7 +22,7 @@ export class CalendarSyncService {
   }
 
   updateScroll(scrollLeft: number): void {
-    if (scrollLeft != this.scrollSyncSubject.getValue()) {
+    if (scrollLeft !== this.scrollSyncSubject.getValue()) {
       this.scrollSyncSubject.next(scrollLeft);
     }
   }
