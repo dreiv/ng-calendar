@@ -5,17 +5,17 @@
   </header>
 
   <label>
-    <div class="text">Event Title*</div>
+    <div class="text">Event Subject*</div>
 
     <div class="container">
       <input
         type="text"
         placeholder="enter an Event name"
-        formControlName="title"
+        formControlName="subject"
       >
 
-      <p *ngIf="!this.editForm.get('title').valid && this.editForm.get('title').touched">
-        Please enter an event title!
+      <p *ngIf="!this.editForm.get('subject').valid && this.editForm.get('subject').touched">
+        Please enter an event subject!
       </p>
     </div>
   </label>

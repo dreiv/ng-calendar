@@ -22,7 +22,7 @@ export interface CalendarDay {
 
 export interface CalendarEvent {
   id?: string;
-  title: string;
+  subject: string;
   startDate: Date;
   endDate: Date;
 

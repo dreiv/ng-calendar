@@ -75,7 +75,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
     }
 
     this.editForm = new FormGroup({
-      title: new FormControl(this.event?.title, Validators.required),
+      subject: new FormControl(this.event?.subject, Validators.required),
       date: new FormControl(date, Validators.required),
       time: new FormGroup(
         {
