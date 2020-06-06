@@ -1,6 +1,6 @@
 import { CalendarEvent } from '../../calendar';
 
-const dateSort = (property: string) => (
+const eventSort = (property: string) => (
   a: CalendarEvent,
   b: CalendarEvent
 ): number => {
@@ -14,33 +14,29 @@ const dateSort = (property: string) => (
   return 0;
 };
 
-const getMaxEnd = (dates: CalendarEvent[]) => {
-  if (!dates.length) {
-    return false;
+const getMaxEnd = (events: CalendarEvent[]) => {
+  if (!events.length) {
+    return;
   }
-  dates.sort(dateSort('endTime'));
+  events.sort(eventSort('endTime'));
 
-  return dates[0].endTime;
+  return events[0].endTime;
 };
 
-export const partitionEvents = (dates: CalendarEvent[]): CalendarEvent[][] => {
+export const partitionEvents = (events: CalendarEvent[]): CalendarEvent[][] => {
+  const sortedEvents = [...events].sort(eventSort('startTime'));
   const partitioned: CalendarEvent[][] = [];
   let index = 0;
-  if (dates[0]) {
-    partitioned[index] = [dates[0]];
+  if (sortedEvents[0]) {
+    partitioned[index] = [sortedEvents[0]];
   }
 
-  dates.sort(dateSort('startTime'));
-
-  for (let i = 1; i < dates.length; i++) {
-    if (
-      dates[i].startTime > dates[i - 1].startTime &&
-      dates[i].startTime < getMaxEnd(partitioned[index])
-    ) {
-      partitioned[index].push(dates[i]);
+  for (let i = 1; i < sortedEvents.length; i++) {
+    if (sortedEvents[i].startTime < getMaxEnd(partitioned[index])) {
+      partitioned[index].push(sortedEvents[i]);
     } else {
       index++;
-      partitioned[index] = [dates[i]];
+      partitioned[index] = [sortedEvents[i]];
     }
   }
 

@@ -7,9 +7,9 @@
     *ngFor="let day of data.days; trackBy:identifyDay"
     [day]="day"
   >
-    <ng-container *ngFor="let events of day.events; count as cnt, index as idx">
+    <ng-container *ngFor="let events of day.events">
         <app-calendar-event-wrapper
-            *ngFor="let event of events; trackBy:identifyEvent"
+            *ngFor="let event of events; trackBy:identifyEvent;count as cnt; index as idx"
             [event]="event"
             [overlappingCount]="cnt"
             [overlappingIndex]="idx"
