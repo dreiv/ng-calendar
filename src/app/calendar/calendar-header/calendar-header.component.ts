@@ -6,9 +6,10 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { CalendarService } from '../services/calendar.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
+import { CalendarService } from '../services/calendar.service';
 import { CalendarDay } from '../calendar';
 import { CalendarSyncService } from '../services/calendar-sync.service';
 

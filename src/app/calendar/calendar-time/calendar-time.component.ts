@@ -15,4 +15,8 @@ export class CalendarTimeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  identify(index: number, hour: string): string {
+    return hour;
+  }
 }

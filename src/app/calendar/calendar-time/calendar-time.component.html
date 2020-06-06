@@ -1,4 +1,3 @@
-<time class="hour"></time>
-<time class="hour" *ngFor="let hour of hours">
+<time class="hour" *ngFor="let hour of hours; trackBy:identify">
   {{ hour }}
 </time>
