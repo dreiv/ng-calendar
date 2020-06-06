@@ -17,7 +17,11 @@
     </select>
   </div>
   <ng-container *ngIf="store.events$ | async as events">
-    <app-calendar [options]="calendarOptions" [events]="events">
+    <app-calendar
+        [options]="calendarOptions"
+        [events]="events"
+        (selectedTimeFrame$)="onSelected($event)"
+    >
     </app-calendar>
   </ng-container>
 

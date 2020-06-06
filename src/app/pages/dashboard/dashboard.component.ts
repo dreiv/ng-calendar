@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions, CalendarTimeFrame } from 'src/app/calendar/calendar';
+import {
+  CalendarOptions,
+  CalendarTimeFrame,
+  CalendarSelectedTimeFrame
+} from 'src/app/calendar/calendar';
 import { AppStoreService } from 'src/app/store/app-store.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -47,5 +51,9 @@ export class DashboardComponent implements OnInit {
       ...this.calendarOptions,
       focusedDay: new Date()
     };
+  }
+
+  onSelected(event: CalendarSelectedTimeFrame): void {
+    console.log('selectedTimeFrame', event);
   }
 }

@@ -4,11 +4,20 @@ import {
   ChangeDetectionStrategy,
   Input,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  Output,
+  EventEmitter,
+  OnDestroy
 } from '@angular/core';
 import { CalendarService } from './services/calendar.service';
-import { CalendarOptions, CalendarEvent } from './calendar';
+import {
+  CalendarOptions,
+  CalendarEvent,
+  CalendarSelectedTimeFrame
+} from './calendar';
 import { CalendarSyncService } from './services/calendar-sync.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-calendar',
@@ -16,18 +25,30 @@ import { CalendarSyncService } from './services/calendar-sync.service';
   styleUrls: ['./calendar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarComponent implements OnInit, OnChanges {
+export class CalendarComponent implements OnInit, OnChanges, OnDestroy {
+  private componentDestroyed$ = new Subject();
+
   @Input()
   options: CalendarOptions;
   @Input()
   events: CalendarEvent[];
+  @Output()
+  selectedTimeFrame$: EventEmitter<CalendarSelectedTimeFrame>;
 
   constructor(
     public calendar: CalendarService,
     public calendarSync: CalendarSyncService
-  ) {}
+  ) {
+    this.selectedTimeFrame$ = new EventEmitter<CalendarSelectedTimeFrame>();
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.calendar.selectedTimeFrame$
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(selectedTimeFrame =>
+        this.selectedTimeFrame$.emit(selectedTimeFrame)
+      );
+  }
 
   ngOnChanges({ options, events }: SimpleChanges): void {
     if (options) {
@@ -36,5 +57,9 @@ export class CalendarComponent implements OnInit, OnChanges {
     if (events) {
       this.calendar.setEvents(events.currentValue);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next();
   }
 }

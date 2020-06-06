@@ -9,7 +9,8 @@ import {
   CalendarDay,
   CalendarDirection,
   CalendarOptions,
-  CalendarEvent
+  CalendarEvent,
+  CalendarSelectedTimeFrame
 } from '../calendar';
 
 @Injectable()
@@ -20,6 +21,7 @@ export class CalendarService {
 
   options$: Observable<CalendarOptions>;
   days$: Observable<CalendarDay[]>;
+  selectedTimeFrame$: Observable<CalendarSelectedTimeFrame>;
 
   constructor() {
     this.optionsSubject = new BehaviorSubject(null);
@@ -32,6 +34,10 @@ export class CalendarService {
       this.eventsSubject
     ]).pipe(
       map(([days, events]) => mapDaysToEvents(days, events)),
+      shareReplay(1)
+    );
+    this.selectedTimeFrame$ = this.visibleDaysSubject.pipe(
+      map(days => ({ from: days[0], to: days[days.length - 1] })),
       shareReplay(1)
     );
   }

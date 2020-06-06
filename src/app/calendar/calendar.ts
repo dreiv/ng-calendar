@@ -34,3 +34,8 @@ export interface CalendarOperatingHours {
   startTime: Date;
   endTime: Date;
 }
+
+export interface CalendarSelectedTimeFrame {
+  from: Date;
+  to: Date;
+}
