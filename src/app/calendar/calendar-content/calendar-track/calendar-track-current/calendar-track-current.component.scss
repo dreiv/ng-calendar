@@ -1,9 +1,14 @@
+@import 'abstracts/mixins';
+
+$focusSize: 4rem;
 .now {
-  position: absolute;
-  right: 0;
-  left: 0;
+  @include absolute($right: 0);
 
   height: 2px;
 
   background-color: red;
+
+  > .focus-target {
+    @include absolute(-$focusSize / 2);
+  }
 }

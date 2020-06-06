@@ -34,7 +34,7 @@ export class CalendarTrackCurrentComponent
   private operatingHours: CalendarOperatingHours;
   private time: Date;
 
-  @ViewChild('now') nowEl: ElementRef;
+  @ViewChild('nowFocus') nowEl: ElementRef;
 
   @HostBinding('style.background')
   get background(): string {
@@ -67,15 +67,13 @@ export class CalendarTrackCurrentComponent
   ngOnInit(): void {
     this.calendar.options$
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(({ operatingHours: opperatingHours }) => {
-        this.operatingHours = opperatingHours;
+      .subscribe(({ operatingHours }) => {
+        this.operatingHours = operatingHours;
       });
 
     this.calendarSync.minute$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(time => {
-        const hours = time.getHours();
-        time.setHours(hours - 4);
         this.time = time;
       });
   }
