@@ -12,7 +12,7 @@ export const getDays = (
   direction: CalendarDirection
 ): Date[] => {
   const date = getOffsetDate(period, pivot, direction);
-  if (period == 'day') {
+  if (period === 'day') {
     return [date];
   }
 
