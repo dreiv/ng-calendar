@@ -7,6 +7,8 @@ import {
 import { getDateSize } from '../../../shared/utils';
 import { HOUR_SIZE, CalendarEvent } from '../../../calendar';
 
+const size = dateSize => dateSize * HOUR_SIZE + 'px';
+
 @Component({
   selector: 'app-calendar-event-wrapper',
   template: '<ng-content></ng-content>',
@@ -16,24 +18,27 @@ import { HOUR_SIZE, CalendarEvent } from '../../../calendar';
 export class CalendarEventWrapperComponent {
   @HostBinding('style.top')
   get offsetTop(): string {
-    return getDateSize(this.event.startTime) * HOUR_SIZE + 'px';
+    return size(getDateSize(this.event.startTime));
   }
   @HostBinding('style.minHeight') get eventSize(): string {
     const { endTime, startTime: startTime } = this.event;
     const difference = getDateSize(endTime) - getDateSize(startTime);
 
-    return difference * HOUR_SIZE + 'px';
+    return size(difference);
   }
   @HostBinding('style.width') get eventWidth(): string {
-    return `${Math.floor(100 / this.overlappingCount)}%`;
+    return `${this.getEventSize()}%`;
   }
 
   @HostBinding('style.left') get eventOffset(): string {
-    return `${this.overlappingIndex *
-      Math.floor(100 / this.overlappingCount)}%`;
+    return `${this.overlappingIndex * this.getEventSize()}%`;
   }
 
   @Input() event: CalendarEvent;
   @Input() overlappingCount;
   @Input() overlappingIndex;
+
+  private getEventSize() {
+    return Math.floor(100 / this.overlappingCount);
+  }
 }
