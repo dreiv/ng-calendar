@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { CalendarEvent, CalendarOperatingHours } from '../calendar/calendar';
-import events from './events-seed.json';
+import eventSeed from './events-seed.json';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class AppStoreService {
       endTime: new Date(null, null, null, 17, 0)
     });
     this.eventsSubject = new BehaviorSubject(
-      events.map(event => ({
+      eventSeed.map(event => ({
         ...event,
         startTime: new Date(event.startTime),
         endTime: new Date(event.endTime)

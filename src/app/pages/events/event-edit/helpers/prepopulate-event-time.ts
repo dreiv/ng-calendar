@@ -5,7 +5,7 @@ export interface EventTime {
   startTime: string;
   endTime: string;
 }
-export const prepopulateEventTime = (now = new Date()): EventTime => {
+export const prePopulateEventTime = (now = new Date()): EventTime => {
   const nowHours = now.getHours();
   const nowMinutes = now.getMinutes();
 

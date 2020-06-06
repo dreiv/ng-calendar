@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { AppStoreService } from 'src/app/store/app-store.service';
 import { CalendarEvent, CalendarOptions } from 'src/app/calendar/calendar';
 import {
-  prepopulateEventTime,
+  prePopulateEventTime,
   EventTime
 } from './helpers/prepopulate-event-time';
 import { timeValidator } from './helpers/time-validator';
@@ -63,7 +63,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   private initForm(): void {
-    const { date, startTime, endTime } = prepopulateEventTime(
+    const { date, startTime, endTime } = prePopulateEventTime(
       this.event?.startTime
     );
 

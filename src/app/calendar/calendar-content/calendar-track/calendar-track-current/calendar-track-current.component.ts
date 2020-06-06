@@ -16,7 +16,7 @@ import { HOUR_SIZE, CalendarOperatingHours } from 'src/app/calendar/calendar';
 import { CalendarService } from 'src/app/calendar/services/calendar.service';
 import { CalendarSyncService } from 'src/app/calendar/services/calendar-sync.service';
 
-const inactive_col = '#0001';
+const inactiveCol = '#0001';
 const size = date => getDateSize(date) * HOUR_SIZE + 'px';
 
 @Component({
@@ -41,7 +41,7 @@ export class CalendarTrackCurrentComponent
     const now = hm(this.time);
     const end = hm(this.operatingHours.endTime);
     if (now > end) {
-      return inactive_col;
+      return inactiveCol;
     }
 
     const start = hm(this.operatingHours.startTime);
@@ -50,7 +50,7 @@ export class CalendarTrackCurrentComponent
     );
     const endSize = size(this.operatingHours.endTime);
 
-    return `linear-gradient(${inactive_col} ${startSize}, transparent ${startSize}, transparent ${endSize}, ${inactive_col} ${endSize})`;
+    return `linear-gradient(${inactiveCol} ${startSize}, transparent ${startSize}, transparent ${endSize}, ${inactiveCol} ${endSize})`;
   }
 
   get timeSize(): string {
