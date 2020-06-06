@@ -8,17 +8,17 @@
     [day]="day"
   >
     <ng-container *ngFor="let events of day.events">
-        <app-calendar-event-wrapper
-            *ngFor="let event of events; trackBy:identifyEvent;count as cnt; index as idx"
-            [event]="event"
-            [overlappingCount]="cnt"
-            [overlappingIndex]="idx"
-        >
-            <app-calendar-event
-                [isControlled]="data.options.isControlled"
-                [event]="event">
-            </app-calendar-event>
-        </app-calendar-event-wrapper>
+      <app-calendar-event-wrapper
+        *ngFor="let event of events; trackBy:identifyEvent;count as cnt; index as idx"
+        [event]="event"
+        [overlappingCount]="cnt"
+        [overlappingIndex]="idx"
+      >
+        <app-calendar-event
+          [isControlled]="data.options.isControlled"
+          [event]="event">
+        </app-calendar-event>
+      </app-calendar-event-wrapper>
     </ng-container>
   </app-calendar-track>
 </ng-container>

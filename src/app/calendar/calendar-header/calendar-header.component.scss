@@ -64,6 +64,7 @@ $buttonOffset: 1.5rem;
 
 button {
   position: relative;
+  z-index: 2;
 
   // expand clickable area
   ::before {

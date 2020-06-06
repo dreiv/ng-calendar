@@ -10,7 +10,10 @@ import { takeUntil } from 'rxjs/operators';
 
 import { CalendarService } from 'src/app/calendar/services/calendar.service';
 import { getDateSize } from 'src/app/calendar/shared/utils';
-import { HOUR_SIZE, CalendarOperatingHours } from '../../../calendar';
+import { CalendarOperatingHours } from '../../../calendar';
+import { inactiveCol, hourSize } from 'src/app/calendar/shared/calendar.defs';
+
+const size = dateSize => dateSize * hourSize + 'px';
 
 @Component({
   selector: 'app-calendar-track-future',
@@ -24,10 +27,10 @@ export class CalendarTrackFutureComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.background')
   get background(): string {
-    const start = getDateSize(this.operatingHours.startTime) * HOUR_SIZE + 'px';
-    const end = getDateSize(this.operatingHours.endTime) * HOUR_SIZE + 'px';
+    const start = size(getDateSize(this.operatingHours.startTime));
+    const end = size(getDateSize(this.operatingHours.endTime));
 
-    return `linear-gradient(#0001 ${start}, transparent ${start}, transparent ${end}, #0001 ${end})`;
+    return `linear-gradient(${inactiveCol} ${start}, transparent ${start}, transparent ${end}, ${inactiveCol} ${end})`;
   }
 
   constructor(private calendar: CalendarService) {}

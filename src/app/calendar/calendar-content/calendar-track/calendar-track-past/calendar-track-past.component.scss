@@ -1,5 +1,7 @@
+@import '../../../shared/calendar.defs';
+
 :host {
-  background-color: #0001;
+  background-color: $inactiveCol;
 }
 
 :host ::ng-deep app-calendar-event {

@@ -14,12 +14,12 @@
 
   <div class="tracks">
     <div class="scrollable" #scrollSync>
-        <div class="track" *ngFor="let day of data.days; trackBy:identify">
-          <app-header-day
-            [tense]="day.tense"
-            [date]="day.date">
-          </app-header-day>
-        </div>
+      <div class="track" *ngFor="let day of data.days; trackBy:identify">
+        <app-header-day
+          [tense]="day.tense"
+          [date]="day.date">
+        </app-header-day>
+      </div>
     </div>
   </div>
 

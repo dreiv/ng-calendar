@@ -12,12 +12,12 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { getDateSize, hm } from 'src/app/calendar/shared/utils';
-import { HOUR_SIZE, CalendarOperatingHours } from 'src/app/calendar/calendar';
+import { CalendarOperatingHours } from 'src/app/calendar/calendar';
 import { CalendarService } from 'src/app/calendar/services/calendar.service';
 import { CalendarSyncService } from 'src/app/calendar/services/calendar-sync.service';
+import { inactiveCol, hourSize } from 'src/app/calendar/shared/calendar.defs';
 
-const inactiveCol = '#0001';
-const size = date => getDateSize(date) * HOUR_SIZE + 'px';
+const size = date => getDateSize(date) * hourSize + 'px';
 
 @Component({
   selector: 'app-calendar-track-current',

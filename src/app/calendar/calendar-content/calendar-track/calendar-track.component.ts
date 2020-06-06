@@ -4,6 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy
 } from '@angular/core';
+
 import { CalendarDay } from '../../calendar';
 
 @Component({

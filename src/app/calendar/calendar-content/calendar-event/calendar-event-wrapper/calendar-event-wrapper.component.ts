@@ -5,9 +5,10 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { getDateSize } from '../../../shared/utils';
-import { HOUR_SIZE, CalendarEvent } from '../../../calendar';
+import { CalendarEvent } from '../../../calendar';
+import { hourSize } from 'src/app/calendar/shared/calendar.defs';
 
-const size = dateSize => dateSize * HOUR_SIZE + 'px';
+const size = dateSize => dateSize * hourSize + 'px';
 
 @Component({
   selector: 'app-calendar-event-wrapper',

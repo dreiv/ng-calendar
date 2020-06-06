@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
   HostBinding
 } from '@angular/core';
+
 import { CalendarTense } from '../../calendar';
 
 @Component({
