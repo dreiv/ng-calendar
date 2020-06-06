@@ -21,8 +21,8 @@ export class AppStoreService {
     this.eventsSubject = new BehaviorSubject(
       events.map(event => ({
         ...event,
-        startDate: new Date(event.startDate),
-        endDate: new Date(event.endDate)
+        startTime: new Date(event.startTime),
+        endTime: new Date(event.endTime)
       }))
     );
 

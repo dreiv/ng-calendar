@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions, CalendarPeriod } from 'src/app/calendar/calendar';
+import { CalendarOptions, CalendarTimeFrame } from 'src/app/calendar/calendar';
 import { AppStoreService } from 'src/app/store/app-store.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  selectPeriods: CalendarPeriod[];
+  selectPeriods: CalendarTimeFrame[];
   calendarOptions: CalendarOptions;
 
   private componentDestroyed$ = new Subject();
@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   constructor(public store: AppStoreService) {
     this.selectPeriods = ['workWeek', 'week', 'day'];
     this.calendarOptions = {
-      period: 'workWeek'
+      timeFrame: 'workWeek'
     };
   }
 
@@ -34,11 +34,11 @@ export class DashboardComponent implements OnInit {
   }
 
   changePeriod(event: { target: HTMLSelectElement }): void {
-    const period = event.target.value as CalendarPeriod;
+    const period = event.target.value as CalendarTimeFrame;
 
     this.calendarOptions = {
       ...this.calendarOptions,
-      period
+      timeFrame: period
     };
   }
 

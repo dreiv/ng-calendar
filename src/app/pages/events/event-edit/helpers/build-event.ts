@@ -15,8 +15,8 @@ export const buildEvent = (changes: any): CalendarEvent => {
 
   const event: CalendarEvent = {
     subject: changes.subject,
-    startDate: getTime(eventDate, changes.time.start),
-    endDate: getTime(eventDate, changes.time.end),
+    startTime: getTime(eventDate, changes.time.start),
+    endTime: getTime(eventDate, changes.time.end),
     isSketch: true
   };
 

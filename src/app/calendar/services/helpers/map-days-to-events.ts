@@ -9,7 +9,8 @@ export const mapDaysToEvents = (
 
   return days.map(day => {
     const eventsForDay = events.filter(
-      ({ startDate }) => startDate.toDateString() == day.toDateString()
+      ({ startTime: startTime }) =>
+        startTime.toDateString() == day.toDateString()
     );
 
     return {

@@ -16,11 +16,11 @@ import { HOUR_SIZE, CalendarEvent } from '../../../calendar';
 export class CalendarEventWrapperComponent {
   @HostBinding('style.top')
   get offsetTop(): string {
-    return getDateSize(this.event.startDate) * HOUR_SIZE + 'px';
+    return getDateSize(this.event.startTime) * HOUR_SIZE + 'px';
   }
   @HostBinding('style.minHeight') get eventSize(): string {
-    const { endDate, startDate } = this.event;
-    const difference = getDateSize(endDate) - getDateSize(startDate);
+    const { endTime, startTime: startTime } = this.event;
+    const difference = getDateSize(endTime) - getDateSize(startTime);
 
     return difference * HOUR_SIZE + 'px';
   }

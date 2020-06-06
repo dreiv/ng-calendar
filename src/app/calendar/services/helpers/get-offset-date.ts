@@ -1,6 +1,6 @@
-import { CalendarDirection, CalendarPeriod } from '../../calendar';
+import { CalendarDirection, CalendarTimeFrame } from '../../calendar';
 
-const periodWeight = new Map<CalendarPeriod, number>([
+const periodWeight = new Map<CalendarTimeFrame, number>([
   ['day', 1],
   ['week', 7],
   ['workWeek', 7]
@@ -13,7 +13,7 @@ const directionSign = new Map<CalendarDirection, number>([
 ]);
 
 export const getOffsetDate = (
-  period: CalendarPeriod,
+  period: CalendarTimeFrame,
   pivot: Date,
   direction: CalendarDirection
 ): Date => {

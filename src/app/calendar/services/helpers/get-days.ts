@@ -1,13 +1,13 @@
-import { CalendarPeriod, CalendarDirection } from '../../calendar';
+import { CalendarTimeFrame, CalendarDirection } from '../../calendar';
 import { getOffsetDate } from './get-offset-date';
 
-const periodToDays = new Map<CalendarPeriod, number>([
+const periodToDays = new Map<CalendarTimeFrame, number>([
   ['workWeek', 5],
   ['week', 7]
 ]);
 
 export const getDays = (
-  period: CalendarPeriod,
+  period: CalendarTimeFrame,
   pivot: Date,
   direction: CalendarDirection
 ): Date[] => {

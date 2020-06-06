@@ -31,7 +31,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   private componentDestroyed$ = new Subject();
 
   constructor(public store: AppStoreService, private route: ActivatedRoute) {
-    this.calendarOptions = { period: 'day', isControlled: true };
+    this.calendarOptions = { timeFrame: 'day', isControlled: true };
   }
 
   ngOnInit(): void {
@@ -64,13 +64,13 @@ export class EventEditComponent implements OnInit, OnDestroy {
 
   private initForm(): void {
     const { date, startTime, endTime } = prepopulateEventTime(
-      this.event?.startDate
+      this.event?.startTime
     );
 
     if (this.event) {
       this.calendarOptions = {
         ...this.calendarOptions,
-        focusedDay: this.event.startDate
+        focusedDay: this.event.startTime
       };
     }
 
@@ -97,7 +97,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
 
           this.calendarOptions = {
             ...this.calendarOptions,
-            focusedDay: this.sketchEvent.startDate
+            focusedDay: this.sketchEvent.startTime
           };
         } else {
           this.sketchEvents = this.storeEvents;

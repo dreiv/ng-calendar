@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { getDays } from './helpers/get-days';
 import { mapDaysToEvents } from './helpers/map-days-to-events';
 import {
-  CalendarPeriod,
+  CalendarTimeFrame,
   CalendarDay,
   CalendarDirection,
   CalendarOptions,
@@ -35,7 +35,7 @@ export class CalendarService {
 
   configure(options: CalendarOptions): void {
     this.optionsSubject.next(options);
-    this.setDays(options.period, options.focusedDay);
+    this.setDays(options.timeFrame, options.focusedDay);
   }
 
   setEvents(events: CalendarEvent[]): void {
@@ -44,14 +44,14 @@ export class CalendarService {
 
   go(direction: CalendarDirection): void {
     this.setDays(
-      this.optionsSubject.getValue().period,
+      this.optionsSubject.getValue().timeFrame,
       this.visibleDaysSubject.getValue()[0],
       direction
     );
   }
 
   private setDays(
-    period: CalendarPeriod,
+    period: CalendarTimeFrame,
     pivot: Date = new Date(),
     direction: CalendarDirection = 'current'
   ): void {
