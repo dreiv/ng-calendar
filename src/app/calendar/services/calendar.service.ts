@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 
 import { getDays } from './helpers/get-days';
 import { mapDaysToEvents } from './helpers/map-days-to-events';
@@ -30,7 +30,10 @@ export class CalendarService {
     this.days$ = combineLatest([
       this.visibleDaysSubject,
       this.eventsSubject
-    ]).pipe(map(([days, events]) => mapDaysToEvents(days, events)));
+    ]).pipe(
+      map(([days, events]) => mapDaysToEvents(days, events)),
+      shareReplay(1)
+    );
   }
 
   configure(options: CalendarOptions): void {
