@@ -9,15 +9,13 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { CalendarService } from 'src/app/calendar/services/calendar.service';
-import { getDateSize } from 'src/app/calendar/shared/utils';
+import { dateToSize } from 'src/app/calendar/shared/utils';
 import { CalendarOperatingHours } from '../../../calendar';
-import { inactiveCol, hourSize } from 'src/app/calendar/shared/calendar.defs';
-
-const size = dateSize => dateSize * hourSize + 'px';
+import { inactiveCol } from 'src/app/calendar/shared/calendar.defs';
 
 @Component({
   selector: 'app-calendar-track-future',
-  templateUrl: './calendar-track-future.component.html',
+  template: '<ng-content></ng-content>',
   styleUrls: ['../shared/calendar-track.common.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -27,8 +25,8 @@ export class CalendarTrackFutureComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.background')
   get background(): string {
-    const start = size(getDateSize(this.operatingHours.startTime));
-    const end = size(getDateSize(this.operatingHours.endTime));
+    const start = dateToSize(this.operatingHours.startTime);
+    const end = dateToSize(this.operatingHours.endTime);
 
     return `linear-gradient(${inactiveCol} ${start}, transparent ${start}, transparent ${end}, ${inactiveCol} ${end})`;
   }

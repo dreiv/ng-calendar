@@ -4,11 +4,8 @@ import {
   Input,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { getDateSize } from '../../../shared/utils';
+import { getDateSize, dateToSize, numToSize } from '../../../shared/utils';
 import { CalendarEvent } from '../../../calendar';
-import { hourSize } from 'src/app/calendar/shared/calendar.defs';
-
-const size = dateSize => dateSize * hourSize + 'px';
 
 @Component({
   selector: 'app-calendar-event-wrapper',
@@ -19,13 +16,13 @@ const size = dateSize => dateSize * hourSize + 'px';
 export class CalendarEventWrapperComponent {
   @HostBinding('style.top')
   get offsetTop(): string {
-    return size(getDateSize(this.event.startTime));
+    return dateToSize(this.event.startTime);
   }
   @HostBinding('style.minHeight') get eventSize(): string {
     const { endTime, startTime: startTime } = this.event;
     const difference = getDateSize(endTime) - getDateSize(startTime);
 
-    return size(difference);
+    return numToSize(difference);
   }
   @HostBinding('style.width') get eventWidth(): string {
     return `${this.getEventSize()}%`;

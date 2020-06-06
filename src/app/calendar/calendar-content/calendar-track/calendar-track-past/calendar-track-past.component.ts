@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-calendar-track-past',
-  templateUrl: './calendar-track-past.component.html',
+  template: '<ng-content></ng-content>',
   styleUrls: [
     'calendar-track-past.component.scss',
     '../shared/calendar-track.common.scss'

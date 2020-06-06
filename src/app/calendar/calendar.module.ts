@@ -15,6 +15,7 @@ import { CalendarTrackComponent } from './calendar-content/calendar-track/calend
 import { CalendarTrackPastComponent } from './calendar-content/calendar-track/calendar-track-past/calendar-track-past.component';
 import { CalendarTrackCurrentComponent } from './calendar-content/calendar-track/calendar-track-current/calendar-track-current.component';
 import { CalendarTrackFutureComponent } from './calendar-content/calendar-track/calendar-track-future/calendar-track-future.component';
+import { TimeTrackerComponent } from './calendar-content/calendar-track/calendar-track-current/time-tracker/time-tracker.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CalendarTrackFutureComponent } from './calendar-content/calendar-track/
     CalendarTrackComponent,
     CalendarTrackPastComponent,
     CalendarTrackCurrentComponent,
-    CalendarTrackFutureComponent
+    CalendarTrackFutureComponent,
+    TimeTrackerComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule],
   exports: [CalendarComponent],

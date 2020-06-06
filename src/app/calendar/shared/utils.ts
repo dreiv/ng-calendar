@@ -1,5 +1,4 @@
-export const getDateSize = (date: Date): number =>
-  date.getHours() + date.getMinutes() / 60;
+import { hourSize } from './calendar.defs';
 
 export const ymd = (date: Date): string => {
   const year = date.getFullYear();
@@ -18,3 +17,11 @@ export const hm = (date: Date): string => {
 
 export const padStart = (num: number, padCount = 2): string =>
   num.toString().padStart(padCount, '0');
+
+export const numToSize = (dateSize: number): string =>
+  dateSize * hourSize + 'px';
+
+export const getDateSize = (date: Date): number =>
+  date.getHours() + date.getMinutes() / 60;
+
+export const dateToSize = (date: Date): string => numToSize(getDateSize(date));

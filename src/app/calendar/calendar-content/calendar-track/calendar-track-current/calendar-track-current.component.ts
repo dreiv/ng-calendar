@@ -3,58 +3,43 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   OnDestroy,
-  HostBinding,
-  ViewChild,
-  ElementRef,
-  AfterViewInit
+  HostBinding
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { getDateSize, hm } from 'src/app/calendar/shared/utils';
+import { hm, dateToSize } from 'src/app/calendar/shared/utils';
 import { CalendarOperatingHours } from 'src/app/calendar/calendar';
 import { CalendarService } from 'src/app/calendar/services/calendar.service';
 import { CalendarSyncService } from 'src/app/calendar/services/calendar-sync.service';
-import { inactiveCol, hourSize } from 'src/app/calendar/shared/calendar.defs';
-
-const size = date => getDateSize(date) * hourSize + 'px';
+import { inactiveCol } from 'src/app/calendar/shared/calendar.defs';
 
 @Component({
   selector: 'app-calendar-track-current',
   templateUrl: './calendar-track-current.component.html',
-  styleUrls: [
-    './calendar-track-current.component.scss',
-    '../shared/calendar-track.common.scss'
-  ],
+  styleUrls: ['../shared/calendar-track.common.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarTrackCurrentComponent
-  implements OnInit, OnDestroy, AfterViewInit {
+export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
   private componentDestroyed$ = new Subject();
   private operatingHours: CalendarOperatingHours;
-  private time: Date;
-
-  @ViewChild('nowFocus') nowEl: ElementRef;
+  time: Date;
 
   @HostBinding('style.background')
   get background(): string {
     const now = hm(this.time);
-    const end = hm(this.operatingHours.endTime);
-    if (now > end) {
+    const endTime = hm(this.operatingHours.endTime);
+    if (now > endTime) {
       return inactiveCol;
     }
 
-    const start = hm(this.operatingHours.startTime);
-    const startSize = size(
-      now > start ? this.time : this.operatingHours.startTime
+    const startTime = hm(this.operatingHours.startTime);
+    const start = dateToSize(
+      now > startTime ? this.time : this.operatingHours.startTime
     );
-    const endSize = size(this.operatingHours.endTime);
+    const end = dateToSize(this.operatingHours.endTime);
 
-    return `linear-gradient(${inactiveCol} ${startSize}, transparent ${startSize}, transparent ${endSize}, ${inactiveCol} ${endSize})`;
-  }
-
-  get timeSize(): string {
-    return size(this.time);
+    return `linear-gradient(${inactiveCol} ${start}, transparent ${start}, transparent ${end}, ${inactiveCol} ${end})`;
   }
 
   constructor(
@@ -76,10 +61,6 @@ export class CalendarTrackCurrentComponent
       .subscribe(time => {
         this.time = time;
       });
-  }
-
-  ngAfterViewInit(): void {
-    this.nowEl.nativeElement.scrollIntoView();
   }
 
   ngOnDestroy(): void {
