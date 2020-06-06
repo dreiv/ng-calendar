@@ -1,13 +1,12 @@
 import { CalendarEvent, CalendarDay } from '../../calendar';
 import { getTense } from './get-tense';
-import { partitionIntoOverlappingRanges } from './partition-into-overlapping-ranges';
+import { partitionEvents } from './partition-events';
 
 export const mapDaysToEvents = (
   days: Date[],
   events: CalendarEvent[]
 ): CalendarDay[] => {
   const now = new Date();
-  console.log('called');
 
   return days.map(day => {
     const eventsForDay = events.filter(
@@ -15,11 +14,9 @@ export const mapDaysToEvents = (
         startTime.toDateString() === day.toDateString()
     );
 
-    console.log('partitioned', partitionIntoOverlappingRanges(eventsForDay));
-
     return {
       date: day,
-      events: eventsForDay,
+      events: partitionEvents(eventsForDay),
       tense: getTense(now, day)
     };
   });

@@ -24,6 +24,16 @@ export class CalendarEventWrapperComponent {
 
     return difference * HOUR_SIZE + 'px';
   }
+  @HostBinding('style.width') get eventWidth(): string {
+    return `${Math.floor(100 / this.overlappingCount)}%`;
+  }
+
+  @HostBinding('style.left') get eventOffset(): string {
+    return `${this.overlappingIndex *
+      Math.floor(100 / this.overlappingCount)}%`;
+  }
 
   @Input() event: CalendarEvent;
+  @Input() overlappingCount;
+  @Input() overlappingIndex;
 }

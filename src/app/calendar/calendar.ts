@@ -16,7 +16,7 @@ export interface CalendarOptions {
 
 export interface CalendarDay {
   date: Date;
-  events: CalendarEvent[];
+  events: CalendarEvent[][];
   tense: CalendarTense;
 }
 

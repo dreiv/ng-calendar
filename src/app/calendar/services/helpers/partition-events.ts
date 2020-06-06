@@ -23,22 +23,24 @@ const getMaxEnd = (dates: CalendarEvent[]) => {
   return dates[0].endTime;
 };
 
-export const partitionIntoOverlappingRanges = (dates: CalendarEvent[]) => {
-  const partitioned = [];
-  let g = 0;
-  partitioned[g] = [dates[0]];
+export const partitionEvents = (dates: CalendarEvent[]): CalendarEvent[][] => {
+  const partitioned: CalendarEvent[][] = [];
+  let index = 0;
+  if (dates[0]) {
+    partitioned[index] = [dates[0]];
+  }
 
   dates.sort(dateSort('startTime'));
 
   for (let i = 1; i < dates.length; i++) {
     if (
       dates[i].startTime > dates[i - 1].startTime &&
-      dates[i].startTime < getMaxEnd(partitioned[g])
+      dates[i].startTime < getMaxEnd(partitioned[index])
     ) {
-      partitioned[g].push(dates[i]);
+      partitioned[index].push(dates[i]);
     } else {
-      g++;
-      partitioned[g] = dates[i];
+      index++;
+      partitioned[index] = [dates[i]];
     }
   }
 
