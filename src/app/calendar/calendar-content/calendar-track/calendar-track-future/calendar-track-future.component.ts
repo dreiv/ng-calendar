@@ -10,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { CalendarService } from 'src/app/calendar/services/calendar.service';
 import { getDateSize } from 'src/app/calendar/shared/utils';
-import { HOUR_SIZE, CalendarOpperatingHours } from '../../../calendar';
+import { HOUR_SIZE, CalendarOperatingHours } from '../../../calendar';
 
 @Component({
   selector: 'app-calendar-track-future',
@@ -20,13 +20,12 @@ import { HOUR_SIZE, CalendarOpperatingHours } from '../../../calendar';
 })
 export class CalendarTrackFutureComponent implements OnInit, OnDestroy {
   private componentDestroyed$ = new Subject();
-  private opperatingHours: CalendarOpperatingHours;
+  private operatingHours: CalendarOperatingHours;
 
   @HostBinding('style.background')
   get background(): string {
-    const start =
-      getDateSize(this.opperatingHours.startTime) * HOUR_SIZE + 'px';
-    const end = getDateSize(this.opperatingHours.endTime) * HOUR_SIZE + 'px';
+    const start = getDateSize(this.operatingHours.startTime) * HOUR_SIZE + 'px';
+    const end = getDateSize(this.operatingHours.endTime) * HOUR_SIZE + 'px';
 
     return `linear-gradient(#0001 ${start}, transparent ${start}, transparent ${end}, #0001 ${end})`;
   }
@@ -36,8 +35,8 @@ export class CalendarTrackFutureComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.calendar.options$
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(({ opperatingHours }) => {
-        this.opperatingHours = opperatingHours;
+      .subscribe(({ operatingHours }) => {
+        this.operatingHours = operatingHours;
       });
   }
 

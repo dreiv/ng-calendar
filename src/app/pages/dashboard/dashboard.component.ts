@@ -23,12 +23,12 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.opperatingHours$
+    this.store.operatingHours$
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(opperatingHours => {
+      .subscribe(operatingHours => {
         this.calendarOptions = {
           ...this.calendarOptions,
-          opperatingHours
+          operatingHours
         };
       });
   }

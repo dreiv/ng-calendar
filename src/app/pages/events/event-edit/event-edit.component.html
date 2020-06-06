@@ -75,7 +75,7 @@
         Please make sure that the start time comes before the end time.
       </p>
 
-      <p *ngIf="store.opperatingHours$ | async as hours">
+      <p *ngIf="store.operatingHours$ | async as hours">
         * Office hours are {{ hours.startTime | date:'shortTime' }} to
         {{ hours.endTime | date:'shortTime' }}
       </p>

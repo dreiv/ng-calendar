@@ -11,7 +11,7 @@ export interface CalendarOptions {
   period: CalendarPeriod;
   focusedDay?: Date;
   isControlled?: boolean;
-  opperatingHours?: CalendarOpperatingHours;
+  operatingHours?: CalendarOperatingHours;
 }
 
 export interface CalendarDay {
@@ -30,7 +30,7 @@ export interface CalendarEvent {
   recurring?: boolean;
 }
 
-export interface CalendarOpperatingHours {
+export interface CalendarOperatingHours {
   startTime: Date;
   endTime: Date;
 }

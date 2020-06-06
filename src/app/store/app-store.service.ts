@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { CalendarEvent, CalendarOpperatingHours } from '../calendar/calendar';
+import { CalendarEvent, CalendarOperatingHours } from '../calendar/calendar';
 import events from './events-seed.json';
 
 @Injectable({
@@ -8,13 +8,13 @@ import events from './events-seed.json';
 })
 export class AppStoreService {
   private eventsSubject: BehaviorSubject<CalendarEvent[]>;
-  private opperatingHoursSubject: BehaviorSubject<CalendarOpperatingHours>;
+  private operatingHoursSubject: BehaviorSubject<CalendarOperatingHours>;
 
   events$: Observable<CalendarEvent[]>;
-  opperatingHours$: Observable<CalendarOpperatingHours>;
+  operatingHours$: Observable<CalendarOperatingHours>;
 
   constructor() {
-    this.opperatingHoursSubject = new BehaviorSubject({
+    this.operatingHoursSubject = new BehaviorSubject({
       startTime: new Date(null, null, null, 9, 0),
       endTime: new Date(null, null, null, 17, 0)
     });
@@ -27,7 +27,7 @@ export class AppStoreService {
     );
 
     this.events$ = this.eventsSubject.asObservable();
-    this.opperatingHours$ = this.opperatingHoursSubject.asObservable();
+    this.operatingHours$ = this.operatingHoursSubject.asObservable();
   }
 
   setEvents(events: CalendarEvent[]): void {

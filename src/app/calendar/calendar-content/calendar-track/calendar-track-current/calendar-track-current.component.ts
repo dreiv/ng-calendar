@@ -12,7 +12,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { getDateSize, hm } from 'src/app/calendar/shared/utils';
-import { HOUR_SIZE, CalendarOpperatingHours } from 'src/app/calendar/calendar';
+import { HOUR_SIZE, CalendarOperatingHours } from 'src/app/calendar/calendar';
 import { CalendarService } from 'src/app/calendar/services/calendar.service';
 import { CalendarSyncService } from 'src/app/calendar/services/calendar-sync.service';
 
@@ -31,7 +31,7 @@ const size = date => getDateSize(date) * HOUR_SIZE + 'px';
 export class CalendarTrackCurrentComponent
   implements OnInit, OnDestroy, AfterViewInit {
   private componentDestroyed$ = new Subject();
-  private opperatingHours: CalendarOpperatingHours;
+  private operatingHours: CalendarOperatingHours;
   private time: Date;
 
   @ViewChild('now') nowEl: ElementRef;
@@ -39,16 +39,16 @@ export class CalendarTrackCurrentComponent
   @HostBinding('style.background')
   get background(): string {
     const now = hm(this.time);
-    const end = hm(this.opperatingHours.endTime);
+    const end = hm(this.operatingHours.endTime);
     if (now > end) {
       return inactive_col;
     }
 
-    const start = hm(this.opperatingHours.startTime);
+    const start = hm(this.operatingHours.startTime);
     const startSize = size(
-      now > start ? this.time : this.opperatingHours.startTime
+      now > start ? this.time : this.operatingHours.startTime
     );
-    const endSize = size(this.opperatingHours.endTime);
+    const endSize = size(this.operatingHours.endTime);
 
     return `linear-gradient(${inactive_col} ${startSize}, transparent ${startSize}, transparent ${endSize}, ${inactive_col} ${endSize})`;
   }
@@ -67,8 +67,8 @@ export class CalendarTrackCurrentComponent
   ngOnInit(): void {
     this.calendar.options$
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(({ opperatingHours }) => {
-        this.opperatingHours = opperatingHours;
+      .subscribe(({ operatingHours: opperatingHours }) => {
+        this.operatingHours = opperatingHours;
       });
 
     this.calendarSync.minute$
