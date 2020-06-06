@@ -52,8 +52,4 @@ export class DashboardComponent implements OnInit {
       focusedDay: new Date()
     };
   }
-
-  onSelected(event: CalendarSelectedTimeFrame): void {
-    console.log('selectedTimeFrame', event);
-  }
 }
