@@ -43,9 +43,14 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    combineLatest([this.route.data, this.store.events$])
+    combineLatest([
+      this.route.data,
+      this.store.events$,
+      this.store.operatingHours$
+    ])
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(([data, events]) => {
+      .subscribe(([data, events, hours]) => {
+        this.calendarOptions.operatingHours = hours;
         if (data[0]) {
           this.event = { ...data[0] };
           this.updateDate();
