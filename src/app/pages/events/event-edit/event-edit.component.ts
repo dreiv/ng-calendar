@@ -8,7 +8,7 @@ import { CalendarEvent, CalendarOptions } from 'src/app/calendar/calendar';
 import {
   prePopulateEventTime,
   EventTime
-} from './helpers/prepopulate-event-time';
+} from './helpers/pre-populate-event-time';
 import { timeValidator } from './helpers/time-validator';
 import { buildEvent } from './helpers/build-event';
 import { validChanges } from './helpers/valid-changes';
@@ -22,7 +22,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EventEditComponent implements OnInit, OnDestroy {
   sketchEvents: CalendarEvent[];
   editForm: FormGroup;
-  prepopulateTime: EventTime;
+  prePopulateTime: EventTime;
   calendarOptions: CalendarOptions;
   event: CalendarEvent;
 
@@ -91,7 +91,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
     combineLatest([this.editForm.valueChanges, this.editForm.statusChanges])
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(([changes, status]) => {
-        if (status == 'VALID' && validChanges(changes)) {
+        if (status === 'VALID' && validChanges(changes)) {
           this.sketchEvent = buildEvent(changes);
           this.sketchEvents = [...this.storeEvents, this.sketchEvent];
 
