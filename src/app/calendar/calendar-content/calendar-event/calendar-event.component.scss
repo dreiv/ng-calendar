@@ -46,5 +46,7 @@
 }
 
 .subject {
+  @include trim;
+
   font-weight: 500;
 }

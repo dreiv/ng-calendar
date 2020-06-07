@@ -1,4 +1,3 @@
-// change together with styling
 export type CalendarTimeFrame = 'day' | 'week' | 'workWeek';
 
 export type CalendarDirection = 'previous' | 'current' | 'next';

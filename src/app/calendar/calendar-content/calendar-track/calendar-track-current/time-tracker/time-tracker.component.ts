@@ -7,6 +7,7 @@ import {
   ViewChild,
   Input
 } from '@angular/core';
+
 import { dateToSize } from 'src/app/calendar/shared/utils';
 
 @Component({

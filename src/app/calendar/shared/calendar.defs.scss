@@ -1,10 +1,10 @@
+// change together with code.
+$inactiveCol: #0001;
+$hourSize: 48px;
+
 $cal_bg: var(--background);
 $line_col: #dadce0;
 $day_col: #ececec;
-// change together with code.
-$inactiveCol: #0001;
 
-// change together with code.
-$hourSize: 48px;
 $hours: 24;
 $calendar_height: $hourSize * $hours;

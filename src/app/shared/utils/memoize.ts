@@ -6,7 +6,9 @@ export const memoize = (fn): Function => {
   return (...args) => {
     const cacheKey = JSON.stringify(args);
 
-    if (cacheKey in cache) return cache[cacheKey];
+    if (cacheKey in cache) {
+      return cache[cacheKey];
+    }
 
     return (cache[cacheKey] = fn(...args));
   };
