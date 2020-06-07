@@ -15,11 +15,19 @@
 
   text-transform: uppercase;
 
+  cursor: pointer;
+
   &:not(:hover) {
     text-decoration: none;
   }
 
+  &:disabled {
+    opacity: 0.3;
+  }
+
   &.contained {
+    border: none;
+
     color: var(--onPrimary);
 
     background-color: var(--primary);

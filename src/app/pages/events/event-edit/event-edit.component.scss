@@ -49,7 +49,7 @@ label {
   }
 }
 
-input {
+input:not([type='submit']) {
   @include padding-horiz(0.5rem);
 
   height: 2.5rem;
@@ -78,22 +78,13 @@ app-calendar {
   }
 }
 
-[type='submit'] {
-  height: 2.5rem;
+.actions {
   margin-top: 2rem;
 
   margin-left: $labelSize;
-  border: none;
-  border-radius: var(--border-radius);
 
-  color: var(--onPrimary);
-
-  background-color: var(--primary);
-  cursor: pointer;
-  @include padding-horiz(1rem);
-
-  &:disabled {
-    opacity: 0.3;
+  > button {
+    margin-left: 1rem;
   }
 
   @media #{$phone} {

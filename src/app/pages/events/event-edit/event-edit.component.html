@@ -81,7 +81,16 @@
     </div>
   </div>
 
-  <input type="submit" [value]="editText" [disabled]="!this.editForm.valid">
+  <div class="actions">
+    <input
+      type="submit"
+      app-button
+      [value]="editText"
+      [disabled]="!this.editForm.valid"
+    >
+
+    <button app-button variant="outlined" (click)="onCancel()">cancel</button>
+  </div>
 </form>
 
 <app-calendar
