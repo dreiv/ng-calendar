@@ -1,6 +1,6 @@
 <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
   <header>
-    <h1>Add Event</h1>
+    <h1>{{ editText }}</h1>
     <p>The event you add is a mock event and will not be persisted outside this application session.</p>
   </header>
 
@@ -27,7 +27,6 @@
       <input
         type="date"
         formControlName="date"
-        [min]="this.editForm.get('date').value"
       >
 
       <p *ngIf="!this.editForm.get('date').valid && this.editForm.get('date').touched">
@@ -82,11 +81,11 @@
     </div>
   </div>
 
-  <input type="submit" value="Create Event" [disabled]="!this.editForm.valid">
+  <input type="submit" [value]="editText" [disabled]="!this.editForm.valid">
 </form>
 
 <app-calendar
   [options]="calendarOptions"
-  [events]="sketchEvents"
+  [events]="viewEvents"
 >
 </app-calendar>

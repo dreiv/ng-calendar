@@ -1,11 +1,7 @@
-import { ymd, hm } from 'src/app/calendar/shared/utils';
+import { CalendarEvent } from 'src/app/calendar/calendar';
 
-export interface EventTime {
-  date: string;
-  startTime: string;
-  endTime: string;
-}
-export const prePopulateEventTime = (now = new Date()): EventTime => {
+export const proposeEvent = (): CalendarEvent => {
+  const now = new Date();
   const nowHours = now.getHours();
   const nowMinutes = now.getMinutes();
 
@@ -21,8 +17,8 @@ export const prePopulateEventTime = (now = new Date()): EventTime => {
   endTime.setHours(endTime.getHours() + 1);
 
   return {
-    date: ymd(now),
-    startTime: hm(startTime),
-    endTime: hm(endTime)
+    subject: 'New Event',
+    startTime: startTime,
+    endTime: endTime
   };
 };

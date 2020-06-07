@@ -27,6 +27,10 @@ export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.background')
   get background(): string {
+    if (!this.operatingHours) {
+      return;
+    }
+
     const now = hm(this.time);
     const endTime = hm(this.operatingHours.endTime);
     if (now > endTime) {

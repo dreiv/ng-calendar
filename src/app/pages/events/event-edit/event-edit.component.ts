@@ -5,14 +5,12 @@ import { takeUntil } from 'rxjs/operators';
 
 import { AppStoreService } from 'src/app/store/app-store.service';
 import { CalendarEvent, CalendarOptions } from 'src/app/calendar/calendar';
-import {
-  prePopulateEventTime,
-  EventTime
-} from './helpers/pre-populate-event-time';
+import { proposeEvent } from './helpers/propose-event';
 import { timeValidator } from './helpers/time-validator';
-import { buildEvent } from './helpers/build-event';
+import { getEvent } from './helpers/get-event';
 import { validChanges } from './helpers/valid-changes';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ymd, hm } from 'src/app/calendar/shared/utils';
 
 @Component({
   selector: 'app-event-edit',
@@ -20,27 +18,42 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./event-edit.component.scss']
 })
 export class EventEditComponent implements OnInit, OnDestroy {
-  sketchEvents: CalendarEvent[];
+  isEditMode = false;
   editForm: FormGroup;
-  prePopulateTime: EventTime;
-  calendarOptions: CalendarOptions;
+  events: CalendarEvent[];
   event: CalendarEvent;
+  calendarOptions: CalendarOptions;
 
-  private sketchEvent: CalendarEvent;
-  private storeEvents: CalendarEvent[];
+  get viewEvents(): CalendarEvent[] {
+    return [...this.events, this.event];
+  }
+
+  get editText(): string {
+    return `${this.isEditMode ? 'Edit' : 'Create'} Event`;
+  }
+
   private componentDestroyed$ = new Subject();
 
-  constructor(public store: AppStoreService, private route: ActivatedRoute) {
+  constructor(
+    public store: AppStoreService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.calendarOptions = { timeFrame: 'day', isControlled: true };
   }
 
   ngOnInit(): void {
-    this.event = this.route.snapshot.data[0];
-    this.store.events$
+    combineLatest([this.route.data, this.store.events$])
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(events => {
-        this.storeEvents = events;
-        this.sketchEvents = events;
+      .subscribe(([data, events]) => {
+        if (data[0]) {
+          this.event = { ...data[0] };
+          this.updateDate();
+        }
+        this.isEditMode = !!this.event;
+        this.events = this.isEditMode
+          ? events.filter(({ id }) => id !== this.event.id)
+          : events;
       });
 
     this.initForm();
@@ -52,35 +65,36 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    const event = {
-      ...this.sketchEvent,
-      ...(this.event?.id && { id: this.event.id })
-    };
+    const event = getEvent(this.event, this.editForm.value);
     delete event.isSketch;
-
-    this.store.addEvent(event);
     this.editForm.reset();
+
+    if (this.isEditMode) {
+      this.store.updateEvent(this.event.id, event);
+    } else {
+      this.store.addEvent(event);
+    }
+    this.onCancel();
+  }
+
+  onCancel(): void {
+    this.router.navigate(['/']);
   }
 
   private initForm(): void {
-    const { date, startTime, endTime } = prePopulateEventTime(
-      this.event?.startTime
-    );
-
-    if (this.event) {
-      this.calendarOptions = {
-        ...this.calendarOptions,
-        focusedDay: this.event.startTime
-      };
+    if (!this.isEditMode) {
+      this.event = proposeEvent();
     }
+    const { subject, startTime, endTime } = this.event;
+    this.event.isSketch = true;
 
     this.editForm = new FormGroup({
-      subject: new FormControl(this.event?.subject, Validators.required),
-      date: new FormControl(date, Validators.required),
+      subject: new FormControl(subject, Validators.required),
+      date: new FormControl(ymd(startTime)),
       time: new FormGroup(
         {
-          start: new FormControl(startTime, Validators.required),
-          end: new FormControl(endTime, Validators.required)
+          start: new FormControl(hm(startTime), Validators.required),
+          end: new FormControl(hm(endTime), Validators.required)
         },
         timeValidator
       )
@@ -92,16 +106,16 @@ export class EventEditComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(([changes, status]) => {
         if (status === 'VALID' && validChanges(changes)) {
-          this.sketchEvent = buildEvent(changes);
-          this.sketchEvents = [...this.storeEvents, this.sketchEvent];
-
-          this.calendarOptions = {
-            ...this.calendarOptions,
-            focusedDay: this.sketchEvent.startTime
-          };
-        } else {
-          this.sketchEvents = this.storeEvents;
+          this.event = getEvent(this.event, changes);
+          this.updateDate();
         }
       });
+  }
+
+  private updateDate(): void {
+    this.calendarOptions = {
+      ...this.calendarOptions,
+      focusedDay: this.event.startTime
+    };
   }
 }
