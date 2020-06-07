@@ -7,9 +7,12 @@ import {
   OnChanges,
   Output,
   EventEmitter,
-  OnDestroy
+  OnDestroy,
+  NgZone,
+  ViewChild,
+  AfterViewInit
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, fromEvent } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { CalendarService } from './services/calendar.service';
@@ -19,6 +22,7 @@ import {
   CalendarSelectedTimeFrame
 } from './calendar';
 import { CalendarSyncService } from './services/calendar-sync.service';
+import { outsideZone } from './shared/runOutsdieAngular';
 
 @Component({
   selector: 'app-calendar',
@@ -26,7 +30,8 @@ import { CalendarSyncService } from './services/calendar-sync.service';
   styleUrls: ['./calendar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarComponent implements OnInit, OnChanges, OnDestroy {
+export class CalendarComponent
+  implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   private componentDestroyed$ = new Subject();
 
   @Input()
@@ -36,10 +41,13 @@ export class CalendarComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output()
   selectedTimeFrame$: EventEmitter<CalendarSelectedTimeFrame>;
+  @ViewChild('scrollSpy')
+  scrollSpy;
 
   constructor(
     public calendar: CalendarService,
-    public calendarSync: CalendarSyncService
+    public calendarSync: CalendarSyncService,
+    private zone: NgZone
   ) {
     this.selectedTimeFrame$ = new EventEmitter<CalendarSelectedTimeFrame>();
   }
@@ -50,6 +58,14 @@ export class CalendarComponent implements OnInit, OnChanges, OnDestroy {
       .subscribe(selectedTimeFrame =>
         this.selectedTimeFrame$.emit(selectedTimeFrame)
       );
+  }
+
+  ngAfterViewInit(): void {
+    fromEvent(this.scrollSpy.nativeElement, 'scroll')
+      .pipe(outsideZone(), takeUntil(this.componentDestroyed$))
+      .subscribe(({ target: { scrollLeft } }) => {
+        this.calendarSync.updateScroll(scrollLeft);
+      });
   }
 
   ngOnChanges({ options, events }: SimpleChanges): void {
