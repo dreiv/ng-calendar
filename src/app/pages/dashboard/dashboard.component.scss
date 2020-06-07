@@ -60,7 +60,7 @@ main {
   @include margin-vert(1.5rem);
   text-align: end;
 
-  > .action {
+  > button:not(:last-of-type) {
     margin-right: 1rem;
   }
 
@@ -73,17 +73,6 @@ main {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
-}
-
-.action {
-  @include padding-horiz(1.5rem);
-
-  height: 2.5rem;
-
-  border: 1px solid;
-  border-radius: var(--border-radius);
-
-  text-transform: uppercase;
 }
 
 .period {
