@@ -10,16 +10,10 @@
 </main>
 
 <div class="actions">
-  <a
-    class="action edit"
-    [routerLink]="'/events/' + event.id +'/edit'"
-  >
+  <a app-button [routerLink]="'/events/' + event.id +'/edit'">
     edit
   </a>
-  <button
-    class="action warn"
-    (click)="deleteEvent(event.id)"
-  >
+  <button app-button variant="text" class="warn" (click)="deleteEvent(event.id)">
     delete
   </button>
 </div>

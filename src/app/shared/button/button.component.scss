@@ -1,0 +1,32 @@
+@import 'abstracts/mixins';
+
+:host {
+  @include padding-horiz(1rem);
+  display: inline-flex;
+  align-items: center;
+
+  min-width: 4rem;
+  height: 2.25rem;
+
+  border-radius: var(--border-radius);
+
+  font-size: 18px;
+  line-height: 0;
+
+  &:not(:hover) {
+    text-decoration: none;
+  }
+
+  &.contained {
+    color: var(--onPrimary);
+
+    background-color: var(--primary);
+  }
+
+  &.outlined {
+    border: 1px solid var(--primary);
+  }
+
+  &.text {
+  }
+}

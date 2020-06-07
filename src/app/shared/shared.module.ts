@@ -7,6 +7,7 @@ import { PlusComponent } from './icons/plus/plus.component';
 import { ArrowLeftComponent } from './icons/arrow-left/arrow-left.component';
 import { EditComponent } from './icons/edit/edit.component';
 import { RefreshComponent } from './icons/refresh/refresh.component';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RefreshComponent } from './icons/refresh/refresh.component';
     PlusComponent,
     ArrowLeftComponent,
     EditComponent,
-    RefreshComponent
+    RefreshComponent,
+    ButtonComponent
   ],
   imports: [CommonModule],
   exports: [
@@ -24,7 +26,8 @@ import { RefreshComponent } from './icons/refresh/refresh.component';
     PlusComponent,
     ArrowLeftComponent,
     EditComponent,
-    RefreshComponent
+    RefreshComponent,
+    ButtonComponent
   ]
 })
 export class SharedModule {}
