@@ -13,7 +13,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { Subject, fromEvent } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { CalendarService } from './services/calendar.service';
 import {
@@ -62,8 +62,13 @@ export class CalendarComponent
 
   ngAfterViewInit(): void {
     fromEvent(this.scrollSpy.nativeElement, 'scroll')
-      .pipe(outsideZone(), takeUntil(this.componentDestroyed$))
-      .subscribe(({ target: { scrollLeft } }) => {
+      .pipe(
+        takeUntil(this.componentDestroyed$),
+        outsideZone(),
+        map(({ target: { scrollLeft } }) => scrollLeft),
+        distinctUntilChanged()
+      )
+      .subscribe(scrollLeft => {
         this.calendarSync.updateScroll(scrollLeft);
       });
   }

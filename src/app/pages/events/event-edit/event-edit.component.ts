@@ -51,6 +51,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
           this.updateDate();
         }
         this.isEditMode = !!this.event;
+
         this.events = this.isEditMode
           ? events.filter(({ id }) => id !== this.event.id)
           : events;

@@ -28,6 +28,6 @@ export class TimeTrackerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.focusEl.nativeElement.scrollIntoView();
+    this.focusEl.nativeElement.scrollIntoView({ block: 'center' });
   }
 }
