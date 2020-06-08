@@ -1,7 +1,7 @@
 @import 'abstracts/mixins';
 
 $focusSize: 4rem;
-:host {
+.now {
   @include absolute($right: 0);
 
   height: 2px;

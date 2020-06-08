@@ -98,7 +98,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
       this.event = proposeEvent();
     }
     const { subject, description, startTime, endTime, recurrence } = this.event;
-    const isrecurrenceEnabled = recurrence?.interval >= 0;
+    const isRecurrenceEnabled = recurrence?.interval >= 0;
     this.event.isSketch = true;
 
     this.editForm = new FormGroup({
@@ -116,11 +116,11 @@ export class EventEditComponent implements OnInit, OnDestroy {
         interval: new FormControl(recurrence?.interval || 0),
         frequency: new FormControl({
           value: recurrence?.frequency || 'week',
-          disabled: !isrecurrenceEnabled
+          disabled: !isRecurrenceEnabled
         }),
         endDate: new FormControl({
           value: ymd(recurrence?.endDate),
-          disabled: !isrecurrenceEnabled
+          disabled: !isRecurrenceEnabled
         })
       })
     });

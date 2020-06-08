@@ -1,2 +1,10 @@
 <ng-content></ng-content>
-<app-time-tracker [time]="time"></app-time-tracker>
+<div
+  class="now"
+  [style.top]="timeSize"
+>
+  <div
+    class="focus-target"
+    #focusEl>
+  </div>
+</div>

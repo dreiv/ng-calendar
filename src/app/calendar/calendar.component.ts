@@ -8,7 +8,6 @@ import {
   Output,
   EventEmitter,
   OnDestroy,
-  NgZone,
   ViewChild,
   AfterViewInit
 } from '@angular/core';

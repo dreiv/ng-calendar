@@ -13,7 +13,6 @@ import { CalendarTrackComponent } from './calendar-content/calendar-track/calend
 import { CalendarTrackPastComponent } from './calendar-content/calendar-track/calendar-track-past/calendar-track-past.component';
 import { CalendarTrackCurrentComponent } from './calendar-content/calendar-track/calendar-track-current/calendar-track-current.component';
 import { CalendarTrackFutureComponent } from './calendar-content/calendar-track/calendar-track-future/calendar-track-future.component';
-import { TimeTrackerComponent } from './calendar-content/calendar-track/calendar-track-current/time-tracker/time-tracker.component';
 import { SharedModule } from '../shared/shared.module';
 import { CalendarService } from './services/calendar.service';
 
@@ -29,8 +28,7 @@ import { CalendarService } from './services/calendar.service';
     CalendarTrackComponent,
     CalendarTrackPastComponent,
     CalendarTrackCurrentComponent,
-    CalendarTrackFutureComponent,
-    TimeTrackerComponent
+    CalendarTrackFutureComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule],
   exports: [CalendarComponent],

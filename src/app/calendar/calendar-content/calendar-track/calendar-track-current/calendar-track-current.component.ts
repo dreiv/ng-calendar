@@ -3,7 +3,11 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   OnDestroy,
-  HostBinding
+  HostBinding,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  ChangeDetectorRef
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -17,13 +21,19 @@ import { inactiveCurrCol } from 'src/app/calendar/shared/calendar.defs';
 @Component({
   selector: 'app-calendar-track-current',
   templateUrl: './calendar-track-current.component.html',
-  styleUrls: ['../shared/calendar-track.common.scss'],
+  styleUrls: [
+    './calendar-track-current.component.scss',
+    '../shared/calendar-track.common.scss'
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
+export class CalendarTrackCurrentComponent
+  implements OnInit, AfterViewInit, OnDestroy {
   private componentDestroyed$ = new Subject();
   private operatingHours: CalendarOperatingHours;
   time: Date;
+
+  @ViewChild('focusEl') focusEl: ElementRef;
 
   @HostBinding('style.background')
   get background(): string {
@@ -46,9 +56,14 @@ export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
     return `linear-gradient(${inactiveCurrCol} ${start}, transparent ${start}, transparent ${end}, ${inactiveCurrCol} ${end})`;
   }
 
+  get timeSize(): string {
+    return dateToSize(this.time);
+  }
+
   constructor(
     private calendar: CalendarService,
-    private calendarSync: CalendarSyncService
+    private calendarSync: CalendarSyncService,
+    private ref: ChangeDetectorRef
   ) {
     this.time = new Date();
   }
@@ -64,7 +79,12 @@ export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(time => {
         this.time = time;
+        this.ref.detectChanges();
       });
+  }
+
+  ngAfterViewInit(): void {
+    this.focusEl.nativeElement.scrollIntoView({ block: 'center' });
   }
 
   ngOnDestroy(): void {
