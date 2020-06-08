@@ -1,13 +1,17 @@
 import { CalendarEvent } from '../../calendar';
+import { hm } from '../../shared/utils';
 
 const eventSort = (property: string) => (
   a: CalendarEvent,
   b: CalendarEvent
 ): number => {
-  if (a[property] < b[property]) {
+  const timeA = hm(a[property]);
+  const timeB = hm(b[property]);
+
+  if (timeA < timeB) {
     return -1;
   }
-  if (a[property] > b[property]) {
+  if (timeA > timeB) {
     return 1;
   }
 
@@ -34,7 +38,7 @@ export const partitionEvents = (events: CalendarEvent[]): CalendarEvent[][] => {
   partitioned[index] = [sortedEvents[0]];
 
   for (let i = 1; i < sortedEvents.length; i++) {
-    if (sortedEvents[i].startTime < getMaxEnd(partitioned[index])) {
+    if (hm(sortedEvents[i].startTime) < hm(getMaxEnd(partitioned[index]))) {
       partitioned[index].push(sortedEvents[i]);
     } else {
       index++;
