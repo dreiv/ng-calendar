@@ -17,6 +17,12 @@ form {
   }
 }
 
+fieldset {
+  @include margin-horiz(0);
+
+  border-radius: var(--border-radius);
+}
+
 header {
   margin-bottom: 1.5rem;
 

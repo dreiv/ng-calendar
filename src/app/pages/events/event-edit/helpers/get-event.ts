@@ -11,12 +11,12 @@ const getTime = (seed, time: string): Date => {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getEvent = (event: CalendarEvent, changes: any): CalendarEvent => {
-  const eventDate = new Date(changes.date);
+  const eventDate = new Date(changes.datetime.date);
 
   return {
     ...event,
     subject: changes.subject,
-    startTime: getTime(eventDate, changes.time.start),
-    endTime: getTime(eventDate, changes.time.end)
+    startTime: getTime(eventDate, changes.datetime.start),
+    endTime: getTime(eventDate, changes.datetime.end)
   };
 };

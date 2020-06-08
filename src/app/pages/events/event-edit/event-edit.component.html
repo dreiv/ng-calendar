@@ -20,22 +20,24 @@
     </div>
   </label>
 
-  <label>
-    <div class="text">Event Date*</div>
+  <fieldset formGroupName="datetime">
+    <legend>Event date</legend>
 
-    <div class="container">
-      <input
-        type="date"
-        formControlName="date"
-      >
+    <label>
+      <div class="text">Date*</div>
 
-      <p *ngIf="!this.editForm.get('date').valid && this.editForm.get('date').touched">
-        Please enter an event date!
-      </p>
-    </div>
-  </label>
+      <div class="container">
+        <input
+          type="date"
+          formControlName="date"
+        >
 
-  <div formGroupName="time">
+        <p *ngIf="!this.editForm.get('datetime.date').valid && this.editForm.get('datetime.date').touched">
+          Please enter an event date!
+        </p>
+      </div>
+    </label>
+
     <label>
       <div class="text">Start Time*</div>
 
@@ -46,7 +48,7 @@
           formControlName="start"
         >
 
-        <p *ngIf="!this.editForm.get('time.start').valid && this.editForm.get('time.start').touched">
+        <p *ngIf="!this.editForm.get('datetime.start').valid && this.editForm.get('datetime.start').touched">
           Please enter an event start time!
         </p>
       </div>
@@ -63,14 +65,14 @@
           formControlName="end"
         >
 
-        <p *ngIf="!this.editForm.get('time.end').valid && this.editForm.get('time.end').touched">
+        <p *ngIf="!this.editForm.get('datetime.end').valid && this.editForm.get('datetime.end').touched">
           Please enter an event end time!
         </p>
       </div>
     </label>
 
     <div class="offset">
-      <p *ngIf="!this.editForm.get('time').valid && this.editForm.get('time').touched">
+      <p *ngIf="!this.editForm.get('datetime').valid && this.editForm.get('datetime').touched">
         Please make sure that the start time comes before the end time.
       </p>
 
@@ -79,7 +81,7 @@
         {{ calendarOptions.operatingHours.endTime | date:'shortTime' }}
       </p>
     </div>
-  </div>
+  </fieldset>
 
   <div class="actions">
     <input
