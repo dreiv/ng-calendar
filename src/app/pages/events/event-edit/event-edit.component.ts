@@ -97,7 +97,8 @@ export class EventEditComponent implements OnInit, OnDestroy {
     if (!this.isEditMode) {
       this.event = proposeEvent();
     }
-    const { subject, description, startTime, endTime } = this.event;
+    const { subject, description, startTime, endTime, recurring } = this.event;
+    const isRecurringEnabled = recurring?.interval >= 0;
     this.event.isSketch = true;
 
     this.editForm = new FormGroup({
@@ -112,9 +113,15 @@ export class EventEditComponent implements OnInit, OnDestroy {
         datetimeValidator
       ),
       recurrence: new FormGroup({
-        interval: new FormControl(0),
-        frequency: new FormControl('week'),
-        endDate: new FormControl()
+        interval: new FormControl(recurring?.interval || 0),
+        frequency: new FormControl({
+          value: recurring?.frequency || 'week',
+          disabled: !isRecurringEnabled
+        }),
+        endDate: new FormControl({
+          value: ymd(recurring?.endDate),
+          disabled: !isRecurringEnabled
+        })
       })
     });
   }
@@ -126,6 +133,21 @@ export class EventEditComponent implements OnInit, OnDestroy {
         if (status === 'VALID' && validChanges(changes)) {
           this.event = getEvent(this.event, changes);
           this.updateDate();
+        }
+      });
+
+    this.editForm
+      .get('recurrence.interval')
+      .valueChanges.subscribe(interval => {
+        const frequency = this.editForm.get('recurrence.frequency');
+        const endDate = this.editForm.get('recurrence.endDate');
+
+        if (interval <= 0) {
+          frequency.disable();
+          endDate.disable();
+        } else {
+          frequency.enable();
+          endDate.enable();
         }
       });
   }

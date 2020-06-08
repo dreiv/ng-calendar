@@ -111,7 +111,7 @@ app-calendar {
 }
 
 .actions {
-  margin-top: 2rem;
+  @include margin-vert(2rem);
 
   margin-left: $labelSize;
 
