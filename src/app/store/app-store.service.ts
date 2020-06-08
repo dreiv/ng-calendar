@@ -82,6 +82,14 @@ export class AppStoreService {
     this.setEvents(events);
   }
 
+  deleteEventOccurrence(id: string, date: string): void {
+    const event = this.getEvent(id);
+    if (!event.recurrence.exceptions) {
+      event.recurrence.exceptions = [];
+    }
+    event.recurrence.exceptions.push(new Date(date));
+  }
+
   private getEventIndex(id: string): number {
     return this.eventsSubject.getValue().findIndex(event => event.id === id);
   }

@@ -27,6 +27,12 @@ export class EventDetailComponent implements OnInit {
   }
 
   deleteEventOccurrence(id: string): void {
-    alert(`todo: delete ${this.route.snapshot.queryParams.date}`);
+    const occurrence = this.route.snapshot.queryParams.date;
+    if (!occurrence) {
+      return;
+    }
+
+    this.store.deleteEventOccurrence(id, occurrence);
+    this.router.navigate(['/']);
   }
 }
