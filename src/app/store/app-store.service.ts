@@ -18,13 +18,25 @@ export class AppStoreService {
       startTime: new Date(null, null, null, 9, 0),
       endTime: new Date(null, null, null, 17, 0)
     });
-    this.eventsSubject = new BehaviorSubject(
-      eventSeed.map(event => ({
+    this.eventsSubject = new BehaviorSubject([
+      ...eventSeed.map(event => ({
         ...event,
         startTime: new Date(event.startTime),
         endTime: new Date(event.endTime)
       }))
-    );
+      // TODO: remove
+      // {
+      //   id: 'h0ups',
+      //   startTime: new Date('Jun 3, 2020 16:30:00'),
+      //   endTime: new Date('Jun 3, 2020 17:00:00'),
+      //   subject: 'Go Home',
+      //   recurring: {
+      //     frequency: 'week',
+      //     interval: 2,
+      //     endDate: new Date('Jul 5, 2020 17:00:00')
+      //   }
+      // }
+    ]);
 
     this.events$ = this.eventsSubject.asObservable();
     this.operatingHours$ = this.operatingHoursSubject.asObservable();
@@ -39,7 +51,7 @@ export class AppStoreService {
   }
 
   getEvent(id: string): CalendarEvent {
-    return this.eventsSubject.getValue().find(event => event.id == id);
+    return this.eventsSubject.getValue().find(event => event.id === id);
   }
 
   addEvent(event: CalendarEvent): void {
@@ -71,6 +83,6 @@ export class AppStoreService {
   }
 
   private getEventIndex(id: string): number {
-    return this.eventsSubject.getValue().findIndex(event => event.id == id);
+    return this.eventsSubject.getValue().findIndex(event => event.id === id);
   }
 }

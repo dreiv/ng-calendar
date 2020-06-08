@@ -22,7 +22,7 @@ import {
   CalendarSelectedTimeFrame
 } from './calendar';
 import { CalendarSyncService } from './services/calendar-sync.service';
-import { outsideZone } from './shared/runOutsdieAngular';
+import { outsideZone } from './shared/runOutsideAngular';
 
 @Component({
   selector: 'app-calendar',
@@ -46,8 +46,7 @@ export class CalendarComponent
 
   constructor(
     public calendar: CalendarService,
-    public calendarSync: CalendarSyncService,
-    private zone: NgZone
+    public calendarSync: CalendarSyncService
   ) {
     this.selectedTimeFrame$ = new EventEmitter<CalendarSelectedTimeFrame>();
   }

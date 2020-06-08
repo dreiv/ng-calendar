@@ -1,5 +1,7 @@
 import { hourSize } from './calendar.defs';
 
+const dayDuration = 86400000;
+
 export const ymd = (date: Date): string => {
   const year = date.getFullYear();
   const month = padStart(date.getMonth() + 1);
@@ -25,3 +27,6 @@ export const getDateSize = (date: Date): number =>
   date.getHours() + date.getMinutes() / 60;
 
 export const dateToSize = (date: Date): string => numToSize(getDateSize(date));
+
+export const dateDiff = (first: Date, second: Date): number =>
+  Math.floor((first.getTime() - second.getTime()) / dayDuration);

@@ -12,6 +12,7 @@ import { takeUntil } from 'rxjs/operators';
 import { CalendarService } from '../services/calendar.service';
 import { CalendarDay } from '../calendar';
 import { CalendarSyncService } from '../services/calendar-sync.service';
+import { outsideZone } from '../shared/runOutsideAngular';
 
 @Component({
   selector: 'app-calendar-header',
@@ -35,7 +36,7 @@ export class CalendarHeaderComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.calendarSync.scrollSync$
-      .pipe(takeUntil(this.componentDestroyed$))
+      .pipe(takeUntil(this.componentDestroyed$), outsideZone())
       .subscribe(left => {
         this.scrollSync.nativeElement.scrollLeft = left;
       });
