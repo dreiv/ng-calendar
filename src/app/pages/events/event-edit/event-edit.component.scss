@@ -2,6 +2,7 @@
 @import 'abstracts/mixins';
 
 $labelSize: 10rem;
+$inputHeight: 2.5rem;
 
 :host {
   display: flex;
@@ -56,10 +57,11 @@ label {
 }
 
 input:not([type='submit']),
-textarea {
+textarea,
+select {
   @include padding-horiz(0.5rem);
 
-  height: 2.5rem;
+  height: $inputHeight;
   border: none;
   border: #2f363d 1px solid;
   border-radius: var(--border-radius);
@@ -73,6 +75,18 @@ textarea {
 
 .description {
   flex: 1;
+}
+
+.recurrence {
+  display: flex;
+
+  [type='number'] {
+    width: 3rem;
+  }
+
+  select {
+    margin-left: 1ch;
+  }
 }
 
 textarea {

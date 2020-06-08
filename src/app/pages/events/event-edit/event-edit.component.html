@@ -29,10 +29,6 @@
         formControlName="description"
         rows="2"
       ></textarea>
-
-      <p *ngIf="!this.editForm.get('subject').valid && this.editForm.get('subject').touched">
-        Please enter an event description!
-      </p>
     </div>
   </label>
 
@@ -97,6 +93,36 @@
         {{ calendarOptions.operatingHours.endTime | date:'shortTime' }}
       </p>
     </div>
+  </fieldset>
+
+  <fieldset formGroupName="recurrence">
+    <legend>Event recurrence</legend>
+
+    <label>
+      <div class="text">Event Repeats Every</div>
+
+      <div class="container recurrence">
+        <input
+          type="number"
+          formControlName="interval">
+        <select formControlName="frequency">
+          <option
+            *ngFor="let frequency of selectRecurringFrequency"
+            [value]="frequency"
+          >
+            {{ frequency }}(s)
+          </option>
+        </select>
+      </div>
+    </label>
+
+    <label>
+      <div class="text">Until</div>
+
+      <div class="container">
+        <input type="date" formControlName="endDate">
+      </div>
+    </label>
   </fieldset>
 
   <div class="actions">

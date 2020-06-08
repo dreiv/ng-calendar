@@ -4,9 +4,13 @@ import { Subject, combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { AppStoreService } from 'src/app/store/app-store.service';
-import { CalendarEvent, CalendarOptions } from 'src/app/calendar/calendar';
+import {
+  CalendarEvent,
+  CalendarOptions,
+  CalendarRecurringFrequency
+} from 'src/app/calendar/calendar';
 import { proposeEvent } from './helpers/propose-event';
-import { timeValidator } from './helpers/time-validator';
+import { datetimeValidator } from './helpers/datetime-validator';
 import { getEvent } from './helpers/get-event';
 import { validChanges } from './helpers/valid-changes';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,6 +27,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   events: CalendarEvent[];
   event: CalendarEvent;
   calendarOptions: CalendarOptions;
+  selectRecurringFrequency: CalendarRecurringFrequency[];
 
   get viewEvents(): CalendarEvent[] {
     return [...this.events, this.event];
@@ -39,6 +44,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router
   ) {
+    this.selectRecurringFrequency = ['week', 'day'];
     this.calendarOptions = { timeFrame: 'day', isControlled: true };
   }
 
@@ -103,8 +109,13 @@ export class EventEditComponent implements OnInit, OnDestroy {
           start: new FormControl(hm(startTime), Validators.required),
           end: new FormControl(hm(endTime), Validators.required)
         },
-        timeValidator
-      )
+        datetimeValidator
+      ),
+      recurrence: new FormGroup({
+        interval: new FormControl(0),
+        frequency: new FormControl('week'),
+        endDate: new FormControl()
+      })
     });
   }
 
