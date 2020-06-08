@@ -21,7 +21,7 @@ export const getEvent = (event: CalendarEvent, changes: any): CalendarEvent => {
     startTime: getTime(eventDate, datetime.start),
     endTime: getTime(eventDate, datetime.end),
     ...(recurrence.interval && {
-      recurring: {
+      recurrence: {
         frequency: recurrence.frequency,
         interval: recurrence.interval,
         ...(recurrence.endDate && {

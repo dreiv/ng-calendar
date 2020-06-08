@@ -7,7 +7,7 @@ import { AppStoreService } from 'src/app/store/app-store.service';
 import {
   CalendarEvent,
   CalendarOptions,
-  CalendarRecurringFrequency
+  CalendarRecurrenceFrequency
 } from 'src/app/calendar/calendar';
 import { proposeEvent } from './helpers/propose-event';
 import { datetimeValidator } from './helpers/datetime-validator';
@@ -27,7 +27,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   events: CalendarEvent[];
   event: CalendarEvent;
   calendarOptions: CalendarOptions;
-  selectRecurringFrequency: CalendarRecurringFrequency[];
+  selectRecurrenceFrequency: CalendarRecurrenceFrequency[];
 
   get viewEvents(): CalendarEvent[] {
     return [...this.events, this.event];
@@ -44,7 +44,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.selectRecurringFrequency = ['week', 'day'];
+    this.selectRecurrenceFrequency = ['week', 'day'];
     this.calendarOptions = { timeFrame: 'day', isControlled: true };
   }
 
@@ -97,8 +97,8 @@ export class EventEditComponent implements OnInit, OnDestroy {
     if (!this.isEditMode) {
       this.event = proposeEvent();
     }
-    const { subject, description, startTime, endTime, recurring } = this.event;
-    const isRecurringEnabled = recurring?.interval >= 0;
+    const { subject, description, startTime, endTime, recurrence } = this.event;
+    const isrecurrenceEnabled = recurrence?.interval >= 0;
     this.event.isSketch = true;
 
     this.editForm = new FormGroup({
@@ -113,14 +113,14 @@ export class EventEditComponent implements OnInit, OnDestroy {
         datetimeValidator
       ),
       recurrence: new FormGroup({
-        interval: new FormControl(recurring?.interval || 0),
+        interval: new FormControl(recurrence?.interval || 0),
         frequency: new FormControl({
-          value: recurring?.frequency || 'week',
-          disabled: !isRecurringEnabled
+          value: recurrence?.frequency || 'week',
+          disabled: !isrecurrenceEnabled
         }),
         endDate: new FormControl({
-          value: ymd(recurring?.endDate),
-          disabled: !isRecurringEnabled
+          value: ymd(recurrence?.endDate),
+          disabled: !isrecurrenceEnabled
         })
       })
     });

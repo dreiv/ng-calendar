@@ -4,7 +4,7 @@ export type CalendarDirection = 'previous' | 'current' | 'next';
 
 export type CalendarTense = 'past' | 'present' | 'future';
 
-export type CalendarRecurringFrequency = 'day' | 'week';
+export type CalendarRecurrenceFrequency = 'day' | 'week';
 
 export interface CalendarOptions {
   timeFrame: CalendarTimeFrame;
@@ -27,11 +27,11 @@ export interface CalendarEvent {
   endTime: Date;
 
   isSketch?: boolean;
-  recurring?: CalendarRecurringEvent;
+  recurrence?: CalendarEventRecurrence;
 }
 
-export interface CalendarRecurringEvent {
-  frequency: CalendarRecurringFrequency;
+export interface CalendarEventRecurrence {
+  frequency: CalendarRecurrenceFrequency;
   interval: number;
   endDate?: Date;
   exceptions?: Date[];

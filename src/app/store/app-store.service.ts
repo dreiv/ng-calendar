@@ -29,7 +29,7 @@ export class AppStoreService {
         startTime: new Date('Jun 3, 2020 16:30:00'),
         endTime: new Date('Jun 3, 2020 17:00:00'),
         subject: 'Measure Progress',
-        recurring: {
+        recurrence: {
           frequency: 'week',
           interval: 2,
           endDate: new Date('Jul 31, 2020 17:00:00'),

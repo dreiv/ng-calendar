@@ -1,13 +1,13 @@
 import {
   CalendarEvent,
   CalendarDay,
-  CalendarRecurringFrequency
+  CalendarRecurrenceFrequency
 } from '../../calendar';
 import { getTense } from './get-tense';
 import { partitionEvents } from './partition-events';
 import { dateDiff } from '../../shared/utils';
 
-const weight = new Map<CalendarRecurringFrequency, number>([
+const weight = new Map<CalendarRecurrenceFrequency, number>([
   ['day', 1],
   ['week', 7]
 ]);
@@ -16,10 +16,10 @@ const sameDay = (a: Date, b: Date): boolean =>
   a.toDateString() === b.toDateString();
 
 const filterEvents = day => event => {
-  const { startTime, recurring } = event;
+  const { startTime, recurrence } = event;
 
-  if (recurring && startTime < day) {
-    const { frequency, interval, endDate, exceptions } = recurring;
+  if (recurrence && startTime < day) {
+    const { frequency, interval, endDate, exceptions } = recurrence;
 
     if (endDate && day > endDate) {
       return false;
