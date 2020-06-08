@@ -13,7 +13,23 @@
   <a app-button [routerLink]="'/events/' + event.id +'/edit'">
     edit
   </a>
-  <button app-button variant="text" class="warn" (click)="deleteEvent(event.id)">
+
+  <button
+    *ngIf="event.recurrence"
+    app-button
+    variant="text"
+    class="warn"
+    (click)="deleteEventOccurrence(event.id)"
+  >
+    delete occurrence
+  </button>
+
+  <button
+    app-button
+    variant="text"
+    class="warn"
+    (click)="deleteEvent(event.id)"
+  >
     delete
   </button>
 </div>

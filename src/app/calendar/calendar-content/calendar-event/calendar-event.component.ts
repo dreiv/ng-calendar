@@ -7,6 +7,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { CalendarEvent } from '../../calendar';
+import { ymd } from '../../shared/utils';
 
 @Component({
   selector: 'app-calendar-event',
@@ -20,7 +21,16 @@ export class CalendarEventComponent implements AfterViewInit {
   }
 
   @Input() event: CalendarEvent;
+  @Input() date: Date;
   @Input() isControlled: boolean;
+
+  get params(): Record<string, string> {
+    if (this.event?.recurrence?.interval >= 0) {
+      return { date: ymd(this.date) };
+    }
+
+    return null;
+  }
 
   constructor(private elRef: ElementRef) {}
 

@@ -25,4 +25,8 @@ export class EventDetailComponent implements OnInit {
     this.store.deleteEvent(id);
     this.router.navigate(['/']);
   }
+
+  deleteEventOccurrence(id: string): void {
+    alert(`todo: delete ${this.route.snapshot.queryParams.date}`);
+  }
 }
