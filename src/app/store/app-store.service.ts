@@ -23,19 +23,19 @@ export class AppStoreService {
         ...event,
         startTime: new Date(event.startTime),
         endTime: new Date(event.endTime)
-      }))
-      // TODO: remove
-      // {
-      //   id: 'h0ups',
-      //   startTime: new Date('Jun 3, 2020 16:30:00'),
-      //   endTime: new Date('Jun 3, 2020 17:00:00'),
-      //   subject: 'Go Home',
-      //   recurring: {
-      //     frequency: 'week',
-      //     interval: 2,
-      //     endDate: new Date('Jul 5, 2020 17:00:00')
-      //   }
-      // }
+      })),
+      {
+        id: 'h0ups',
+        startTime: new Date('Jun 3, 2020 16:30:00'),
+        endTime: new Date('Jun 3, 2020 17:00:00'),
+        subject: 'Measure Progress',
+        recurring: {
+          frequency: 'week',
+          interval: 2,
+          endDate: new Date('Jul 31, 2020 17:00:00'),
+          exceptions: [new Date('Jun 17, 2020 17:00:00')]
+        }
+      }
     ]);
 
     this.events$ = this.eventsSubject.asObservable();

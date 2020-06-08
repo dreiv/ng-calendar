@@ -1,4 +1,5 @@
 import { CalendarEvent } from '../../calendar';
+import { hm } from '../../shared/utils';
 
 const eventSort = (property: string) => (
   a: CalendarEvent,
@@ -24,15 +25,17 @@ const getMaxEnd = (events: CalendarEvent[]) => {
 };
 
 export const partitionEvents = (events: CalendarEvent[]): CalendarEvent[][] => {
+  if (!events.length) {
+    return [];
+  }
+
   const sortedEvents = [...events].sort(eventSort('startTime'));
   const partitioned: CalendarEvent[][] = [];
   let index = 0;
-  if (sortedEvents[0]) {
-    partitioned[index] = [sortedEvents[0]];
-  }
+  partitioned[index] = [sortedEvents[0]];
 
   for (let i = 1; i < sortedEvents.length; i++) {
-    if (sortedEvents[i].startTime < getMaxEnd(partitioned[index])) {
+    if (hm(sortedEvents[i].startTime) < hm(getMaxEnd(partitioned[index]))) {
       partitioned[index].push(sortedEvents[i]);
     } else {
       index++;
