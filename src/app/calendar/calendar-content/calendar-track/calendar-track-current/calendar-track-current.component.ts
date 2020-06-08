@@ -12,7 +12,7 @@ import { hm, dateToSize } from 'src/app/calendar/shared/utils';
 import { CalendarOperatingHours } from 'src/app/calendar/calendar';
 import { CalendarService } from 'src/app/calendar/services/calendar.service';
 import { CalendarSyncService } from 'src/app/calendar/services/calendar-sync.service';
-import { inactiveCol } from 'src/app/calendar/shared/calendar.defs';
+import { inactiveCurrCol } from 'src/app/calendar/shared/calendar.defs';
 
 @Component({
   selector: 'app-calendar-track-current',
@@ -34,7 +34,7 @@ export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
     const now = hm(this.time);
     const endTime = hm(this.operatingHours.endTime);
     if (now > endTime) {
-      return inactiveCol;
+      return inactiveCurrCol;
     }
 
     const startTime = hm(this.operatingHours.startTime);
@@ -43,7 +43,7 @@ export class CalendarTrackCurrentComponent implements OnInit, OnDestroy {
     );
     const end = dateToSize(this.operatingHours.endTime);
 
-    return `linear-gradient(${inactiveCol} ${start}, transparent ${start}, transparent ${end}, ${inactiveCol} ${end})`;
+    return `linear-gradient(${inactiveCurrCol} ${start}, transparent ${start}, transparent ${end}, ${inactiveCurrCol} ${end})`;
   }
 
   constructor(
