@@ -81,19 +81,22 @@
     "id": "j0qpw",
     "startTime": "Jun 9, 2020 11:15:00",
     "endTime": "Jun 9, 2020 12:30:00",
-    "subject": "Dentist"
+    "subject": "Dentist",
+    "description": "Check out the bracers status"
   },
   {
     "id": "tu8kb",
     "startTime": "Jun 10, 2020 8:00:00",
     "endTime": "Jun 10, 2020 10:00:00",
-    "subject": "Practice in the park"
+    "subject": "Practice in the park",
+    "description": "Try not to fall"
   },
   {
     "id": "im8an",
     "startTime": "Jun 12, 2020 11:00:00",
     "endTime": "Jun 12, 2020 13:00:00",
-    "subject": "Adopt a dog"
+    "subject": "Adopt a dog",
+    "description": "Everyone needs a little love 🐾"
   },
   {
     "id": "s7rwi",

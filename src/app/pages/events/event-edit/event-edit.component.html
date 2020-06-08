@@ -10,12 +10,28 @@
     <div class="container">
       <input
         type="text"
-        placeholder="enter an Event name"
+        placeholder="enter an Event subject"
         formControlName="subject"
       >
 
       <p *ngIf="!this.editForm.get('subject').valid && this.editForm.get('subject').touched">
         Please enter an event subject!
+      </p>
+    </div>
+  </label>
+
+  <label>
+    <div class="text">Event Description</div>
+
+    <div class="container description">
+      <textarea
+        placeholder="enter an Event description"
+        formControlName="description"
+        rows="2"
+      ></textarea>
+
+      <p *ngIf="!this.editForm.get('subject').valid && this.editForm.get('subject').touched">
+        Please enter an event description!
       </p>
     </div>
   </label>

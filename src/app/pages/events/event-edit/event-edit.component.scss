@@ -55,7 +55,8 @@ label {
   }
 }
 
-input:not([type='submit']) {
+input:not([type='submit']),
+textarea {
   @include padding-horiz(0.5rem);
 
   height: 2.5rem;
@@ -68,6 +69,17 @@ input:not([type='submit']) {
   &.ng-invalid.ng-touched {
     border-color: var(--warning);
   }
+}
+
+.description {
+  flex: 1;
+}
+
+textarea {
+  width: 100%;
+  height: inherit;
+
+  resize: vertical;
 }
 
 [formGroupName='time'] {

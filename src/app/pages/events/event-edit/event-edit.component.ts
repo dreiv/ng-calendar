@@ -91,11 +91,12 @@ export class EventEditComponent implements OnInit, OnDestroy {
     if (!this.isEditMode) {
       this.event = proposeEvent();
     }
-    const { subject, startTime, endTime } = this.event;
+    const { subject, description, startTime, endTime } = this.event;
     this.event.isSketch = true;
 
     this.editForm = new FormGroup({
       subject: new FormControl(subject, Validators.required),
+      description: new FormControl(description),
       datetime: new FormGroup(
         {
           date: new FormControl(ymd(startTime), Validators.required),

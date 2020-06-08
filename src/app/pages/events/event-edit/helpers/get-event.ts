@@ -16,6 +16,7 @@ export const getEvent = (event: CalendarEvent, changes: any): CalendarEvent => {
   return {
     ...event,
     subject: changes.subject,
+    description: changes.description,
     startTime: getTime(eventDate, changes.datetime.start),
     endTime: getTime(eventDate, changes.datetime.end)
   };
