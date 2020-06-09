@@ -26,7 +26,8 @@ export const getEvent = (event: CalendarEvent, changes: any): CalendarEvent => {
         interval: recurrence.interval,
         ...(recurrence.endDate && {
           endDate: new Date(recurrence.endDate)
-        })
+        }),
+        exceptions: recurrence.exceptions || []
       }
     })
   };

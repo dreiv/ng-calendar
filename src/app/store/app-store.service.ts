@@ -88,6 +88,8 @@ export class AppStoreService {
       event.recurrence.exceptions = [];
     }
     event.recurrence.exceptions.push(new Date(date));
+
+    this.updateEvent(id, event);
   }
 
   private getEventIndex(id: string): number {

@@ -143,8 +143,8 @@ export class EventEditComponent implements OnInit, OnDestroy {
         const endDate = this.editForm.get('recurrence.endDate');
 
         if (interval <= 0) {
-          frequency.disable();
-          endDate.disable();
+          frequency.disable({ emitEvent: false });
+          endDate.disable({ emitEvent: false });
         } else {
           frequency.enable();
           endDate.enable();
